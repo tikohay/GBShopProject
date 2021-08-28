@@ -13,6 +13,7 @@ target 'GBShop' do
   end
 
 	pod 'Swinject'
+	pod 'Alamofire', '~> 5.4'
 
   target 'GBShopUITests' do
     # Pods for testing

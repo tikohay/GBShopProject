@@ -13,20 +13,20 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let container = Container()
+//        let container = Container()
         
-        container.register(Pet.self) { _ in Cat(name: "Барсик") }
-        container.register(PetOwner.self) { r in
-            PetOwner(pet: r.resolve(Pet.self)!)
-        }
-        
-        let pet = container.resolve(Pet.self)!
-        let petOwner = container.resolve(PetOwner.self)!
-        print(pet.info())
-        print(petOwner.infoPet())
-        
-        let h = container.resolve(String.self)
-        print(h)
+//        container.register(Pet.self) { _ in Cat(name: "Барсик") }
+//        container.register(PetOwner.self) { r in
+//            PetOwner(pet: r.resolve(Pet.self)!)
+//        }
+//
+//        let pet = container.resolve(Pet.self)!
+//        let petOwner = container.resolve(PetOwner.self)!
+//        print(pet.info())
+//        print(petOwner.infoPet())
+//
+//        let h = container.resolve(String.self)
+//        print(h)
     }
 }
 
