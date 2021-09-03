@@ -9,11 +9,12 @@ import Foundation
 import Alamofire
 
 class Registration: AbstractRequestFactory {
+
     let errorParser: AbstractErrorParser
     let sessionManager: Session
     let queue: DispatchQueue
     let baseUrl = URL(string: "https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/")!
-    
+
     init(
         errorParser: AbstractErrorParser,
         sessionManager: Session,
@@ -36,7 +37,7 @@ extension Registration {
         let baseUrl: URL
         let method: HTTPMethod = .get
         let path: String = "registerUser.json"
-        
+
         let registrationData: RegistrationData
         var parameters: Parameters? {
             return [
