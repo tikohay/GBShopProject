@@ -1,19 +1,20 @@
 //
-//  Auth.swift
+//  Product.swift
 //  GBShop
 //
-//  Created by Karahanyan Levon on 27.08.2021.
+//  Created by Karahanyan Levon on 03.09.2021.
 //
 
 import Foundation
 import Alamofire
 
-class Auth: AbstractRequestFactory {
+class Product: AbstractRequestFactory {
+
     let errorParser: AbstractErrorParser
     let sessionManager: Session
     let queue: DispatchQueue
     let baseUrl = URL(string: "https://salty-bastion-35523.herokuapp.com")!
-    
+
     init(
         errorParser: AbstractErrorParser,
         sessionManager: Session,
@@ -24,25 +25,24 @@ class Auth: AbstractRequestFactory {
     }
 }
 
-extension Auth: AuthRequestFactory {
-    func login(userName: String, password: String, completionHandler: @escaping (AFDataResponse<LoginResult>) -> Void) {
-        let requestModel = Login(baseUrl: baseUrl, login: userName, password: password)
+extension Product: ProductRequestFactory {
+    func getProduct(productId: Int, completionHandler: @escaping (AFDataResponse<ProductResult>) -> Void) {
+        let requestModel = ProductRequest(baseUrl: baseUrl, productId: productId)
         self.request(request: requestModel, completionHandler: completionHandler)
     }
 }
 
-extension Auth {
-    struct Login: RequestRouter {
+extension Product {
+    struct ProductRequest: RequestRouter {
         let baseUrl: URL
-        let method: HTTPMethod = .post
-        let path: String = "login"
+        let method: HTTPMethod = .get
+        let path: String = "product"
+
+        var productId: Int
         
-        let login: String
-        let password: String
         var parameters: Parameters? {
             return [
-                "username": login,
-                "password": password
+                "id_product": productId
             ]
         }
     }

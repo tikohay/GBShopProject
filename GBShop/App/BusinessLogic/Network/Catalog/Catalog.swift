@@ -1,19 +1,20 @@
 //
-//  Auth.swift
+//  Catalog.swift
 //  GBShop
 //
-//  Created by Karahanyan Levon on 27.08.2021.
+//  Created by Karahanyan Levon on 03.09.2021.
 //
 
 import Foundation
 import Alamofire
 
-class Auth: AbstractRequestFactory {
+class Catalog: AbstractRequestFactory {
+
     let errorParser: AbstractErrorParser
     let sessionManager: Session
     let queue: DispatchQueue
     let baseUrl = URL(string: "https://salty-bastion-35523.herokuapp.com")!
-    
+
     init(
         errorParser: AbstractErrorParser,
         sessionManager: Session,
@@ -24,25 +25,26 @@ class Auth: AbstractRequestFactory {
     }
 }
 
-extension Auth: AuthRequestFactory {
-    func login(userName: String, password: String, completionHandler: @escaping (AFDataResponse<LoginResult>) -> Void) {
-        let requestModel = Login(baseUrl: baseUrl, login: userName, password: password)
+extension Catalog: CatalogRequestFactory {
+    func getCatalog(pageNumber: Int, categoryId: Int, completionHandler: @escaping (AFDataResponse<[CatalogProductResult]>) -> Void) {
+        let requestModel = CatalogRequest(baseUrl: baseUrl, categoryId: categoryId, pageNumber: pageNumber)
         self.request(request: requestModel, completionHandler: completionHandler)
     }
 }
 
-extension Auth {
-    struct Login: RequestRouter {
+extension Catalog {
+    struct CatalogRequest: RequestRouter {
         let baseUrl: URL
-        let method: HTTPMethod = .post
-        let path: String = "login"
+        let method: HTTPMethod = .get
+        let path: String = "products"
+
+        var categoryId: Int
+        var pageNumber: Int
         
-        let login: String
-        let password: String
         var parameters: Parameters? {
             return [
-                "username": login,
-                "password": password
+                "page_number": pageNumber,
+                "id_category": categoryId
             ]
         }
     }
