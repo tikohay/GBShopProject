@@ -17,6 +17,18 @@
 		3C0B900E26D90EC7004D05B2 /* AuthRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0B900D26D90EC7004D05B2 /* AuthRequestFactory.swift */; };
 		3C0B901026D90F05004D05B2 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0B900F26D90F05004D05B2 /* Auth.swift */; };
 		3C0B901226D90FD0004D05B2 /* RequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0B901126D90FD0004D05B2 /* RequestFactory.swift */; };
+		3C51E1B826E2A505007F60C9 /* CatalogProductResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C51E1B726E2A505007F60C9 /* CatalogProductResult.swift */; };
+		3C51E1BA26E2A5A1007F60C9 /* ProductResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C51E1B926E2A5A1007F60C9 /* ProductResult.swift */; };
+		3C51E1BC26E2A637007F60C9 /* Catalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C51E1BB26E2A637007F60C9 /* Catalog.swift */; };
+		3C51E1BF26E2A64F007F60C9 /* CatalogRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C51E1BE26E2A64F007F60C9 /* CatalogRequestFactory.swift */; };
+		3C51E1C126E2A86E007F60C9 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C51E1C026E2A86E007F60C9 /* Product.swift */; };
+		3C51E1C326E2A878007F60C9 /* ProductRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C51E1C226E2A878007F60C9 /* ProductRequestFactory.swift */; };
+		3C51E1C626E2A9B2007F60C9 /* AuthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C51E1C526E2A9B2007F60C9 /* AuthTests.swift */; };
+		3C51E1C826E2AE32007F60C9 /* LogoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C51E1C726E2AE32007F60C9 /* LogoutTests.swift */; };
+		3C51E1CA26E2AEBB007F60C9 /* RegistrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C51E1C926E2AEBB007F60C9 /* RegistrationTests.swift */; };
+		3C51E1CC26E2AF39007F60C9 /* UpdateUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C51E1CB26E2AF39007F60C9 /* UpdateUserTests.swift */; };
+		3C51E1CE26E2B00C007F60C9 /* CatalogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C51E1CD26E2B00C007F60C9 /* CatalogTests.swift */; };
+		3C51E1D026E2B087007F60C9 /* ProductTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C51E1CF26E2B087007F60C9 /* ProductTests.swift */; };
 		3C4454F426DFC8B9006B891D /* ResponseCodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4454F326DFC8B9006B891D /* ResponseCodableTests.swift */; };
 		3C9A58DC26D7BC1300A29BE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9A58DB26D7BC1300A29BE4 /* AppDelegate.swift */; };
 		3C9A58DE26D7BC1300A29BE4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9A58DD26D7BC1300A29BE4 /* SceneDelegate.swift */; };
@@ -72,6 +84,18 @@
 		3C0B900F26D90F05004D05B2 /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		3C0B901126D90FD0004D05B2 /* RequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestFactory.swift; sourceTree = "<group>"; };
 		3C4454F326DFC8B9006B891D /* ResponseCodableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseCodableTests.swift; sourceTree = "<group>"; };
+		3C51E1B726E2A505007F60C9 /* CatalogProductResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogProductResult.swift; sourceTree = "<group>"; };
+		3C51E1B926E2A5A1007F60C9 /* ProductResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductResult.swift; sourceTree = "<group>"; };
+		3C51E1BB26E2A637007F60C9 /* Catalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Catalog.swift; sourceTree = "<group>"; };
+		3C51E1BE26E2A64F007F60C9 /* CatalogRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogRequestFactory.swift; sourceTree = "<group>"; };
+		3C51E1C026E2A86E007F60C9 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		3C51E1C226E2A878007F60C9 /* ProductRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRequestFactory.swift; sourceTree = "<group>"; };
+		3C51E1C526E2A9B2007F60C9 /* AuthTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTests.swift; sourceTree = "<group>"; };
+		3C51E1C726E2AE32007F60C9 /* LogoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutTests.swift; sourceTree = "<group>"; };
+		3C51E1C926E2AEBB007F60C9 /* RegistrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationTests.swift; sourceTree = "<group>"; };
+		3C51E1CB26E2AF39007F60C9 /* UpdateUserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserTests.swift; sourceTree = "<group>"; };
+		3C51E1CD26E2B00C007F60C9 /* CatalogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogTests.swift; sourceTree = "<group>"; };
+		3C51E1CF26E2B087007F60C9 /* ProductTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTests.swift; sourceTree = "<group>"; };
 		3C9A58D826D7BC1300A29BE4 /* GBShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GBShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C9A58DB26D7BC1300A29BE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3C9A58DD26D7BC1300A29BE4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -153,8 +177,44 @@
 				3C9E438826DA98EC00330B8D /* Logout */,
 				3C9E438F26DA9E1700330B8D /* Registration */,
 				3C9E439E26DAA81F00330B8D /* UpdateUser */,
+				3C51E1BD26E2A63E007F60C9 /* Catalog */,
+				3C51E1C426E2A87E007F60C9 /* Product */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		3C51E1B526E2A4C7007F60C9 /* CatagolProduct */ = {
+			isa = PBXGroup;
+			children = (
+				3C51E1B726E2A505007F60C9 /* CatalogProductResult.swift */,
+			);
+			path = CatagolProduct;
+			sourceTree = "<group>";
+		};
+		3C51E1B626E2A4DB007F60C9 /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				3C51E1B926E2A5A1007F60C9 /* ProductResult.swift */,
+			);
+			path = Product;
+			sourceTree = "<group>";
+		};
+		3C51E1BD26E2A63E007F60C9 /* Catalog */ = {
+			isa = PBXGroup;
+			children = (
+				3C51E1BB26E2A637007F60C9 /* Catalog.swift */,
+				3C51E1BE26E2A64F007F60C9 /* CatalogRequestFactory.swift */,
+			);
+			path = Catalog;
+			sourceTree = "<group>";
+		};
+		3C51E1C426E2A87E007F60C9 /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				3C51E1C026E2A86E007F60C9 /* Product.swift */,
+				3C51E1C226E2A878007F60C9 /* ProductRequestFactory.swift */,
+			);
+			path = Product;
 			sourceTree = "<group>";
 		};
 		3C9A58CF26D7BC1300A29BE4 = {
@@ -196,7 +256,13 @@
 			children = (
 				3C9A58F226D7BC1600A29BE4 /* GBShopTests.swift */,
 				3C4454F326DFC8B9006B891D /* ResponseCodableTests.swift */,
+				3C51E1C526E2A9B2007F60C9 /* AuthTests.swift */,
+				3C51E1C726E2AE32007F60C9 /* LogoutTests.swift */,
+				3C51E1C926E2AEBB007F60C9 /* RegistrationTests.swift */,
+				3C51E1CB26E2AF39007F60C9 /* UpdateUserTests.swift */,
+				3C51E1CD26E2B00C007F60C9 /* CatalogTests.swift */,
 				3C9A58F426D7BC1600A29BE4 /* Info.plist */,
+				3C51E1CF26E2B087007F60C9 /* ProductTests.swift */,
 			);
 			path = GBShopTests;
 			sourceTree = "<group>";
@@ -248,6 +314,8 @@
 		3C9A590F26D7BC8B00A29BE4 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				3C51E1B626E2A4DB007F60C9 /* Product */,
+				3C51E1B526E2A4C7007F60C9 /* CatagolProduct */,
 				3C9E438226DA97DF00330B8D /* Login */,
 				3C9E438326DA97EA00330B8D /* Logout */,
 				3C9E438C26DA9D8D00330B8D /* Registration */,
@@ -628,19 +696,25 @@
 				3C9E438726DA98DB00330B8D /* Logout.swift in Sources */,
 				3C9E439B26DAA6F500330B8D /* UpdateUserResult.swift in Sources */,
 				3C0B900626D9092B004D05B2 /* RequestRouter.swift in Sources */,
+				3C51E1BA26E2A5A1007F60C9 /* ProductResult.swift in Sources */,
 				3C9E439326DAA08900330B8D /* Registration.swift in Sources */,
+				3C51E1C326E2A878007F60C9 /* ProductRequestFactory.swift in Sources */,
 				3C9E43A226DAA8BC00330B8D /* UpdateUser.swift in Sources */,
 				3C9E437F26DA96CE00330B8D /* LogoutResult.swift in Sources */,
 				3C9E439726DAA57900330B8D /* Gender.swift in Sources */,
 				3C0B900426D9080B004D05B2 /* AbstractRequestFactory.swift in Sources */,
+				3C51E1BC26E2A637007F60C9 /* Catalog.swift in Sources */,
 				3C9E439126DA9E4900330B8D /* RegistrationRequestFactory .swift in Sources */,
 				3C0B901226D90FD0004D05B2 /* RequestFactory.swift in Sources */,
 				3C0B900026D8F119004D05B2 /* ErrorParser.swift in Sources */,
 				3C9A591426D7BE4800A29BE4 /* ViewController.swift in Sources */,
 				3C9E43A026DAA84500330B8D /* UpdateUserRequestFactory.swift in Sources */,
+				3C51E1C126E2A86E007F60C9 /* Product.swift in Sources */,
 				3C9A58DC26D7BC1300A29BE4 /* AppDelegate.swift in Sources */,
+				3C51E1BF26E2A64F007F60C9 /* CatalogRequestFactory.swift in Sources */,
 				3C9A58DE26D7BC1300A29BE4 /* SceneDelegate.swift in Sources */,
 				3C9E438E26DA9DC200330B8D /* RegistrationResult.swift in Sources */,
+				3C51E1B826E2A505007F60C9 /* CatalogProductResult.swift in Sources */,
 				3C0B900926D90DED004D05B2 /* LoginResult.swift in Sources */,
 				3C0B900226D9036C004D05B2 /* CustomDecodableSerializer.swift in Sources */,
 				3C0B900B26D90E07004D05B2 /* User.swift in Sources */,
@@ -655,7 +729,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C51E1CA26E2AEBB007F60C9 /* RegistrationTests.swift in Sources */,
 				3C9A58F326D7BC1600A29BE4 /* GBShopTests.swift in Sources */,
+				3C51E1D026E2B087007F60C9 /* ProductTests.swift in Sources */,
+				3C51E1C826E2AE32007F60C9 /* LogoutTests.swift in Sources */,
+				3C51E1CE26E2B00C007F60C9 /* CatalogTests.swift in Sources */,
+				3C51E1CC26E2AF39007F60C9 /* UpdateUserTests.swift in Sources */,
+				3C51E1C626E2A9B2007F60C9 /* AuthTests.swift in Sources */,
 				3C4454F426DFC8B9006B891D /* ResponseCodableTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

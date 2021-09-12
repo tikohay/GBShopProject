@@ -10,7 +10,7 @@ import XCTest
 
 class RegistrationTests: XCTestCase {
     let expectation = XCTestExpectation(description: "Registration")
-    
+
     var requestFactory: RequestFactory!
     var registration: RegistrationRequestFactory!
 
@@ -36,7 +36,6 @@ class RegistrationTests: XCTestCase {
                                                 bio: "This is good! I think I will switch to another language")
 
         registration.register(registrationData: registrationData) { response in
-            print(registrationData)
             switch response.result {
             case .success(_): break
             case .failure:

@@ -40,7 +40,7 @@ extension Catalog {
 
         var categoryId: Int
         var pageNumber: Int
-        
+
         var parameters: Parameters? {
             return [
                 "page_number": pageNumber,

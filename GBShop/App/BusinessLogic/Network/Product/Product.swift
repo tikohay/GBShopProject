@@ -39,7 +39,7 @@ extension Product {
         let path: String = "product"
 
         var productId: Int
-        
+
         var parameters: Parameters? {
             return [
                 "id_product": productId
