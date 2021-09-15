@@ -25,8 +25,12 @@ class Auth: AbstractRequestFactory {
 }
 
 extension Auth: AuthRequestFactory {
-    func login(userName: String, password: String, completionHandler: @escaping (AFDataResponse<LoginResult>) -> Void) {
-        let requestModel = Login(baseUrl: baseUrl, login: userName, password: password)
+    func login(userName: String,
+               password: String,
+               completionHandler: @escaping (AFDataResponse<LoginResult>) -> Void) {
+        let requestModel = Login(baseUrl: baseUrl,
+                                 login: userName,
+                                 password: password)
         self.request(request: requestModel, completionHandler: completionHandler)
     }
 }

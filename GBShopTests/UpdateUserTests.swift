@@ -50,5 +50,4 @@ class UpdateUserTests: XCTestCase {
         self.measure {
         }
     }
-
 }

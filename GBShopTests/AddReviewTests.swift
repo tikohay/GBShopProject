@@ -1,33 +1,33 @@
 //
-//  CatalogTests.swift
+//  AddReviewTests.swift
 //  GBShopTests
 //
-//  Created by Karahanyan Levon on 03.09.2021.
+//  Created by Karahanyan Levon on 14.09.2021.
 //
 
 import XCTest
 @testable import GBShop
 
-class CatalogTests: XCTestCase {
-    let expectation = XCTestExpectation(description: "Catalog")
+class AddReviewTests: XCTestCase {
+    let expectation = XCTestExpectation(description: "AddReview")
     
     var requestFactory: RequestFactory!
-    var catalog: CatalogRequestFactory!
-
-    override func setUp() {
+    var addReview: AddReviewRequestFactory!
+    
+    override func setUpWithError() throws {
         super.setUp()
         requestFactory = RequestFactory()
-        catalog = requestFactory.makeCatalogRequestFactory()
+        addReview = requestFactory.makeAddReviewRequestFactory()
     }
-
-    override func tearDown() {
+    
+    override func tearDownWithError() throws {
         super.tearDown()
         requestFactory = nil
-        catalog = nil
+        addReview = nil
     }
-
-    func testShouldGetCatalog() throws {
-        catalog.getCatalog(pageNumber: 1, categoryId: 1) { response in
+    
+    func testShouldAddReview() throws {
+        addReview.getAddReview(idUser: 1, text: "Текст отзыва") { response in
             switch response.result {
             case .success(_): break
             case .failure:
@@ -37,7 +37,7 @@ class CatalogTests: XCTestCase {
         }
         wait(for: [expectation], timeout: 10.0)
     }
-
+    
     func testPerformanceExample() throws {
         self.measure {
         }

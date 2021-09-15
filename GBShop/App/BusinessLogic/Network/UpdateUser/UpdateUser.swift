@@ -5,7 +5,6 @@
 //  Created by Karahanyan Levon on 28.08.2021.
 //
 
-import Foundation
 import Alamofire
 
 class UpdateUser: AbstractRequestFactory {
@@ -25,8 +24,8 @@ class UpdateUser: AbstractRequestFactory {
 }
 
 extension UpdateUser: UpdateUserRequestFactory {
-
-    func updateUser(updateUserData: UpdateUserData, completionHandler: @escaping (AFDataResponse<UpdateUserResult>) -> Void) {
+    func updateUser(updateUserData: UpdateUserData,
+                    completionHandler: @escaping (AFDataResponse<UpdateUserResult>) -> Void) {
         let requestModel = UpdateUserRequest(baseUrl: baseUrl, updateUserData: updateUserData)
         self.request(request: requestModel, completionHandler: completionHandler)
     }

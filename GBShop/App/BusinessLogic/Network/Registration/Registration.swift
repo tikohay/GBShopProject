@@ -25,8 +25,9 @@ class Registration: AbstractRequestFactory {
 }
 
 extension Registration: RegistrationRequestFactory {
-    func register(registrationData: RegistrationData, completionHandler: @escaping (AFDataResponse<RegistrationResult>) -> Void) {
-        let requestModel = RegistrationRequest(baseUrl: baseUrl, registrationData: registrationData)
+    func register(registrationData: RegistrationData,
+                  completionHandler: @escaping (AFDataResponse<RegistrationResult>) -> Void) {
+        let requestModel = RegistrationRequest(baseUrl: baseUrl,registrationData: registrationData)
         self.request(request: requestModel, completionHandler: completionHandler)
     }
 }

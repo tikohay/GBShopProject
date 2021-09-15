@@ -42,5 +42,4 @@ class AuthTests: XCTestCase {
         self.measure {
         }
     }
-
 }

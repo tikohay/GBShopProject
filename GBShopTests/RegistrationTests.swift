@@ -50,6 +50,5 @@ class RegistrationTests: XCTestCase {
         self.measure {
         }
     }
-
 }
 
