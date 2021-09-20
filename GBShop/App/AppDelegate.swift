@@ -122,6 +122,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
  */
+        let addProductToBasket = requestFactory.makeAddProductToBasketRequestFactory()
+        addProductToBasket.addProductToBasket(productId: 123, quantity: 1) { response in
+            switch response.result {
+            case .success(let result):
+                print(result)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        
+        let deleteProductFromBasket = requestFactory.makeDeleteProductFromBasket()
+        deleteProductFromBasket.deleteProductFromBasket(productId: 1) { response in
+            switch response.result {
+            case .success(let result):
+                print(result)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        
         return true
     }
     
