@@ -1,31 +1,31 @@
 //
-//  RemoveProductFromBasketTests.swift
+//  PayBasketTests.swift
 //  GBShopTests
 //
-//  Created by Karahanyan Levon on 17.09.2021.
+//  Created by Karahanyan Levon on 22.09.2021.
 //
 
 import XCTest
 @testable import GBShop
 
-class DeleteProductFromBasketTests: XCTestCase {
-    let expectation = XCTestExpectation(description: "DeleteProductFromBasket")
+class PayBasketTests: XCTestCase {
+    let expectation = XCTestExpectation(description: "PayBasket")
     
     var requestFactory: RequestFactory!
-    var deleteProductFromBasket: DeleteProductFromBasketRequestFactory!
+    var payBasket: PayBasketRequestFactory!
     
     override func setUpWithError() throws {
         requestFactory = RequestFactory()
-        deleteProductFromBasket = requestFactory.makeDeleteProductFromBasketRequestFactory()
+        payBasket = requestFactory.makePayBasketRequestFactory()
     }
-    
+
     override func tearDownWithError() throws {
         requestFactory = nil
-        deleteProductFromBasket = nil
+        payBasket = nil
     }
     
-    func testShouldGetAllReviews() throws {
-        deleteProductFromBasket.deleteProductFromBasket(productId: 1) { response in
+    func testShouldPayBasket() throws {
+        payBasket.payBasket(userId: 1) { response in
             switch response.result {
             case .success(_): break
             case .failure:
@@ -34,9 +34,10 @@ class DeleteProductFromBasketTests: XCTestCase {
             self.expectation.fulfill()
         }
     }
-    
+
     func testPerformanceExample() throws {
         self.measure {
         }
     }
+
 }
