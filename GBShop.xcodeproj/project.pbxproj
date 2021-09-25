@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		07E4DDB79F49CF75CA6B0EBF /* Pods_GBShop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 542A8D9973D870E7C8234DD1 /* Pods_GBShop.framework */; };
+		3C037C1B26FDB2740066D4BD /* OneLineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C037C1A26FDB2740066D4BD /* OneLineTextField.swift */; };
+		3C07DC8326FE125F00494876 /* UIButton + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C07DC8226FE125F00494876 /* UIButton + Extensions.swift */; };
 		3C0B900026D8F119004D05B2 /* ErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0B8FFF26D8F119004D05B2 /* ErrorParser.swift */; };
 		3C0B900226D9036C004D05B2 /* CustomDecodableSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0B900126D9036C004D05B2 /* CustomDecodableSerializer.swift */; };
 		3C0B900426D9080B004D05B2 /* AbstractRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0B900326D9080B004D05B2 /* AbstractRequestFactory.swift */; };
@@ -60,7 +62,7 @@
 		3C9A58E826D7BC1500A29BE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C9A58E626D7BC1500A29BE4 /* LaunchScreen.storyboard */; };
 		3C9A58F326D7BC1600A29BE4 /* GBShopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9A58F226D7BC1600A29BE4 /* GBShopTests.swift */; };
 		3C9A58FE26D7BC1600A29BE4 /* GBShopUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9A58FD26D7BC1600A29BE4 /* GBShopUITests.swift */; };
-		3C9A591426D7BE4800A29BE4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9A591326D7BE4800A29BE4 /* ViewController.swift */; };
+		3C9A591426D7BE4800A29BE4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9A591326D7BE4800A29BE4 /* LoginViewController.swift */; };
 		3C9A591726D7EAFA00A29BE4 /* AbstractErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9A591626D7EAFA00A29BE4 /* AbstractErrorParser.swift */; };
 		3C9E437F26DA96CE00330B8D /* LogoutResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9E437E26DA96CE00330B8D /* LogoutResult.swift */; };
 		3C9E438726DA98DB00330B8D /* Logout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9E438626DA98DB00330B8D /* Logout.swift */; };
@@ -98,6 +100,8 @@
 /* Begin PBXFileReference section */
 		1BEB5955F095FFBFF468AEB4 /* Pods_GBShop_GBShopUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GBShop_GBShopUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B8633B91D006F2CBE073480 /* Pods-GBShopTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GBShopTests.release.xcconfig"; path = "Target Support Files/Pods-GBShopTests/Pods-GBShopTests.release.xcconfig"; sourceTree = "<group>"; };
+		3C037C1A26FDB2740066D4BD /* OneLineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneLineTextField.swift; sourceTree = "<group>"; };
+		3C07DC8226FE125F00494876 /* UIButton + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + Extensions.swift"; sourceTree = "<group>"; };
 		3C0B8FFF26D8F119004D05B2 /* ErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorParser.swift; sourceTree = "<group>"; };
 		3C0B900126D9036C004D05B2 /* CustomDecodableSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDecodableSerializer.swift; sourceTree = "<group>"; };
 		3C0B900326D9080B004D05B2 /* AbstractRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractRequestFactory.swift; sourceTree = "<group>"; };
@@ -156,7 +160,7 @@
 		3C9A58F926D7BC1600A29BE4 /* GBShopUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GBShopUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C9A58FD26D7BC1600A29BE4 /* GBShopUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GBShopUITests.swift; sourceTree = "<group>"; };
 		3C9A58FF26D7BC1600A29BE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3C9A591326D7BE4800A29BE4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3C9A591326D7BE4800A29BE4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3C9A591626D7EAFA00A29BE4 /* AbstractErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AbstractErrorParser.swift; path = ../../../../../../../../Documents/AbstractErrorParser.swift; sourceTree = "<group>"; };
 		3C9E437E26DA96CE00330B8D /* LogoutResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutResult.swift; sourceTree = "<group>"; };
 		3C9E438626DA98DB00330B8D /* Logout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logout.swift; sourceTree = "<group>"; };
@@ -215,6 +219,15 @@
 				6F9C070AEB2D568B8A7F559D /* Pods_GBShopTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3C037C1926FDB24E0066D4BD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3C037C1A26FDB2740066D4BD /* OneLineTextField.swift */,
+				3C07DC8226FE125F00494876 /* UIButton + Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		3C0B900C26D90EA0004D05B2 /* Network */ = {
@@ -384,7 +397,8 @@
 				3C9A591026D7BCCF00A29BE4 /* Core */,
 				3C9A591226D7BCEC00A29BE4 /* Environments */,
 				3C9A591126D7BCDB00A29BE4 /* Resources */,
-				3C9A591326D7BE4800A29BE4 /* ViewController.swift */,
+				3C037C1926FDB24E0066D4BD /* Extensions */,
+				3C9A591326D7BE4800A29BE4 /* LoginViewController.swift */,
 			);
 			path = GBShop;
 			sourceTree = "<group>";
@@ -851,6 +865,7 @@
 				3C63EDAD26F0AA70003DDAE0 /* AllReviews.swift in Sources */,
 				3C70C81826FB602900440844 /* PayBasketRequestFactory.swift in Sources */,
 				3C9E439326DAA08900330B8D /* Registration.swift in Sources */,
+				3C037C1B26FDB2740066D4BD /* OneLineTextField.swift in Sources */,
 				3C51E1C326E2A878007F60C9 /* ProductRequestFactory.swift in Sources */,
 				3C9E43A226DAA8BC00330B8D /* UpdateUser.swift in Sources */,
 				3C9E437F26DA96CE00330B8D /* LogoutResult.swift in Sources */,
@@ -862,9 +877,10 @@
 				3C9E439126DA9E4900330B8D /* RegistrationRequestFactory .swift in Sources */,
 				3C0B901226D90FD0004D05B2 /* RequestFactory.swift in Sources */,
 				3C0B900026D8F119004D05B2 /* ErrorParser.swift in Sources */,
-				3C9A591426D7BE4800A29BE4 /* ViewController.swift in Sources */,
+				3C9A591426D7BE4800A29BE4 /* LoginViewController.swift in Sources */,
 				3C9E43A026DAA84500330B8D /* UpdateUserRequestFactory.swift in Sources */,
 				3C51E1C126E2A86E007F60C9 /* Product.swift in Sources */,
+				3C07DC8326FE125F00494876 /* UIButton + Extensions.swift in Sources */,
 				3C63EDA926F0A91C003DDAE0 /* AllReviewsResult.swift in Sources */,
 				3C9A58DC26D7BC1300A29BE4 /* AppDelegate.swift in Sources */,
 				3C68DB3026F4C2FC00C94E08 /* AddProductToBasketRequestFactory.swift in Sources */,
