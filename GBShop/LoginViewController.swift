@@ -8,6 +8,13 @@
 import UIKit
 
 class LoginViewController: UIViewController {
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.backgroundColor = .white
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+    
     private let logoLabel: UILabel = {
         let label = UILabel()
         label.text = "GBShop"
@@ -31,16 +38,6 @@ class LoginViewController: UIViewController {
         return label
     }()
     
-    private let scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.backgroundColor = .white
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        return scrollView
-    }()
-    
-    private var isKeyboardShown = false
-    private let loginTextField = OneLineTextField()
-    private let passwordTextField = OneLineTextField(isTextSecured: true)
     private let loginButton = UIButton(title: "Log in",
                                        backgroundColor: .white,
                                        titleColor: .black,
@@ -49,6 +46,11 @@ class LoginViewController: UIViewController {
                                               backgroundColor: #colorLiteral(red: 0.2084336579, green: 0.3011148274, blue: 0.5711893439, alpha: 1),
                                               titleColor: .white,
                                               isShadow: false)
+    
+    private let loginTextField = OneLineTextField()
+    private let passwordTextField = OneLineTextField(isTextSecured: true)
+    
+    private var isKeyboardShown = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -146,7 +148,6 @@ extension LoginViewController {
 }
 
 // MARK: - Setup observers and gestures recognizer
-
 extension LoginViewController {
     private func addKeyboardObservers() {
         NotificationCenter.default.addObserver(self,
