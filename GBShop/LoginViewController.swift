@@ -60,11 +60,15 @@ class LoginViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         addKeyboardObservers()
+        
+        navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         removeKeyboardObservers()
+        
+        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     override func viewDidLayoutSubviews() {
@@ -78,6 +82,7 @@ extension LoginViewController {
     private func setupViews() {
         setupScrollView()
         setupTextFieldsAndLabels()
+        setupButtons()
     }
     
     private func setupScrollView() {
@@ -135,15 +140,20 @@ extension LoginViewController {
     }
     
     private func setupButtons() {
-        scrollView.addSubview(loginButton)
-        scrollView.addSubview(registrationButton)
-        
-        loginButton.translatesAutoresizingMaskIntoConstraints = false
-        registrationButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            
-        ])
+        loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+        registrationButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc private func loginButtonTapped() {
+        let toVC = MainTabBarController()
+        toVC.modalTransitionStyle = .flipHorizontal
+        toVC.modalPresentationStyle = .fullScreen
+        present(toVC, animated: true, completion: nil)
+    }
+    
+    @objc private func registrationButtonTapped() {
+        let toVC = RegistrationViewController()
+        navigationController?.pushViewController(toVC, animated: true)
     }
 }
 

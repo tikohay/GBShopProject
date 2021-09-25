@@ -56,6 +56,10 @@
 		3C70C81826FB602900440844 /* PayBasketRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C70C81726FB602900440844 /* PayBasketRequestFactory.swift */; };
 		3C70C81A26FB607200440844 /* PayBasket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C70C81926FB607200440844 /* PayBasket.swift */; };
 		3C70C81C26FB636000440844 /* PayBasketTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C70C81B26FB636000440844 /* PayBasketTests.swift */; };
+		3C73821B26FF4EC600132AAA /* UserInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C73821A26FF4EC600132AAA /* UserInformationViewController.swift */; };
+		3C73821D26FF645000132AAA /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C73821C26FF645000132AAA /* TestViewController.swift */; };
+		3C73821F26FF646100132AAA /* Test2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C73821E26FF646100132AAA /* Test2ViewController.swift */; };
+		3C73822126FF64B500132AAA /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C73822026FF64B500132AAA /* MainTabBarController.swift */; };
 		3C84C12C26FF113600AC287C /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C84C12B26FF113600AC287C /* RegistrationViewController.swift */; };
 		3C84C12E26FF12B900AC287C /* UISegmentControl + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C84C12D26FF12B900AC287C /* UISegmentControl + Extensions.swift */; };
 		3C9A58DC26D7BC1300A29BE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9A58DB26D7BC1300A29BE4 /* AppDelegate.swift */; };
@@ -150,6 +154,10 @@
 		3C70C81726FB602900440844 /* PayBasketRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayBasketRequestFactory.swift; sourceTree = "<group>"; };
 		3C70C81926FB607200440844 /* PayBasket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayBasket.swift; sourceTree = "<group>"; };
 		3C70C81B26FB636000440844 /* PayBasketTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayBasketTests.swift; sourceTree = "<group>"; };
+		3C73821A26FF4EC600132AAA /* UserInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationViewController.swift; sourceTree = "<group>"; };
+		3C73821C26FF645000132AAA /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		3C73821E26FF646100132AAA /* Test2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test2ViewController.swift; sourceTree = "<group>"; };
+		3C73822026FF64B500132AAA /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		3C84C12B26FF113600AC287C /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		3C84C12D26FF12B900AC287C /* UISegmentControl + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISegmentControl + Extensions.swift"; sourceTree = "<group>"; };
 		3C9A58D826D7BC1300A29BE4 /* GBShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GBShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -405,6 +413,10 @@
 				3C037C1926FDB24E0066D4BD /* Extensions */,
 				3C9A591326D7BE4800A29BE4 /* LoginViewController.swift */,
 				3C84C12B26FF113600AC287C /* RegistrationViewController.swift */,
+				3C73821A26FF4EC600132AAA /* UserInformationViewController.swift */,
+				3C73822026FF64B500132AAA /* MainTabBarController.swift */,
+				3C73821C26FF645000132AAA /* TestViewController.swift */,
+				3C73821E26FF646100132AAA /* Test2ViewController.swift */,
 			);
 			path = GBShop;
 			sourceTree = "<group>";
@@ -871,6 +883,7 @@
 				3C63EDAD26F0AA70003DDAE0 /* AllReviews.swift in Sources */,
 				3C70C81826FB602900440844 /* PayBasketRequestFactory.swift in Sources */,
 				3C9E439326DAA08900330B8D /* Registration.swift in Sources */,
+				3C73821B26FF4EC600132AAA /* UserInformationViewController.swift in Sources */,
 				3C037C1B26FDB2740066D4BD /* OneLineTextField.swift in Sources */,
 				3C51E1C326E2A878007F60C9 /* ProductRequestFactory.swift in Sources */,
 				3C9E43A226DAA8BC00330B8D /* UpdateUser.swift in Sources */,
@@ -883,12 +896,15 @@
 				3C9E439126DA9E4900330B8D /* RegistrationRequestFactory .swift in Sources */,
 				3C0B901226D90FD0004D05B2 /* RequestFactory.swift in Sources */,
 				3C0B900026D8F119004D05B2 /* ErrorParser.swift in Sources */,
+				3C73821F26FF646100132AAA /* Test2ViewController.swift in Sources */,
 				3C9A591426D7BE4800A29BE4 /* LoginViewController.swift in Sources */,
 				3C9E43A026DAA84500330B8D /* UpdateUserRequestFactory.swift in Sources */,
+				3C73822126FF64B500132AAA /* MainTabBarController.swift in Sources */,
 				3C84C12C26FF113600AC287C /* RegistrationViewController.swift in Sources */,
 				3C51E1C126E2A86E007F60C9 /* Product.swift in Sources */,
 				3C07DC8326FE125F00494876 /* UIButton + Extensions.swift in Sources */,
 				3C63EDA926F0A91C003DDAE0 /* AllReviewsResult.swift in Sources */,
+				3C73821D26FF645000132AAA /* TestViewController.swift in Sources */,
 				3C9A58DC26D7BC1300A29BE4 /* AppDelegate.swift in Sources */,
 				3C68DB3026F4C2FC00C94E08 /* AddProductToBasketRequestFactory.swift in Sources */,
 				3C51E1BF26E2A64F007F60C9 /* CatalogRequestFactory.swift in Sources */,
