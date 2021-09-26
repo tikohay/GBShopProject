@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		07E4DDB79F49CF75CA6B0EBF /* Pods_GBShop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 542A8D9973D870E7C8234DD1 /* Pods_GBShop.framework */; };
-		3C037C1B26FDB2740066D4BD /* OneLineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C037C1A26FDB2740066D4BD /* OneLineTextField.swift */; };
 		3C07DC8326FE125F00494876 /* UIButton + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C07DC8226FE125F00494876 /* UIButton + Extensions.swift */; };
 		3C0B900026D8F119004D05B2 /* ErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0B8FFF26D8F119004D05B2 /* ErrorParser.swift */; };
 		3C0B900226D9036C004D05B2 /* CustomDecodableSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0B900126D9036C004D05B2 /* CustomDecodableSerializer.swift */; };
@@ -83,6 +82,7 @@
 		3C9E43A026DAA84500330B8D /* UpdateUserRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9E439F26DAA84500330B8D /* UpdateUserRequestFactory.swift */; };
 		3C9E43A226DAA8BC00330B8D /* UpdateUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9E43A126DAA8BC00330B8D /* UpdateUser.swift */; };
 		3CFC076C270073C300904600 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFC076B270073C300904600 /* Colors.swift */; };
+		3CFC07AA27007C9900904600 /* OneLineTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFC07A927007C9900904600 /* OneLineTextFieldView.swift */; };
 		CBBB7423026760A13357AAB3 /* Pods_GBShop_GBShopUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BEB5955F095FFBFF468AEB4 /* Pods_GBShop_GBShopUITests.framework */; };
 		E52C1D0692237621615DFB24 /* Pods_GBShopTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F9C070AEB2D568B8A7F559D /* Pods_GBShopTests.framework */; };
 /* End PBXBuildFile section */
@@ -107,7 +107,6 @@
 /* Begin PBXFileReference section */
 		1BEB5955F095FFBFF468AEB4 /* Pods_GBShop_GBShopUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GBShop_GBShopUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B8633B91D006F2CBE073480 /* Pods-GBShopTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GBShopTests.release.xcconfig"; path = "Target Support Files/Pods-GBShopTests/Pods-GBShopTests.release.xcconfig"; sourceTree = "<group>"; };
-		3C037C1A26FDB2740066D4BD /* OneLineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneLineTextField.swift; sourceTree = "<group>"; };
 		3C07DC8226FE125F00494876 /* UIButton + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + Extensions.swift"; sourceTree = "<group>"; };
 		3C0B8FFF26D8F119004D05B2 /* ErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorParser.swift; sourceTree = "<group>"; };
 		3C0B900126D9036C004D05B2 /* CustomDecodableSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDecodableSerializer.swift; sourceTree = "<group>"; };
@@ -188,6 +187,7 @@
 		3C9E439F26DAA84500330B8D /* UpdateUserRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserRequestFactory.swift; sourceTree = "<group>"; };
 		3C9E43A126DAA8BC00330B8D /* UpdateUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUser.swift; sourceTree = "<group>"; };
 		3CFC076B270073C300904600 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		3CFC07A927007C9900904600 /* OneLineTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneLineTextFieldView.swift; sourceTree = "<group>"; };
 		511D9189274798BC55F052A3 /* Pods-GBShop-GBShopUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GBShop-GBShopUITests.release.xcconfig"; path = "Target Support Files/Pods-GBShop-GBShopUITests/Pods-GBShop-GBShopUITests.release.xcconfig"; sourceTree = "<group>"; };
 		542A8D9973D870E7C8234DD1 /* Pods_GBShop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GBShop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F9C070AEB2D568B8A7F559D /* Pods_GBShopTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GBShopTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -238,9 +238,10 @@
 		3C037C1926FDB24E0066D4BD /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				3C037C1A26FDB2740066D4BD /* OneLineTextField.swift */,
+				3CFC07A927007C9900904600 /* OneLineTextFieldView.swift */,
 				3C07DC8226FE125F00494876 /* UIButton + Extensions.swift */,
 				3C84C12D26FF12B900AC287C /* UISegmentControl + Extensions.swift */,
+				3CFC076B270073C300904600 /* Colors.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -414,7 +415,6 @@
 				3C9A591126D7BCDB00A29BE4 /* Resources */,
 				3C037C1926FDB24E0066D4BD /* Extensions */,
 				3C9A591326D7BE4800A29BE4 /* LoginViewController.swift */,
-				3CFC076B270073C300904600 /* Colors.swift */,
 				3C84C12B26FF113600AC287C /* RegistrationViewController.swift */,
 				3C73821A26FF4EC600132AAA /* UserInformationViewController.swift */,
 				3C73822026FF64B500132AAA /* MainTabBarController.swift */,
@@ -887,7 +887,6 @@
 				3C70C81826FB602900440844 /* PayBasketRequestFactory.swift in Sources */,
 				3C9E439326DAA08900330B8D /* Registration.swift in Sources */,
 				3C73821B26FF4EC600132AAA /* UserInformationViewController.swift in Sources */,
-				3C037C1B26FDB2740066D4BD /* OneLineTextField.swift in Sources */,
 				3C51E1C326E2A878007F60C9 /* ProductRequestFactory.swift in Sources */,
 				3C9E43A226DAA8BC00330B8D /* UpdateUser.swift in Sources */,
 				3C9E437F26DA96CE00330B8D /* LogoutResult.swift in Sources */,
@@ -901,6 +900,7 @@
 				3C0B900026D8F119004D05B2 /* ErrorParser.swift in Sources */,
 				3C73821F26FF646100132AAA /* Test2ViewController.swift in Sources */,
 				3C9A591426D7BE4800A29BE4 /* LoginViewController.swift in Sources */,
+				3CFC07AA27007C9900904600 /* OneLineTextFieldView.swift in Sources */,
 				3C9E43A026DAA84500330B8D /* UpdateUserRequestFactory.swift in Sources */,
 				3C73822126FF64B500132AAA /* MainTabBarController.swift in Sources */,
 				3C84C12C26FF113600AC287C /* RegistrationViewController.swift in Sources */,

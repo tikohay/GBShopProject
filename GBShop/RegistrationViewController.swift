@@ -79,11 +79,11 @@ class RegistrationViewController: UIViewController {
                                   titleColor: .white)
     private var doneButton = UIButton()
     
-    private var usernameTextField = OneLineTextField()
-    private var emailTextField = OneLineTextField()
-    private var passwordTextField = OneLineTextField(isTextSecured: true)
-    private var creditCardTextField = OneLineTextField()
-    private var bioTextField = OneLineTextField()
+    private var usernameTextField = OneLineTextFieldView()
+    private var emailTextField = OneLineTextFieldView()
+    private var passwordTextField = OneLineTextFieldView()
+    private var creditCardTextField = OneLineTextFieldView()
+    private var bioTextField = OneLineTextFieldView()
     
     private var isKeyboardShown = false
     var isRegistration = false {
@@ -131,7 +131,7 @@ extension RegistrationViewController {
     private func setupScrollView() {
         view.addSubview(scrollView)
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)

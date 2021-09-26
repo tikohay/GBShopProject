@@ -47,8 +47,8 @@ class LoginViewController: UIViewController {
                                               titleColor: .white,
                                               isShadow: false)
     
-    private let loginTextField = OneLineTextField()
-    private let passwordTextField = OneLineTextField(isTextSecured: true)
+    private let loginTextField = OneLineTextFieldView()
+    private let passwordTextField = OneLineTextFieldView(isSecured: true)
     
     private var isKeyboardShown = false
     
@@ -61,13 +61,13 @@ class LoginViewController: UIViewController {
         super.viewWillAppear(animated)
         addKeyboardObservers()
         
-        navigationController?.setNavigationBarHidden(true, animated: animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         removeKeyboardObservers()
-        navigationController?.setNavigationBarHidden(false, animated: animated)
+        navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     override func viewDidLayoutSubviews() {
@@ -97,18 +97,15 @@ extension LoginViewController {
     private func setupTextFieldsAndLabels() {
         let loginStackView = UIStackView(arrangedSubviews: [loginLabel, loginTextField])
         loginStackView.axis = .vertical
-        loginStackView.distribution = .fill
         loginStackView.spacing = 10
         
         let passwordStackView = UIStackView(arrangedSubviews: [passwordLabel, passwordTextField])
         passwordStackView.axis = .vertical
-        passwordStackView.distribution = .fill
         passwordStackView.spacing = 10
         
         let stackView = UIStackView(arrangedSubviews: [loginStackView, passwordStackView])
         stackView.axis = .vertical
         stackView.spacing = 50
-        stackView.distribution = .fill
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         let buttonStackView = UIStackView(arrangedSubviews: [loginButton, registrationButton])
