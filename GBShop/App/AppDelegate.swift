@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        /*        let auth = requestFactory.makeAuthRequestFactory()
+               let auth = requestFactory.makeAuthRequestFactory()
                 auth.login(userName: "Somebody", password: "mypassword") { response in
                     switch response.result {
                     case .success(let login):
@@ -121,7 +121,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print(error.localizedDescription)
             }
         }
- */
+ 
+        let addProductToBasket = requestFactory.makeAddProductToBasketRequestFactory()
+        addProductToBasket.addProductToBasket(productId: 123, quantity: 1) { response in
+            switch response.result {
+            case .success(let result):
+                print(result)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        
+        let deleteProductFromBasket = requestFactory.makeDeleteProductFromBasketRequestFactory()
+        deleteProductFromBasket.deleteProductFromBasket(productId: 1) { response in
+            switch response.result {
+            case .success(let result):
+                print(result)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        
+        let payBasket = requestFactory.makePayBasketRequestFactory()
+        payBasket.payBasket(userId: 1) { response in
+            switch response.result {
+            case .success(let result):
+                print(result)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        
         return true
     }
     
