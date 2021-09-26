@@ -5,7 +5,6 @@
 //  Created by Karahanyan Levon on 27.08.2021.
 //
 
-import Foundation
 import Alamofire
 
 protocol AuthRequestFactory {

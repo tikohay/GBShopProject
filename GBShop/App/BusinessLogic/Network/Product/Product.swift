@@ -5,7 +5,6 @@
 //  Created by Karahanyan Levon on 03.09.2021.
 //
 
-import Foundation
 import Alamofire
 
 class Product: AbstractRequestFactory {
@@ -26,7 +25,8 @@ class Product: AbstractRequestFactory {
 }
 
 extension Product: ProductRequestFactory {
-    func getProduct(productId: Int, completionHandler: @escaping (AFDataResponse<ProductResult>) -> Void) {
+    func getProduct(productId: Int,
+                    completionHandler: @escaping (AFDataResponse<ProductResult>) -> Void) {
         let requestModel = ProductRequest(baseUrl: baseUrl, productId: productId)
         self.request(request: requestModel, completionHandler: completionHandler)
     }

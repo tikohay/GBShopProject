@@ -5,11 +5,9 @@
 //  Created by Karahanyan Levon on 03.09.2021.
 //
 
-import Foundation
 import Alamofire
 
 class Catalog: AbstractRequestFactory {
-
     let errorParser: AbstractErrorParser
     let sessionManager: Session
     let queue: DispatchQueue
@@ -26,7 +24,8 @@ class Catalog: AbstractRequestFactory {
 }
 
 extension Catalog: CatalogRequestFactory {
-    func getCatalog(pageNumber: Int, categoryId: Int, completionHandler: @escaping (AFDataResponse<[CatalogProductResult]>) -> Void) {
+    func getCatalog(pageNumber: Int, categoryId: Int,
+                    completionHandler: @escaping (AFDataResponse<[CatalogProductResult]>) -> Void) {
         let requestModel = CatalogRequest(baseUrl: baseUrl, categoryId: categoryId, pageNumber: pageNumber)
         self.request(request: requestModel, completionHandler: completionHandler)
     }

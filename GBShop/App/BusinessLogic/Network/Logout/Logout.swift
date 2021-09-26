@@ -5,7 +5,6 @@
 //  Created by Karahanyan Levon on 28.08.2021.
 //
 
-import Foundation
 import Alamofire
 
 class Logout: AbstractRequestFactory {
@@ -25,7 +24,8 @@ class Logout: AbstractRequestFactory {
 }
 
 extension Logout: LogoutRequestFactory {
-    func logout(id: Int, completionHandler: @escaping (AFDataResponse<LogoutResult>) -> Void) {
+    func logout(id: Int,
+                completionHandler: @escaping (AFDataResponse<LogoutResult>) -> Void) {
         let requestModel = LogoutRequest(baseUrl: baseUrl, id: id)
         self.request(request: requestModel, completionHandler: completionHandler)
     }
