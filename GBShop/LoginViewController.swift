@@ -43,7 +43,7 @@ class LoginViewController: UIViewController {
                                        titleColor: .black,
                                        isShadow: true)
     private let registrationButton = UIButton(title: "Sign up",
-                                              backgroundColor: #colorLiteral(red: 0.2084336579, green: 0.3011148274, blue: 0.5711893439, alpha: 1),
+                                              backgroundColor: Colors.mainBlueColor,
                                               titleColor: .white,
                                               isShadow: false)
     
@@ -67,7 +67,6 @@ class LoginViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         removeKeyboardObservers()
-        
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
@@ -141,7 +140,7 @@ extension LoginViewController {
     
     private func setupButtons() {
         loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
-        registrationButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+        registrationButton.addTarget(self, action: #selector(registrationButtonTapped), for: .touchUpInside)
     }
     
     @objc private func loginButtonTapped() {
@@ -153,6 +152,10 @@ extension LoginViewController {
     
     @objc private func registrationButtonTapped() {
         let toVC = RegistrationViewController()
+        toVC.isRegistration = true
+        toVC.onCompletion = {
+            print("registration")
+        }
         navigationController?.pushViewController(toVC, animated: true)
     }
 }

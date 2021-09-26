@@ -12,6 +12,10 @@ class TestViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .red
+        
+//        var textfield = UITextField()
+//        
+//        view.addSubview(textfield)
         // Do any additional setup after loading the view.
     }
     

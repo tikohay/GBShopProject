@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIButton {
-    convenience init(title: String,
+    convenience init(title: String?,
                      backgroundColor: UIColor,
                      titleColor: UIColor,
                      font: UIFont? = UIFont(name: "Avenir", size: 20),

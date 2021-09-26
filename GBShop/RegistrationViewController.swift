@@ -17,7 +17,6 @@ class RegistrationViewController: UIViewController {
     
     private var logoLabel: UILabel = {
         let label = UILabel()
-        label.text = "Registration"
         label.font = UIFont(name: "Geeza Pro Bold", size: 40)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -75,9 +74,10 @@ class RegistrationViewController: UIViewController {
                                                             second: "Female",
                                                             third: "Another")
     
-    private var button = UIButton(title: "Registration",
-                                  backgroundColor: #colorLiteral(red: 0.2082675993, green: 0.3012821078, blue: 0.5670520067, alpha: 1),
+    private var registrationSetupButton = UIButton(title: nil,
+                                                   backgroundColor: Colors.mainBlueColor,
                                   titleColor: .white)
+    private var doneButton = UIButton()
     
     private var usernameTextField = OneLineTextField()
     private var emailTextField = OneLineTextField()
@@ -86,14 +86,22 @@ class RegistrationViewController: UIViewController {
     private var bioTextField = OneLineTextField()
     
     private var isKeyboardShown = false
-    var isRegistration = false
+    var isRegistration = false {
+        didSet {
+            logoLabel.text = logoText
+            registrationSetupButton.setTitle(logoText, for: .normal)
+            registrationSetupButton.titleLabel?.font = UIFont(name: "Avenir", size: 20)
+        }
+    }
     var logoText: String {
         isRegistration ? "Registration" : "Setup"
     }
+    var onCompletion: (() -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addTapGestureRecognizer()
+        buttonTapped()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -117,12 +125,13 @@ extension RegistrationViewController {
     private func setupViews() {
         setupScrollView()
         setupStackView()
+        setupDoneButton()
     }
     
     private func setupScrollView() {
         view.addSubview(scrollView)
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
@@ -171,25 +180,58 @@ extension RegistrationViewController {
         stackView.spacing = 20
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
-        button.translatesAutoresizingMaskIntoConstraints = false
+        registrationSetupButton.translatesAutoresizingMaskIntoConstraints = false
+        doneButton.translatesAutoresizingMaskIntoConstraints = false
         
         scrollView.addSubview(logoLabel)
+        scrollView.addSubview(doneButton)
         scrollView.addSubview(stackView)
-        scrollView.addSubview(button)
+        scrollView.addSubview(registrationSetupButton)
         
         NSLayoutConstraint.activate([
             logoLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 50),
             logoLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             
+            doneButton.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20),
+            doneButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            doneButton.heightAnchor.constraint(equalToConstant: 20),
+            doneButton.widthAnchor.constraint(equalToConstant: 30),
+            
             stackView.topAnchor.constraint(equalTo: logoLabel.topAnchor, constant: 100),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             
-            button.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 30),
-            button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            button.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            button.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20)
+            registrationSetupButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 30),
+            registrationSetupButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            registrationSetupButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            registrationSetupButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20)
         ])
+    }
+    
+    private func buttonTapped() {
+        registrationSetupButton.addTarget(self, action: #selector(onCompletionUsed), for: .touchUpInside)
+    }
+    
+    private func setupDoneButton() {
+        if isRegistration {
+            doneButton.isHidden = true
+        } else {
+            doneButton.isHidden = false
+        }
+        
+        doneButton.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+        doneButton.tintColor = Colors.mainBlueColor
+        doneButton.contentVerticalAlignment = .fill
+        doneButton.contentHorizontalAlignment = .fill
+        doneButton.addTarget(self, action: #selector(dismissController), for: .touchUpInside)
+    }
+    
+    @objc func onCompletionUsed() {
+        onCompletion?()
+    }
+    
+    @objc func dismissController() {
+        dismiss(animated: true, completion: nil)
     }
 }
 

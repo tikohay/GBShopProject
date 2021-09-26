@@ -11,7 +11,6 @@ class OneLineTextField: UITextField {
     init(isTextSecured: Bool? = false) {
         super.init(frame: .zero)
         self.borderStyle = .none
-        self.autocorrectionType = .no
         self.isSecureTextEntry = isTextSecured ?? false
         self.translatesAutoresizingMaskIntoConstraints = false
         
@@ -19,8 +18,6 @@ class OneLineTextField: UITextField {
         bottomView.backgroundColor = #colorLiteral(red: 0.7810183167, green: 0.7763768435, blue: 0.7845870852, alpha: 1)
         bottomView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(bottomView)
-        
-        self.keyboardType = .emailAddress
         
         NSLayoutConstraint.activate([
             bottomView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 2),

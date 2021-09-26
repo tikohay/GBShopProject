@@ -32,7 +32,6 @@ class UserInformationViewController: UIViewController {
     
     private var usernameLabel: UILabel = {
         let label = UILabel()
-        label.text = "name "
         label.font = UIFont(name: "Helvetica", size: 30)
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -41,7 +40,6 @@ class UserInformationViewController: UIViewController {
     
     private var emailLabel: UILabel = {
         let label = UILabel()
-        label.text = "Email"
         label.font = UIFont(name: "Helvetica", size: 20)
         label.numberOfLines = 0
         return label
@@ -49,7 +47,6 @@ class UserInformationViewController: UIViewController {
     
     private var creditCardLabel: UILabel = {
         let label = UILabel()
-        label.text = "Credit card"
         label.font = UIFont(name: "Helvetica", size: 20)
         label.numberOfLines = 0
         return label
@@ -57,7 +54,6 @@ class UserInformationViewController: UIViewController {
     
     private var bioLabel: UILabel = {
         let label = UILabel()
-        label.text = "Bio"
         label.font = UIFont(name: "Helvetica", size: 20)
         label.numberOfLines = 0
         return label
@@ -65,7 +61,6 @@ class UserInformationViewController: UIViewController {
     
     private var genderLabel: UILabel = {
         let label = UILabel()
-        label.text = "Gender"
         label.font = UIFont(name: "Helvetica", size: 20)
         label.numberOfLines = 0
         return label
@@ -102,10 +97,10 @@ class UserInformationViewController: UIViewController {
     
     private func addTextToLabel() {
         usernameLabel.text = "\(username ?? "Nikolas Sarkozi")"
-        emailLabel.text = "Email - \(email ?? "mail faefwfwqq")"
-        creditCardLabel.text = "Credit card - \(creditCard ?? "credit card fqefq fqefeqf")"
-        bioLabel.text = "Bio - \(bio ?? "bio fqwefqwfq wefqwfqef qfqwfw fawff fewq fqwfq")"
-        genderLabel.text = "Gender -\(gender ?? "gender fqf")"
+        emailLabel.text = "Email - \(email ?? "sarkozi@bk.ru")"
+        creditCardLabel.text = "Credit card - \(creditCard ?? "123-12-12-12345")"
+        bioLabel.text = "Bio - \(bio ?? "bio - my name's Sarkozi. i love your application, it's really usefullmy name's Sarkozi. i love your application, it's really usefullmy name's Sarkozi. i love your application, it's really usefullmy name's Sarkozi. i love your application, it's really usefull")"
+        genderLabel.text = "Gender -\(gender ?? "male")"
     }
 }
 
@@ -114,12 +109,35 @@ extension UserInformationViewController {
     private func setupViews() {
         setupScrollView()
         setupStackView()
+        setupNavigationView()
+    }
+    
+    private func setupNavigationView() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Exit", style: .done, target: self, action: #selector(leftButtonItemTapped))
+        navigationItem.leftBarButtonItem?.tintColor = .red
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(rightButtonItemTapped))
+    }
+    
+    @objc func leftButtonItemTapped() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func rightButtonItemTapped() {
+        let toVC = RegistrationViewController()
+        toVC.isRegistration = false
+        toVC.onCompletion = {
+            print("setup")
+        }
+        toVC.modalPresentationStyle = .automatic
+        toVC.modalTransitionStyle = .coverVertical
+        present(toVC, animated: true, completion: nil)
     }
     
     private func setupScrollView() {
         view.addSubview(scrollView)
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
@@ -146,7 +164,7 @@ extension UserInformationViewController {
             logoLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
             
             usernameLabel.topAnchor.constraint(equalTo: logoLabel.bottomAnchor, constant: 50),
-            usernameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            usernameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 2),
             usernameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             
             stackView.topAnchor.constraint(equalTo: usernameLabel.topAnchor, constant: 70),
