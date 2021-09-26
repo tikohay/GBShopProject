@@ -9,11 +9,12 @@ import Foundation
 import Alamofire
 
 class UpdateUser: AbstractRequestFactory {
+
     let errorParser: AbstractErrorParser
     let sessionManager: Session
     let queue: DispatchQueue
     let baseUrl = URL(string: "https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/")!
-    
+
     init(
         errorParser: AbstractErrorParser,
         sessionManager: Session,
@@ -25,7 +26,7 @@ class UpdateUser: AbstractRequestFactory {
 }
 
 extension UpdateUser: UpdateUserRequestFactory {
-    
+
     func updateUser(updateUserData: UpdateUserData, completionHandler: @escaping (AFDataResponse<UpdateUserResult>) -> Void) {
         let requestModel = UpdateUserRequest(baseUrl: baseUrl, updateUserData: updateUserData)
         self.request(request: requestModel, completionHandler: completionHandler)
@@ -37,7 +38,7 @@ extension UpdateUser {
         let baseUrl: URL
         let method: HTTPMethod = .get
         let path: String = "changeUserData.json"
-        
+
         let updateUserData: UpdateUserData
         var parameters: Parameters? {
             return [
