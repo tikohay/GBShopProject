@@ -14,82 +14,83 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        let auth = requestFactory.makeAuthRequestFactory()
-        auth.login(userName: "Somebody", password: "mypassword") { response in
-            switch response.result {
-            case .success(let login):
-                print(login)
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
 
-        let logout = requestFactory.makeLogoutRequestFactory()
-        logout.logout(id: 123) { response in
-            switch response.result {
-            case .success(let logout):
-                print(logout)
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-
-        let registration = requestFactory.makeRegistrationRequestFactory()
-        let registrationData = RegistrationData(id: 123,
-                                                username: "Somebody",
-                                                password: "mypassword",
-                                                email: "some@some.ru",
-                                                gender: Gender.man.rawValue,
-                                                creditCard: "9872389-2424-234224-234",
-                                                bio: "This is good! I think I will switch to another language")
-
-        registration.register(registrationData: registrationData) { response in
-            switch response.result {
-            case .success(let result):
-                print(result)
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-
-        let updateUser = requestFactory.makeUpdateUserRequestFactory()
-        let updateUserData = UpdateUserData(id: 123,
-                                            username: "Somebody",
-                                            password: "mypassword",
-                                            email: "some@some.ru",
-                                            gender: Gender.man.rawValue,
-                                            creditCard: "9872389-2424-234224-234",
-                                            bio: "This is good! I think I will switch to another language")
-
-        updateUser.updateUser(updateUserData: updateUserData) { response in
-            switch response.result {
-            case .success(let result):
-                print(result)
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-
-        let catalog = requestFactory.makeCatalogRequestFactory()
-
-        catalog.getCatalog(pageNumber: 1, categoryId: 1) { response in
-            switch response.result {
-            case .success(let result):
-                print(result)
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-
-        let product = requestFactory.makeProductRequestFactory()
-        product.getProduct(productId: 1) { response in
-            switch response.result {
-            case .success(let result):
-                print(result)
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
+//        let auth = requestFactory.makeAuthRequestFactory()
+//        auth.login(userName: "Somebody", password: "mypassword") { response in
+//            switch response.result {
+//            case .success(let login):
+//                print(login)
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//            }
+//        }
+//
+//        let logout = requestFactory.makeLogoutRequestFactory()
+//        logout.logout(id: 123) { response in
+//            switch response.result {
+//            case .success(let logout):
+//                print(logout)
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//            }
+//        }
+//
+//        let registration = requestFactory.makeRegistrationRequestFactory()
+//        let registrationData = RegistrationData(id: 123,
+//                                                username: "Somebody",
+//                                                password: "mypassword",
+//                                                email: "some@some.ru",
+//                                                gender: Gender.man.rawValue,
+//                                                creditCard: "9872389-2424-234224-234",
+//                                                bio: "This is good! I think I will switch to another language")
+//
+//        registration.register(registrationData: registrationData) { response in
+//            switch response.result {
+//            case .success(let result):
+//                print(result)
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//            }
+//        }
+//
+//        let updateUser = requestFactory.makeUpdateUserRequestFactory()
+//        let updateUserData = UpdateUserData(id: 123,
+//                                            username: "Somebody",
+//                                            password: "mypassword",
+//                                            email: "some@some.ru",
+//                                            gender: Gender.man.rawValue,
+//                                            creditCard: "9872389-2424-234224-234",
+//                                            bio: "This is good! I think I will switch to another language")
+//
+//        updateUser.updateUser(updateUserData: updateUserData) { response in
+//            switch response.result {
+//            case .success(let result):
+//                print(result)
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//            }
+//        }
+//
+//        let catalog = requestFactory.makeCatalogRequestFactory()
+//
+//        catalog.getCatalog(pageNumber: 1, categoryId: 1) { response in
+//            switch response.result {
+//            case .success(let result):
+//                print(result)
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//            }
+//        }
+//
+//        let product = requestFactory.makeProductRequestFactory()
+//        product.getProduct(productId: 1) { response in
+//            switch response.result {
+//            case .success(let result):
+//                print(result)
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//            }
+//        }
 
         return true
     }

@@ -8,7 +8,6 @@
 import Foundation
 
 struct RegistrationData {
-    
     let id : Int
     let username: String
     let password: String

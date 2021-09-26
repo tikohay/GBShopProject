@@ -10,7 +10,7 @@ import XCTest
 
 class RegistrationTests: XCTestCase {
     let expectation = XCTestExpectation(description: "Registration")
-    
+
     var requestFactory: RequestFactory!
     var registration: RegistrationRequestFactory!
 
