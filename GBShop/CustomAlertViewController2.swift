@@ -62,6 +62,7 @@ class CustomAlertViewController2: UIViewController {
         textLabel.font = UIFont(name: "Avenir Book", size: 20)
         textLabel.text = descriptionText
         textLabel.numberOfLines = 0
+        textLabel.textAlignment = .center
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         textLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -91,8 +92,9 @@ class CustomAlertViewController2: UIViewController {
             titleLabel.topAnchor.constraint(equalTo: alertView.topAnchor, constant: 20),
             titleLabel.centerXAnchor.constraint(equalTo: alertView.centerXAnchor),
 
+            textLabel.trailingAnchor.constraint(equalTo: alertView.trailingAnchor, constant: -10),
+            textLabel.leadingAnchor.constraint(equalTo: alertView.leadingAnchor, constant: 10),
             textLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
-            textLabel.centerXAnchor.constraint(equalTo: alertView.centerXAnchor),
             
             okButton.bottomAnchor.constraint(equalTo: alertView.bottomAnchor, constant: -20),
             okButton.leadingAnchor.constraint(equalTo: alertView.leadingAnchor, constant: 20),

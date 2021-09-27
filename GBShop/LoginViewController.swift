@@ -8,6 +8,8 @@
 import UIKit
 
 class LoginViewController: UIViewController {
+    let requestFactory = RequestFactory()
+    
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.backgroundColor = Colors.whiteColor
@@ -113,15 +115,37 @@ extension LoginViewController {
     }
     
     @objc private func loginButtonTapped() {
-//        let toVC = MainTabBarController()
-//        toVC.modalTransitionStyle = .flipHorizontal
-//        toVC.modalPresentationStyle = .fullScreen
-//        present(toVC, animated: true, completion: nil)
-        let toVC = CustomAlertViewController2(title: "Warning",
-                                              text: "Login is wrong")
-        toVC.modalPresentationStyle = .overCurrentContext
-        toVC.modalTransitionStyle = .crossDissolve
-        present(toVC, animated: true, completion: nil)
+        guard let login = loginStandardTextField.textfield.text,
+              let password = passwordStandardTextField.textfield.text
+        else { return }
+        
+        let auth = requestFactory.makeAuthRequestFactory()
+        auth.login(userName: login, password: password) { response in
+            switch response.result {
+            case .success(_):
+                //вынести в отдельную функцию
+                DispatchQueue.main.async {
+//                    let toVC = MainTabBarController()
+//                    toVC.modalTransitionStyle = .flipHorizontal
+//                    toVC.modalPresentationStyle = .fullScreen
+//                    self.present(toVC, animated: true, completion: nil)
+                    let toVC = CustomAlertViewController2(title: "Warning",
+                                                          text: "login or password is wrong")
+                    toVC.modalPresentationStyle = .overCurrentContext
+                    toVC.modalTransitionStyle = .crossDissolve
+                    self.present(toVC, animated: true, completion: nil)
+                }
+            case .failure(_):
+                //вынести в отдельную функцию
+                DispatchQueue.main.async {
+                    let toVC = CustomAlertViewController2(title: "Warning",
+                                                          text: "login or password is wrong")
+                    toVC.modalPresentationStyle = .overCurrentContext
+                    toVC.modalTransitionStyle = .crossDissolve
+                    self.present(toVC, animated: true, completion: nil)
+                }
+            }
+        }
     }
     
     @objc private func registrationButtonTapped() {
