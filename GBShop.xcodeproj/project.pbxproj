@@ -81,6 +81,8 @@
 		3C9E439D26DAA74700330B8D /* UpdateUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9E439C26DAA74700330B8D /* UpdateUserData.swift */; };
 		3C9E43A026DAA84500330B8D /* UpdateUserRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9E439F26DAA84500330B8D /* UpdateUserRequestFactory.swift */; };
 		3C9E43A226DAA8BC00330B8D /* UpdateUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9E43A126DAA8BC00330B8D /* UpdateUser.swift */; };
+		3CB075D82701B0A2005F2447 /* CustomAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB075D72701B0A2005F2447 /* CustomAlertViewController.swift */; };
+		3CB075DA2701B939005F2447 /* CustomAlertViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB075D92701B939005F2447 /* CustomAlertViewController2.swift */; };
 		3CFC076C270073C300904600 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFC076B270073C300904600 /* Colors.swift */; };
 		3CFC07AA27007C9900904600 /* GBShopStandardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFC07A927007C9900904600 /* GBShopStandardTextField.swift */; };
 		CBBB7423026760A13357AAB3 /* Pods_GBShop_GBShopUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BEB5955F095FFBFF468AEB4 /* Pods_GBShop_GBShopUITests.framework */; };
@@ -186,6 +188,8 @@
 		3C9E439C26DAA74700330B8D /* UpdateUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserData.swift; sourceTree = "<group>"; };
 		3C9E439F26DAA84500330B8D /* UpdateUserRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserRequestFactory.swift; sourceTree = "<group>"; };
 		3C9E43A126DAA8BC00330B8D /* UpdateUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUser.swift; sourceTree = "<group>"; };
+		3CB075D72701B0A2005F2447 /* CustomAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertViewController.swift; sourceTree = "<group>"; };
+		3CB075D92701B939005F2447 /* CustomAlertViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertViewController2.swift; sourceTree = "<group>"; };
 		3CFC076B270073C300904600 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		3CFC07A927007C9900904600 /* GBShopStandardTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GBShopStandardTextField.swift; sourceTree = "<group>"; };
 		511D9189274798BC55F052A3 /* Pods-GBShop-GBShopUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GBShop-GBShopUITests.release.xcconfig"; path = "Target Support Files/Pods-GBShop-GBShopUITests/Pods-GBShop-GBShopUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -418,6 +422,8 @@
 				3C84C12B26FF113600AC287C /* RegistrationViewController.swift */,
 				3C73821A26FF4EC600132AAA /* UserInformationViewController.swift */,
 				3C73822026FF64B500132AAA /* MainTabBarController.swift */,
+				3CB075D72701B0A2005F2447 /* CustomAlertViewController.swift */,
+				3CB075D92701B939005F2447 /* CustomAlertViewController2.swift */,
 				3C73821C26FF645000132AAA /* TestViewController.swift */,
 				3C73821E26FF646100132AAA /* Test2ViewController.swift */,
 			);
@@ -876,6 +882,7 @@
 				3C68DB3226F4C3A400C94E08 /* AddProductToBasket.swift in Sources */,
 				3C63EDAB26F0AA1E003DDAE0 /* AllReviewsRequestFactory.swift in Sources */,
 				3C68DB2D26F4C2A200C94E08 /* AddProductToBasketResult.swift in Sources */,
+				3CB075DA2701B939005F2447 /* CustomAlertViewController2.swift in Sources */,
 				3C9E438726DA98DB00330B8D /* Logout.swift in Sources */,
 				3C63ED9526F089F2003DDAE0 /* AddReviewRequestFactory.swift in Sources */,
 				3C70C81A26FB607200440844 /* PayBasket.swift in Sources */,
@@ -892,6 +899,7 @@
 				3C9E437F26DA96CE00330B8D /* LogoutResult.swift in Sources */,
 				3C63ED9226F08937003DDAE0 /* AddReviewResult.swift in Sources */,
 				3C9E439726DAA57900330B8D /* Gender.swift in Sources */,
+				3CB075D82701B0A2005F2447 /* CustomAlertViewController.swift in Sources */,
 				3C0B900426D9080B004D05B2 /* AbstractRequestFactory.swift in Sources */,
 				3C51E1BC26E2A637007F60C9 /* Catalog.swift in Sources */,
 				3C68DB3726F4C7F100C94E08 /* DeleteProductFromBasketRequestFactory.swift in Sources */,

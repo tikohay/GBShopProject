@@ -113,9 +113,14 @@ extension LoginViewController {
     }
     
     @objc private func loginButtonTapped() {
-        let toVC = MainTabBarController()
-        toVC.modalTransitionStyle = .flipHorizontal
-        toVC.modalPresentationStyle = .fullScreen
+//        let toVC = MainTabBarController()
+//        toVC.modalTransitionStyle = .flipHorizontal
+//        toVC.modalPresentationStyle = .fullScreen
+//        present(toVC, animated: true, completion: nil)
+        let toVC = CustomAlertViewController2(topLabelText: "Warning",
+                                              descriptionText: "Login is wrong")
+        toVC.modalPresentationStyle = .overCurrentContext
+        toVC.modalTransitionStyle = .crossDissolve
         present(toVC, animated: true, completion: nil)
     }
     
