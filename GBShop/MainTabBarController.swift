@@ -12,7 +12,7 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tabBar.barTintColor = .white
+        tabBar.barTintColor = Colors.whiteColor
         tabBar.tintColor = .black
         let boldConfiguration = UIImage.SymbolConfiguration(weight: .medium)
         let infoImage = UIImage(systemName: "info.circle", withConfiguration: boldConfiguration)

@@ -14,7 +14,7 @@ class TestViewController: UIViewController {
         view.backgroundColor = .red
         
         let textfield = UITextField()
-        textfield.backgroundColor = .white
+        textfield.backgroundColor = Colors.whiteColor
 
         view.addSubview(textfield)
         

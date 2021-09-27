@@ -10,19 +10,19 @@ import UIKit
 class CustomAlertViewController2: UIViewController {
     var blurView = UIVisualEffectView()
     let alertView = UIView()
-    let topLabel = UILabel()
-    let descriptionLabel = UILabel()
+    let titleLabel = UILabel()
+    let textLabel = UILabel()
     let okButton = UIButton(title: "Ok",
                             backgroundColor: Colors.mainBlueColor,
-                            titleColor: .white)
+                            titleColor: Colors.whiteColor)
     
-    var topLabelText: String?
+    var titleText: String?
     var descriptionText: String?
     
-    convenience init(topLabelText: String, descriptionText: String) {
+    convenience init(title: String, text: String) {
         self.init()
-        self.topLabelText = topLabelText
-        self.descriptionText = descriptionText
+        self.titleText = title
+        self.descriptionText = text
     }
     
     override func viewDidLoad() {
@@ -46,25 +46,25 @@ class CustomAlertViewController2: UIViewController {
     private func setupAlertView() {
         blurView.contentView.addSubview(alertView)
     
-        alertView.backgroundColor = .white
+        alertView.backgroundColor = Colors.whiteColor
         alertView.layer.cornerRadius = 30
         alertView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func setupLabels() {
-        alertView.addSubview(descriptionLabel)
-        alertView.addSubview(topLabel)
+        alertView.addSubview(textLabel)
+        alertView.addSubview(titleLabel)
         
-        topLabel.font = UIFont(name: "Helvetica", size: 25)
-        topLabel.text = topLabelText
-        topLabel.numberOfLines = 0
+        titleLabel.font = UIFont(name: "Helvetica", size: 25)
+        titleLabel.text = titleText
+        titleLabel.numberOfLines = 0
         
-        descriptionLabel.font = UIFont(name: "Avenir Book", size: 20)
-        descriptionLabel.text = descriptionText
-        descriptionLabel.numberOfLines = 0
+        textLabel.font = UIFont(name: "Avenir Book", size: 20)
+        textLabel.text = descriptionText
+        textLabel.numberOfLines = 0
         
-        topLabel.translatesAutoresizingMaskIntoConstraints = false
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        textLabel.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func setupOkButton() {
@@ -88,11 +88,11 @@ class CustomAlertViewController2: UIViewController {
             alertView.heightAnchor.constraint(equalToConstant: 250),
             alertView.widthAnchor.constraint(equalToConstant: 240),
             
-            topLabel.topAnchor.constraint(equalTo: alertView.topAnchor, constant: 20),
-            topLabel.centerXAnchor.constraint(equalTo: alertView.centerXAnchor),
+            titleLabel.topAnchor.constraint(equalTo: alertView.topAnchor, constant: 20),
+            titleLabel.centerXAnchor.constraint(equalTo: alertView.centerXAnchor),
 
-            descriptionLabel.topAnchor.constraint(equalTo: topLabel.bottomAnchor, constant: 20),
-            descriptionLabel.centerXAnchor.constraint(equalTo: alertView.centerXAnchor),
+            textLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
+            textLabel.centerXAnchor.constraint(equalTo: alertView.centerXAnchor),
             
             okButton.bottomAnchor.constraint(equalTo: alertView.bottomAnchor, constant: -20),
             okButton.leadingAnchor.constraint(equalTo: alertView.leadingAnchor, constant: 20),

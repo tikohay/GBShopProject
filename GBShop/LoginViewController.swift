@@ -10,7 +10,7 @@ import UIKit
 class LoginViewController: UIViewController {
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.backgroundColor = .white
+        scrollView.backgroundColor = Colors.whiteColor
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
@@ -25,12 +25,12 @@ class LoginViewController: UIViewController {
     }()
     
     private let loginButton = UIButton(title: "Log in",
-                                       backgroundColor: .white,
+                                       backgroundColor: Colors.whiteColor,
                                        titleColor: .black,
                                        isShadow: true)
     private let registrationButton = UIButton(title: "Sign up",
                                               backgroundColor: Colors.mainBlueColor,
-                                              titleColor: .white,
+                                              titleColor: Colors.whiteColor,
                                               isShadow: false)
     
     private let loginStandardTextField = GBShopStandardTextField(labelText: "Login")
@@ -117,8 +117,8 @@ extension LoginViewController {
 //        toVC.modalTransitionStyle = .flipHorizontal
 //        toVC.modalPresentationStyle = .fullScreen
 //        present(toVC, animated: true, completion: nil)
-        let toVC = CustomAlertViewController2(topLabelText: "Warning",
-                                              descriptionText: "Login is wrong")
+        let toVC = CustomAlertViewController2(title: "Warning",
+                                              text: "Login is wrong")
         toVC.modalPresentationStyle = .overCurrentContext
         toVC.modalTransitionStyle = .crossDissolve
         present(toVC, animated: true, completion: nil)

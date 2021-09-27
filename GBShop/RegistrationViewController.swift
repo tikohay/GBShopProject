@@ -10,7 +10,7 @@ import UIKit
 class RegistrationViewController: UIViewController {
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.backgroundColor = .white
+        scrollView.backgroundColor = Colors.whiteColor
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
