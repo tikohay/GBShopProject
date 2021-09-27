@@ -59,7 +59,7 @@
 		3C73821D26FF645000132AAA /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C73821C26FF645000132AAA /* TestViewController.swift */; };
 		3C73821F26FF646100132AAA /* Test2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C73821E26FF646100132AAA /* Test2ViewController.swift */; };
 		3C73822126FF64B500132AAA /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C73822026FF64B500132AAA /* MainTabBarController.swift */; };
-		3C84C12C26FF113600AC287C /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C84C12B26FF113600AC287C /* RegistrationViewController.swift */; };
+		3C84C12C26FF113600AC287C /* ProfileEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C84C12B26FF113600AC287C /* ProfileEditorViewController.swift */; };
 		3C84C12E26FF12B900AC287C /* UISegmentControl + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C84C12D26FF12B900AC287C /* UISegmentControl + Extensions.swift */; };
 		3C9A58DC26D7BC1300A29BE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9A58DB26D7BC1300A29BE4 /* AppDelegate.swift */; };
 		3C9A58DE26D7BC1300A29BE4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9A58DD26D7BC1300A29BE4 /* SceneDelegate.swift */; };
@@ -81,8 +81,7 @@
 		3C9E439D26DAA74700330B8D /* UpdateUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9E439C26DAA74700330B8D /* UpdateUserData.swift */; };
 		3C9E43A026DAA84500330B8D /* UpdateUserRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9E439F26DAA84500330B8D /* UpdateUserRequestFactory.swift */; };
 		3C9E43A226DAA8BC00330B8D /* UpdateUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9E43A126DAA8BC00330B8D /* UpdateUser.swift */; };
-		3CB075D82701B0A2005F2447 /* CustomAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB075D72701B0A2005F2447 /* CustomAlertViewController.swift */; };
-		3CB075DA2701B939005F2447 /* CustomAlertViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB075D92701B939005F2447 /* CustomAlertViewController2.swift */; };
+		3CB075DA2701B939005F2447 /* GBShopInfoAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB075D92701B939005F2447 /* GBShopInfoAlert.swift */; };
 		3CC6D5EB2701FAC900B60AA3 /* BlurredLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC6D5EA2701FAC900B60AA3 /* BlurredLabel.swift */; };
 		3CFC076C270073C300904600 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFC076B270073C300904600 /* Colors.swift */; };
 		3CFC07AA27007C9900904600 /* GBShopStandardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFC07A927007C9900904600 /* GBShopStandardTextField.swift */; };
@@ -161,7 +160,7 @@
 		3C73821C26FF645000132AAA /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		3C73821E26FF646100132AAA /* Test2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test2ViewController.swift; sourceTree = "<group>"; };
 		3C73822026FF64B500132AAA /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		3C84C12B26FF113600AC287C /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		3C84C12B26FF113600AC287C /* ProfileEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditorViewController.swift; sourceTree = "<group>"; };
 		3C84C12D26FF12B900AC287C /* UISegmentControl + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISegmentControl + Extensions.swift"; sourceTree = "<group>"; };
 		3C9A58D826D7BC1300A29BE4 /* GBShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GBShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C9A58DB26D7BC1300A29BE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -189,8 +188,7 @@
 		3C9E439C26DAA74700330B8D /* UpdateUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserData.swift; sourceTree = "<group>"; };
 		3C9E439F26DAA84500330B8D /* UpdateUserRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserRequestFactory.swift; sourceTree = "<group>"; };
 		3C9E43A126DAA8BC00330B8D /* UpdateUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUser.swift; sourceTree = "<group>"; };
-		3CB075D72701B0A2005F2447 /* CustomAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertViewController.swift; sourceTree = "<group>"; };
-		3CB075D92701B939005F2447 /* CustomAlertViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertViewController2.swift; sourceTree = "<group>"; };
+		3CB075D92701B939005F2447 /* GBShopInfoAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GBShopInfoAlert.swift; sourceTree = "<group>"; };
 		3CC6D5EA2701FAC900B60AA3 /* BlurredLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurredLabel.swift; sourceTree = "<group>"; };
 		3CFC076B270073C300904600 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		3CFC07A927007C9900904600 /* GBShopStandardTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GBShopStandardTextField.swift; sourceTree = "<group>"; };
@@ -422,11 +420,10 @@
 				3C9A591126D7BCDB00A29BE4 /* Resources */,
 				3C037C1926FDB24E0066D4BD /* Extensions */,
 				3C9A591326D7BE4800A29BE4 /* LoginViewController.swift */,
-				3C84C12B26FF113600AC287C /* RegistrationViewController.swift */,
+				3C84C12B26FF113600AC287C /* ProfileEditorViewController.swift */,
 				3C73821A26FF4EC600132AAA /* UserInformationViewController.swift */,
 				3C73822026FF64B500132AAA /* MainTabBarController.swift */,
-				3CB075D72701B0A2005F2447 /* CustomAlertViewController.swift */,
-				3CB075D92701B939005F2447 /* CustomAlertViewController2.swift */,
+				3CB075D92701B939005F2447 /* GBShopInfoAlert.swift */,
 				3C73821C26FF645000132AAA /* TestViewController.swift */,
 				3C73821E26FF646100132AAA /* Test2ViewController.swift */,
 			);
@@ -885,7 +882,7 @@
 				3C68DB3226F4C3A400C94E08 /* AddProductToBasket.swift in Sources */,
 				3C63EDAB26F0AA1E003DDAE0 /* AllReviewsRequestFactory.swift in Sources */,
 				3C68DB2D26F4C2A200C94E08 /* AddProductToBasketResult.swift in Sources */,
-				3CB075DA2701B939005F2447 /* CustomAlertViewController2.swift in Sources */,
+				3CB075DA2701B939005F2447 /* GBShopInfoAlert.swift in Sources */,
 				3C9E438726DA98DB00330B8D /* Logout.swift in Sources */,
 				3C63ED9526F089F2003DDAE0 /* AddReviewRequestFactory.swift in Sources */,
 				3C70C81A26FB607200440844 /* PayBasket.swift in Sources */,
@@ -903,7 +900,6 @@
 				3CC6D5EB2701FAC900B60AA3 /* BlurredLabel.swift in Sources */,
 				3C63ED9226F08937003DDAE0 /* AddReviewResult.swift in Sources */,
 				3C9E439726DAA57900330B8D /* Gender.swift in Sources */,
-				3CB075D82701B0A2005F2447 /* CustomAlertViewController.swift in Sources */,
 				3C0B900426D9080B004D05B2 /* AbstractRequestFactory.swift in Sources */,
 				3C51E1BC26E2A637007F60C9 /* Catalog.swift in Sources */,
 				3C68DB3726F4C7F100C94E08 /* DeleteProductFromBasketRequestFactory.swift in Sources */,
@@ -915,7 +911,7 @@
 				3CFC07AA27007C9900904600 /* GBShopStandardTextField.swift in Sources */,
 				3C9E43A026DAA84500330B8D /* UpdateUserRequestFactory.swift in Sources */,
 				3C73822126FF64B500132AAA /* MainTabBarController.swift in Sources */,
-				3C84C12C26FF113600AC287C /* RegistrationViewController.swift in Sources */,
+				3C84C12C26FF113600AC287C /* ProfileEditorViewController.swift in Sources */,
 				3C51E1C126E2A86E007F60C9 /* Product.swift in Sources */,
 				3C07DC8326FE125F00494876 /* UIButton + Extensions.swift in Sources */,
 				3C63EDA926F0A91C003DDAE0 /* AllReviewsResult.swift in Sources */,

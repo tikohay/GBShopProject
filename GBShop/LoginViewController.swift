@@ -45,6 +45,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         addTapGestureRecognizer()
         setupViews()
+        addTargetToButtons()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,8 +65,7 @@ class LoginViewController: UIViewController {
 extension LoginViewController {
     private func setupViews() {
         setupScrollView()
-        setupTextFieldsAndLabels()
-        setupButtons()
+        setupAuthForm()
     }
     
     private func setupScrollView() {
@@ -78,21 +78,21 @@ extension LoginViewController {
         ])
     }
     
-    private func setupTextFieldsAndLabels() {
+    private func setupAuthForm() {
         let loginFormStackView = UIStackView(arrangedSubviews: [loginStandardTextField,
                                                                 passwordStandardTextField])
         loginFormStackView.axis = .vertical
         loginFormStackView.spacing = 10
         loginFormStackView.translatesAutoresizingMaskIntoConstraints = false
         
-        let buttonStackView = UIStackView(arrangedSubviews: [loginButton, registrationButton])
-        buttonStackView.axis = .vertical
-        buttonStackView.spacing = 20
-        buttonStackView.translatesAutoresizingMaskIntoConstraints = false
+        let buttonsStackView = UIStackView(arrangedSubviews: [loginButton, registrationButton])
+        buttonsStackView.axis = .vertical
+        buttonsStackView.spacing = 20
+        buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
         
         scrollView.addSubview(logoLabel)
         scrollView.addSubview(loginFormStackView)
-        scrollView.addSubview(buttonStackView)
+        scrollView.addSubview(buttonsStackView)
         
         NSLayoutConstraint.activate([
             logoLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
@@ -102,14 +102,15 @@ extension LoginViewController {
             loginFormStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
             loginFormStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             
-            buttonStackView.topAnchor.constraint(equalTo: loginFormStackView.bottomAnchor, constant: 50),
-            buttonStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            buttonStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            buttonStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20)
+            buttonsStackView.topAnchor.constraint(equalTo: loginFormStackView.bottomAnchor, constant: 50),
+            buttonsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            buttonsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            buttonsStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20)
         ])
     }
     
-    private func setupButtons() {
+    // вынести в отдельный экстеншн
+    private func addTargetToButtons() {
         loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         registrationButton.addTarget(self, action: #selector(registrationButtonTapped), for: .touchUpInside)
     }
@@ -117,29 +118,27 @@ extension LoginViewController {
     @objc private func loginButtonTapped() {
         guard let login = loginStandardTextField.textfield.text,
               let password = passwordStandardTextField.textfield.text
-        else { return }
+        else {
+//            presentGBShopInfoAlert()
+            return
+        }
         
         let auth = requestFactory.makeAuthRequestFactory()
         auth.login(userName: login, password: password) { response in
             switch response.result {
             case .success(_):
-                //вынести в отдельную функцию
+                //вынести в отдельную приватную функцию presentMainTabBar
                 DispatchQueue.main.async {
-//                    let toVC = MainTabBarController()
-//                    toVC.modalTransitionStyle = .flipHorizontal
-//                    toVC.modalPresentationStyle = .fullScreen
-//                    self.present(toVC, animated: true, completion: nil)
-                    let toVC = CustomAlertViewController2(title: "Warning",
-                                                          text: "login or password is wrong")
-                    toVC.modalPresentationStyle = .overCurrentContext
-                    toVC.modalTransitionStyle = .crossDissolve
+                    let toVC = MainTabBarController()
+                    toVC.modalTransitionStyle = .flipHorizontal
+                    toVC.modalPresentationStyle = .fullScreen
                     self.present(toVC, animated: true, completion: nil)
                 }
             case .failure(_):
-                //вынести в отдельную функцию
+                //вынести в отдельную приватную функцию presentGBShopInfoAlert
                 DispatchQueue.main.async {
-                    let toVC = CustomAlertViewController2(title: "Warning",
-                                                          text: "login or password is wrong")
+                    let toVC = GBShopInfoAlert(title: "Warning",
+                                               text: "Login or password is wrong")
                     toVC.modalPresentationStyle = .overCurrentContext
                     toVC.modalTransitionStyle = .crossDissolve
                     self.present(toVC, animated: true, completion: nil)
@@ -148,8 +147,10 @@ extension LoginViewController {
         }
     }
     
+    // suda
+    
     @objc private func registrationButtonTapped() {
-        let toVC = RegistrationViewController()
+        let toVC = ProfileEditorViewController()
         toVC.isRegistration = true
         toVC.onCompletion = {
             print("registration")
@@ -160,6 +161,11 @@ extension LoginViewController {
 
 // MARK: - Setup observers and gestures recognizer
 extension LoginViewController {
+    private func addTapGestureRecognizer() {
+        let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        scrollView.addGestureRecognizer(hideKeyboardGesture)
+    }
+    
     private func addKeyboardObservers() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillBeShown),
@@ -182,16 +188,12 @@ extension LoginViewController {
                                                   object: nil)
     }
     
-    private func addTapGestureRecognizer() {
-        let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-        scrollView.addGestureRecognizer(hideKeyboardGesture)
-    }
-    
     @objc private func keyboardWillBeShown(notification: Notification) {
         guard !isKeyboardShown else { return }
         let info = notification.userInfo as NSDictionary?
         let keyboardSize = (info?.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as? NSValue)?.cgRectValue.size
         let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize?.height ?? 0.0, right: 0.0)
+        
         self.scrollView.contentInset = contentInsets
         self.scrollView.scrollIndicatorInsets = contentInsets
         isKeyboardShown = true
@@ -199,7 +201,9 @@ extension LoginViewController {
     
     @objc private func keyboardWillBeHiden() {
         guard isKeyboardShown else { return }
+        
         let contentInsets = UIEdgeInsets.zero
+        
         scrollView.contentInset = contentInsets
         isKeyboardShown = false
     }

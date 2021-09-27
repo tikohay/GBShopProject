@@ -7,7 +7,20 @@
 
 import UIKit
 
-class RegistrationViewController: UIViewController {
+class ProfileEditorViewController: UIViewController {
+    // поменять все на let (проверить во всем проекте)
+    var isRegistration = false {
+        didSet {
+            titleLabel.text = titleText
+            submitButton.setTitle(titleText, for: .normal)
+            submitButton.titleLabel?.font = UIFont(name: "Avenir", size: 20)
+        }
+    }
+    var titleText: String {
+        isRegistration ? "Registration" : "Setup"
+    }
+    var onCompletion: (() -> Void)?
+    
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.backgroundColor = Colors.whiteColor
@@ -15,7 +28,7 @@ class RegistrationViewController: UIViewController {
         return scrollView
     }()
     
-    private var logoLabel: UILabel = {
+    private var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Geeza Pro Bold", size: 40)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -25,7 +38,7 @@ class RegistrationViewController: UIViewController {
     private var genderLabel: UILabel = {
         let label = UILabel()
         label.text = "Gender"
-        label.font = UIFont(name: "Helvetica", size: 20)
+        label.font = UIFont(name: "Helvetica", size: 25)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -34,10 +47,10 @@ class RegistrationViewController: UIViewController {
                                                             second: "Female",
                                                             third: "Another")
     
-    private var registrationSetupButton = UIButton(title: nil,
+    private var submitButton = UIButton(title: nil,
                                                    backgroundColor: Colors.mainBlueColor,
                                                    titleColor: .white)
-    private var doneButton = UIButton()
+    private var closeButton = UIButton()
     
     private var usernameTextField = GBShopStandardTextField(labelText: "Name")
     private var emailTextField = GBShopStandardTextField(labelText: "Email")
@@ -46,23 +59,14 @@ class RegistrationViewController: UIViewController {
     private var bioTextField = GBShopStandardTextField(labelText: "Bio")
     
     private var isKeyboardShown = false
-    var isRegistration = false {
-        didSet {
-            logoLabel.text = logoText
-            registrationSetupButton.setTitle(logoText, for: .normal)
-            registrationSetupButton.titleLabel?.font = UIFont(name: "Avenir", size: 20)
-        }
-    }
-    var logoText: String {
-        isRegistration ? "Registration" : "Setup"
-    }
-    var onCompletion: (() -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addTapGestureRecognizer()
-        buttonTapped()
         setupViews()
+        buttonTapped() // переименовать
+        
+        // сделать все так как в логине, в том числе нйминги
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -77,7 +81,7 @@ class RegistrationViewController: UIViewController {
 }
 
 //MARK: - Setup views
-extension RegistrationViewController {
+extension ProfileEditorViewController {
     private func setupViews() {
         setupScrollView()
         setupStackView()
@@ -111,50 +115,50 @@ extension RegistrationViewController {
         stackView.spacing = 20
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
-        registrationSetupButton.translatesAutoresizingMaskIntoConstraints = false
-        doneButton.translatesAutoresizingMaskIntoConstraints = false
+        submitButton.translatesAutoresizingMaskIntoConstraints = false
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
         
-        scrollView.addSubview(logoLabel)
-        scrollView.addSubview(doneButton)
+        scrollView.addSubview(titleLabel)
+        scrollView.addSubview(closeButton)
         scrollView.addSubview(stackView)
-        scrollView.addSubview(registrationSetupButton)
+        scrollView.addSubview(submitButton)
         
         NSLayoutConstraint.activate([
-            logoLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 50),
-            logoLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            titleLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 50),
+            titleLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             
-            doneButton.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20),
-            doneButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-            doneButton.heightAnchor.constraint(equalToConstant: 20),
-            doneButton.widthAnchor.constraint(equalToConstant: 30),
+            closeButton.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20),
+            closeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            closeButton.heightAnchor.constraint(equalToConstant: 20),
+            closeButton.widthAnchor.constraint(equalToConstant: 30),
             
-            stackView.topAnchor.constraint(equalTo: logoLabel.topAnchor, constant: 100),
+            stackView.topAnchor.constraint(equalTo: titleLabel.topAnchor, constant: 100),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             
-            registrationSetupButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 30),
-            registrationSetupButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            registrationSetupButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            registrationSetupButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20)
+            submitButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 30),
+            submitButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            submitButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            submitButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20)
         ])
     }
     
     private func buttonTapped() {
-        registrationSetupButton.addTarget(self, action: #selector(onCompletionUsed), for: .touchUpInside)
+        submitButton.addTarget(self, action: #selector(onCompletionUsed), for: .touchUpInside)
     }
     
     private func setupDoneButton() {
         if isRegistration {
-            doneButton.isHidden = true
+            closeButton.isHidden = true
         } else {
-            doneButton.isHidden = false
+            closeButton.isHidden = false
         }
         
-        doneButton.setImage(UIImage(systemName: "chevron.down"), for: .normal)
-        doneButton.tintColor = Colors.mainBlueColor
-        doneButton.contentVerticalAlignment = .fill
-        doneButton.contentHorizontalAlignment = .fill
-        doneButton.addTarget(self, action: #selector(dismissController), for: .touchUpInside)
+        closeButton.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+        closeButton.tintColor = Colors.mainBlueColor
+        closeButton.contentVerticalAlignment = .fill
+        closeButton.contentHorizontalAlignment = .fill
+        closeButton.addTarget(self, action: #selector(dismissController), for: .touchUpInside)
     }
     
     @objc func onCompletionUsed() {
@@ -167,7 +171,7 @@ extension RegistrationViewController {
 }
 
 //MARK: - Setup observers and gestures recognizer
-extension RegistrationViewController {
+extension ProfileEditorViewController {
     private func addKeyboardObservers() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillBeShown),
