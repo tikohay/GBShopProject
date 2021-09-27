@@ -79,11 +79,11 @@ class RegistrationViewController: UIViewController {
                                   titleColor: .white)
     private var doneButton = UIButton()
     
-    private var usernameTextField = OneLineTextFieldView()
-    private var emailTextField = OneLineTextFieldView()
-    private var passwordTextField = OneLineTextFieldView()
-    private var creditCardTextField = OneLineTextFieldView()
-    private var bioTextField = OneLineTextFieldView()
+    private var usernameTextField = GBShopStandardTextField(labelText: "Name")
+    private var emailTextField = GBShopStandardTextField(labelText: "Email")
+    private var passwordTextField = GBShopStandardTextField(labelText: "Passowrd", isSecured: true)
+    private var creditCardTextField = GBShopStandardTextField(labelText: "Credit card")
+    private var bioTextField = GBShopStandardTextField(labelText: "Bio")
     
     private var isKeyboardShown = false
     var isRegistration = false {
@@ -102,6 +102,7 @@ class RegistrationViewController: UIViewController {
         super.viewDidLoad()
         addTapGestureRecognizer()
         buttonTapped()
+        setupViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -112,11 +113,6 @@ class RegistrationViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         removeKeyboardObservers()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        setupViews()
     }
 }
 

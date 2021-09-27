@@ -24,20 +24,6 @@ class LoginViewController: UIViewController {
         return label
     }()
     
-    private let loginLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Login"
-        label.font = UIFont(name: "Helvetica", size: 25)
-        return label
-    }()
-    
-    private let passwordLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Password"
-        label.font = UIFont(name: "Helvetica", size: 25)
-        return label
-    }()
-    
     private let loginButton = UIButton(title: "Log in",
                                        backgroundColor: .white,
                                        titleColor: .black,
@@ -47,20 +33,21 @@ class LoginViewController: UIViewController {
                                               titleColor: .white,
                                               isShadow: false)
     
-    private let loginTextField = OneLineTextFieldView()
-    private let passwordTextField = OneLineTextFieldView(isSecured: true)
+    private let loginStandardTextField = GBShopStandardTextField(labelText: "Login")
+    private let passwordStandardTextField = GBShopStandardTextField(labelText: "Password",
+                                                                    isSecured: true)
     
     private var isKeyboardShown = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addTapGestureRecognizer()
+        setupViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         addKeyboardObservers()
-        
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
@@ -68,11 +55,6 @@ class LoginViewController: UIViewController {
         super.viewWillDisappear(animated)
         removeKeyboardObservers()
         navigationController?.setNavigationBarHidden(false, animated: false)
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        setupViews()
     }
 }
 
@@ -95,18 +77,11 @@ extension LoginViewController {
     }
     
     private func setupTextFieldsAndLabels() {
-        let loginStackView = UIStackView(arrangedSubviews: [loginLabel, loginTextField])
-        loginStackView.axis = .vertical
-        loginStackView.spacing = 10
-        
-        let passwordStackView = UIStackView(arrangedSubviews: [passwordLabel, passwordTextField])
-        passwordStackView.axis = .vertical
-        passwordStackView.spacing = 10
-        
-        let stackView = UIStackView(arrangedSubviews: [loginStackView, passwordStackView])
-        stackView.axis = .vertical
-        stackView.spacing = 50
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+        let loginFormStackView = UIStackView(arrangedSubviews: [loginStandardTextField,
+                                                                passwordStandardTextField])
+        loginFormStackView.axis = .vertical
+        loginFormStackView.spacing = 10
+        loginFormStackView.translatesAutoresizingMaskIntoConstraints = false
         
         let buttonStackView = UIStackView(arrangedSubviews: [loginButton, registrationButton])
         buttonStackView.axis = .vertical
@@ -114,21 +89,18 @@ extension LoginViewController {
         buttonStackView.translatesAutoresizingMaskIntoConstraints = false
         
         scrollView.addSubview(logoLabel)
-        scrollView.addSubview(stackView)
+        scrollView.addSubview(loginFormStackView)
         scrollView.addSubview(buttonStackView)
         
         NSLayoutConstraint.activate([
             logoLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             logoLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 100),
             
-            loginTextField.heightAnchor.constraint(equalToConstant: 30),
-            passwordTextField.heightAnchor.constraint(equalToConstant: 30),
+            loginFormStackView.topAnchor.constraint(equalTo: logoLabel.topAnchor, constant: 100),
+            loginFormStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+            loginFormStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             
-            stackView.topAnchor.constraint(equalTo: logoLabel.topAnchor, constant: 100),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            
-            buttonStackView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 50),
+            buttonStackView.topAnchor.constraint(equalTo: loginFormStackView.bottomAnchor, constant: 50),
             buttonStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             buttonStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             buttonStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20)
