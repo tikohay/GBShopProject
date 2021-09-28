@@ -8,7 +8,7 @@
 import UIKit
 
 class ProfileEditorViewController: UIViewController {
-    // поменять все на let (проверить во всем проекте)
+    let requestFactory = RequestFactory()
     var isRegistration = false {
         didSet {
             titleLabel.text = titleText
@@ -19,7 +19,6 @@ class ProfileEditorViewController: UIViewController {
     var titleText: String {
         isRegistration ? "Registration" : "Setup"
     }
-    var onCompletion: (() -> Void)?
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -28,14 +27,14 @@ class ProfileEditorViewController: UIViewController {
         return scrollView
     }()
     
-    private var titleLabel: UILabel = {
+    private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Geeza Pro Bold", size: 40)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private var genderLabel: UILabel = {
+    private let genderLabel: UILabel = {
         let label = UILabel()
         label.text = "Gender"
         label.font = UIFont(name: "Helvetica", size: 25)
@@ -43,20 +42,20 @@ class ProfileEditorViewController: UIViewController {
         return label
     }()
     
-    private var genderSegmentedControl = UISegmentedControl(first: "Male",
+    private let genderSegmentedControl = UISegmentedControl(first: "Male",
                                                             second: "Female",
                                                             third: "Another")
     
-    private var submitButton = UIButton(title: nil,
-                                                   backgroundColor: Colors.mainBlueColor,
-                                                   titleColor: .white)
-    private var closeButton = UIButton()
+    private let submitButton = UIButton(title: nil,
+                                        backgroundColor: Colors.mainBlueColor,
+                                        titleColor: .white)
+    private let closeButton = UIButton()
     
-    private var usernameTextField = GBShopStandardTextField(labelText: "Name")
-    private var emailTextField = GBShopStandardTextField(labelText: "Email")
-    private var passwordTextField = GBShopStandardTextField(labelText: "Passowrd", isSecured: true)
-    private var creditCardTextField = GBShopStandardTextField(labelText: "Credit card")
-    private var bioTextField = GBShopStandardTextField(labelText: "Bio")
+    private let usernameTextField = GBShopStandardTextField(labelText: "Name")
+    private let emailTextField = GBShopStandardTextField(labelText: "Email")
+    private let passwordTextField = GBShopStandardTextField(labelText: "Passowrd", isSecured: true)
+    private let creditCardTextField = GBShopStandardTextField(labelText: "Credit card")
+    private let bioTextField = GBShopStandardTextField(labelText: "Bio")
     
     private var isKeyboardShown = false
     
@@ -144,7 +143,7 @@ extension ProfileEditorViewController {
     }
     
     private func buttonTapped() {
-        submitButton.addTarget(self, action: #selector(onCompletionUsed), for: .touchUpInside)
+        submitButton.addTarget(self, action: #selector(userEnteredData), for: .touchUpInside)
     }
     
     private func setupDoneButton() {
@@ -161,62 +160,158 @@ extension ProfileEditorViewController {
         closeButton.addTarget(self, action: #selector(dismissController), for: .touchUpInside)
     }
     
-    @objc func onCompletionUsed() {
-        onCompletion?()
+    private func presentGBShopInfoAlert(title: String, text: String) {
+        DispatchQueue.main.async {
+            let toVC = GBShopInfoAlert(title: title,
+                                       text: text)
+            toVC.modalPresentationStyle = .overCurrentContext
+            toVC.modalTransitionStyle = .crossDissolve
+            self.present(toVC, animated: true, completion: nil)
+        }
     }
     
-    @objc func dismissController() {
-        dismiss(animated: true, completion: nil)
+    @objc func userEnteredData() {
+        let gender = "mail"
+        guard let username = usernameTextField.textfield.text,
+              let password = passwordTextField.textfield.text,
+              let email = emailTextField.textfield.text,
+              let creditCard = creditCardTextField.textfield.text,
+              let bio = bioTextField.textfield.text,
+              usernameTextField.textfield.text != "",
+              passwordTextField.textfield.text != "",
+              emailTextField.textfield.text != "",
+              creditCardTextField.textfield.text != "",
+              bioTextField.textfield.text != ""
+        else { self.presentGBShopInfoAlert(title: "\(titleText) warning",
+                                           text: "The parameters are entered incorrectly")
+              return
+        }
+        let data = RegistrationData(id: 1,
+                                    username: username,
+                                    password: password,
+                                    email: email,
+                                    gender: gender,
+                                    creditCard: creditCard,
+                                    bio: bio)
+        let data2 = UpdateUserData(id: 1,
+                                    username: username,
+                                    password: password,
+                                    email: email,
+                                    gender: gender,
+                                    creditCard: creditCard,
+                                    bio: bio)
+        if isRegistration {
+            sendRegistrationData(data: data)
+        } else {
+            sendUpdateUserData(data: data2)
+        }
     }
-}
-
-//MARK: - Setup observers and gestures recognizer
-extension ProfileEditorViewController {
-    private func addKeyboardObservers() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillBeShown),
-                                               name: UIResponder.keyboardWillShowNotification,
-                                               object: nil)
+    
+    private func sendRegistrationData(data: RegistrationData) {
+        let registration = requestFactory.makeRegistrationRequestFactory()
         
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillBeHiden),
-                                               name: UIResponder.keyboardWillHideNotification,
-                                               object: nil)
+        registration.register(registrationData: data) { response in
+            switch response.result {
+            case .success(_):
+                DispatchQueue.main.async {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            case .failure(_):
+                self.presentGBShopInfoAlert(title: "Registration warning",
+                                            text: "The parameters are entered incorrectly")
+            }
+        }
     }
     
-    private func removeKeyboardObservers() {
-        NotificationCenter.default.removeObserver(self,
-                                                  name: UIResponder.keyboardWillShowNotification,
-                                                  object: nil)
+    private func sendUpdateUserData(data: UpdateUserData) {
+        let updateUser = requestFactory.makeUpdateUserRequestFactory()
         
-        NotificationCenter.default.removeObserver(self,
-                                                  name: UIResponder.keyboardWillHideNotification,
-                                                  object: nil)
+        updateUser.updateUser(updateUserData: data) { response in
+            switch response.result {
+            case .success(_):
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            case .failure(_):
+                self.presentGBShopInfoAlert(title: "Edit warning",
+                                            text: "The parameters are entered incorrectly")
+            
+            }
+        }
+    }
+        
+        /*
+         let registration = requestFactory.makeRegistrationRequestFactory()
+         let registrationData = RegistrationData(id: 123,
+         username: "Somebody",
+         password: "mypassword",
+         email: "some@some.ru",
+         gender: Gender.man.rawValue,
+         creditCard: "9872389-2424-234224-234",
+         bio: "This is good! I think I will switch to another language")
+         
+         registration.register(registrationData: registrationData) { response in
+         switch response.result {
+         case .success(let result):
+         print(result)
+         case .failure(let error):
+         print(error.localizedDescription)
+         }
+         }
+         */
+        
+        @objc func dismissController() {
+            dismiss(animated: true, completion: nil)
+        }
     }
     
-    private func addTapGestureRecognizer() {
-        let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-        scrollView.addGestureRecognizer(hideKeyboardGesture)
+    //MARK: - Setup observers and gestures recognizer
+    extension ProfileEditorViewController {
+        private func addKeyboardObservers() {
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(keyboardWillBeShown),
+                                                   name: UIResponder.keyboardWillShowNotification,
+                                                   object: nil)
+            
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(keyboardWillBeHiden),
+                                                   name: UIResponder.keyboardWillHideNotification,
+                                                   object: nil)
+        }
+        
+        private func removeKeyboardObservers() {
+            NotificationCenter.default.removeObserver(self,
+                                                      name: UIResponder.keyboardWillShowNotification,
+                                                      object: nil)
+            
+            NotificationCenter.default.removeObserver(self,
+                                                      name: UIResponder.keyboardWillHideNotification,
+                                                      object: nil)
+        }
+        
+        private func addTapGestureRecognizer() {
+            let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+            scrollView.addGestureRecognizer(hideKeyboardGesture)
+        }
+        
+        @objc private func keyboardWillBeShown(notification: Notification) {
+            guard !isKeyboardShown else { return }
+            let info = notification.userInfo as NSDictionary?
+            let keyboardSize = (info?.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as? NSValue)?.cgRectValue.size
+            let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize?.height ?? 0.0, right: 0.0)
+            self.scrollView.contentInset = contentInsets
+            self.scrollView.scrollIndicatorInsets = contentInsets
+            isKeyboardShown = true
+        }
+        
+        @objc private func keyboardWillBeHiden() {
+            guard isKeyboardShown else { return }
+            let contentInsets = UIEdgeInsets.zero
+            scrollView.contentInset = contentInsets
+            isKeyboardShown = false
+        }
+        
+        @objc private func hideKeyboard() {
+            scrollView.endEditing(true)
+        }
     }
-    
-    @objc private func keyboardWillBeShown(notification: Notification) {
-        guard !isKeyboardShown else { return }
-        let info = notification.userInfo as NSDictionary?
-        let keyboardSize = (info?.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as? NSValue)?.cgRectValue.size
-        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize?.height ?? 0.0, right: 0.0)
-        self.scrollView.contentInset = contentInsets
-        self.scrollView.scrollIndicatorInsets = contentInsets
-        isKeyboardShown = true
-    }
-    
-    @objc private func keyboardWillBeHiden() {
-        guard isKeyboardShown else { return }
-        let contentInsets = UIEdgeInsets.zero
-        scrollView.contentInset = contentInsets
-        isKeyboardShown = false
-    }
-    
-    @objc private func hideKeyboard() {
-        scrollView.endEditing(true)
-    }
-}

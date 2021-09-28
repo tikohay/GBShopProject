@@ -126,7 +126,14 @@ extension LoginViewController {
             toVC.modalTransitionStyle = .crossDissolve
             self.present(toVC, animated: true, completion: nil)
         }
-    }}
+    }
+    
+    private func pushProfileEditorViewController() {
+        let toVC = ProfileEditorViewController()
+        toVC.isRegistration = true
+        self.navigationController?.pushViewController(toVC, animated: true)
+    }
+}
 
 // MARK: - Setup observers and gestures recognizer
 extension LoginViewController {
@@ -211,32 +218,6 @@ extension LoginViewController {
     }
     
     @objc private func registrationButtonTapped() {
-        let toVC = ProfileEditorViewController()
-        toVC.isRegistration = true
-        toVC.onCompletion = {
-            print("registration")
-        }
-        navigationController?.pushViewController(toVC, animated: true)
+        pushProfileEditorViewController()
     }
 }
-
-
-/*
- let registration = requestFactory.makeRegistrationRequestFactory()
-                 let registrationData = RegistrationData(id: 123,
-                                                         username: "Somebody",
-                                                         password: "mypassword",
-                                                         email: "some@some.ru",
-                                                         gender: Gender.man.rawValue,
-                                                         creditCard: "9872389-2424-234224-234",
-                                                         bio: "This is good! I think I will switch to another language")
-
-                 registration.register(registrationData: registrationData) { response in
-                     switch response.result {
-                     case .success(let result):
-                         print(result)
-                     case .failure(let error):
-                         print(error.localizedDescription)
-                     }
-                 }
- */

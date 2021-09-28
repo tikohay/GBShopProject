@@ -58,6 +58,7 @@ class GBShopInfoAlert: UIViewController {
         titleLabel.font = UIFont(name: "Helvetica", size: 25)
         titleLabel.text = titleText
         titleLabel.numberOfLines = 0
+        titleLabel.textAlignment = .center
         
         textLabel.font = UIFont(name: "Avenir Book", size: 20)
         textLabel.text = descriptionText
@@ -90,7 +91,8 @@ class GBShopInfoAlert: UIViewController {
             alertView.widthAnchor.constraint(equalToConstant: 240),
             
             titleLabel.topAnchor.constraint(equalTo: alertView.topAnchor, constant: 20),
-            titleLabel.centerXAnchor.constraint(equalTo: alertView.centerXAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: alertView.trailingAnchor, constant: -10),
+            titleLabel.leadingAnchor.constraint(equalTo: alertView.leadingAnchor, constant: 10),
 
             textLabel.trailingAnchor.constraint(equalTo: alertView.trailingAnchor, constant: -10),
             textLabel.leadingAnchor.constraint(equalTo: alertView.leadingAnchor, constant: 10),

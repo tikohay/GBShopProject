@@ -98,7 +98,7 @@ class UserInformationViewController: UIViewController {
     private func addTextToLabel() {
         usernameLabel.text = "\(username ?? "Nikolas Sarkozi")"
         emailLabel.text = "Email - \(email ?? "sarkozi@bk.ru")"
-        bioLabel.text = "Bio - \(bio ?? "my name's Sarkozi. i love your application, it's really usefullmy name's Sarkozi. i love your application, it's really usefullmy name's Sarkozi. i love your application, it's really usefullmy name's Sarkozi. i love your application, it's really usefull")"
+        bioLabel.text = "Bio - \(bio ?? " My name's Sarkozi. i love your application, it's really usefull")"
         genderLabel.text = "Gender -\(gender ?? "male")"
         creditCardDetailsLabel.text = "\(creditCard ?? "123-12-12-12345")"
     }
@@ -187,9 +187,9 @@ extension UserInformationViewController {
     @objc func rightButtonItemTapped() {
         let toVC = ProfileEditorViewController()
         toVC.isRegistration = false
-        toVC.onCompletion = {
-            print("setup")
-        }
+//        toVC.onCompletion = {
+//            print("setup")
+//        }
         toVC.modalPresentationStyle = .automatic
         toVC.modalTransitionStyle = .coverVertical
         present(toVC, animated: true, completion: nil)
