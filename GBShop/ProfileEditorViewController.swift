@@ -59,6 +59,23 @@ class ProfileEditorViewController: UIViewController {
     
     private var isKeyboardShown = false
     
+    enum Gender: Int {
+        case male = 0
+        case female = 1
+        case another = 2
+        
+        var description: String {
+            switch self {
+            case .male:
+                return "Male"
+            case .female:
+                return "Female"
+            case .another:
+                return "Another"
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addTapGestureRecognizer()
@@ -171,10 +188,10 @@ extension ProfileEditorViewController {
     }
     
     @objc func userEnteredData() {
-        let gender = "mail"
         guard let username = usernameTextField.textfield.text,
               let password = passwordTextField.textfield.text,
               let email = emailTextField.textfield.text,
+              let gender = Gender.init(rawValue: genderSegmentedControl.selectedSegmentIndex)?.description,
               let creditCard = creditCardTextField.textfield.text,
               let bio = bioTextField.textfield.text,
               usernameTextField.textfield.text != "",
