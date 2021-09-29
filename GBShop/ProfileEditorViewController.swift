@@ -56,6 +56,7 @@ class ProfileEditorViewController: UIViewController {
     private let passwordTextField = GBShopStandardTextField(labelText: "Passowrd", isSecured: true)
     private let creditCardTextField = GBShopStandardTextField(labelText: "Credit card")
     private let bioTextField = GBShopStandardTextField(labelText: "Bio")
+    private let activityView = UIActivityIndicatorView()
     
     private var isKeyboardShown = false
     
@@ -63,7 +64,7 @@ class ProfileEditorViewController: UIViewController {
         case male = 0
         case female = 1
         case another = 2
-        
+
         var description: String {
             switch self {
             case .male:
@@ -102,6 +103,7 @@ extension ProfileEditorViewController {
         setupScrollView()
         setupStackView()
         setupDoneButton()
+        setupActivityView()
     }
     
     private func setupScrollView() {
@@ -159,6 +161,27 @@ extension ProfileEditorViewController {
         ])
     }
     
+    private func setupActivityView() {
+        activityView.center = view.center
+        activityView.color = Colors.mainBlueColor
+        activityView.style = .large
+        view.addSubview(activityView)
+    }
+    
+    private func startActivityViewAnimating() {
+        DispatchQueue.main.async {
+            self.activityView.isHidden = false
+            self.activityView.startAnimating()
+        }
+    }
+    
+    private func stopActivityAnimating() {
+        DispatchQueue.main.async {
+            self.activityView.isHidden = true
+            self.activityView.stopAnimating()
+        }
+    }
+    
     private func buttonTapped() {
         submitButton.addTarget(self, action: #selector(userEnteredData), for: .touchUpInside)
     }
@@ -203,6 +226,7 @@ extension ProfileEditorViewController {
                                            text: "The parameters are entered incorrectly")
               return
         }
+        
         let data = RegistrationData(id: 1,
                                     username: username,
                                     password: password,
@@ -211,12 +235,13 @@ extension ProfileEditorViewController {
                                     creditCard: creditCard,
                                     bio: bio)
         let data2 = UpdateUserData(id: 1,
-                                    username: username,
-                                    password: password,
-                                    email: email,
-                                    gender: gender,
-                                    creditCard: creditCard,
-                                    bio: bio)
+                                   username: username,
+                                   password: password,
+                                   email: email,
+                                   gender: gender,
+                                   creditCard: creditCard,
+                                   bio: bio)
+        self.startActivityViewAnimating()
         if isRegistration {
             sendRegistrationData(data: data)
         } else {
@@ -230,10 +255,12 @@ extension ProfileEditorViewController {
         registration.register(registrationData: data) { response in
             switch response.result {
             case .success(_):
+                self.stopActivityAnimating()
                 DispatchQueue.main.async {
                     self.navigationController?.popViewController(animated: true)
                 }
             case .failure(_):
+                self.stopActivityAnimating()
                 self.presentGBShopInfoAlert(title: "Registration warning",
                                             text: "The parameters are entered incorrectly")
             }
@@ -246,10 +273,12 @@ extension ProfileEditorViewController {
         updateUser.updateUser(updateUserData: data) { response in
             switch response.result {
             case .success(_):
+                self.stopActivityAnimating()
                 DispatchQueue.main.async {
                     self.dismiss(animated: true, completion: nil)
                 }
             case .failure(_):
+                self.stopActivityAnimating()
                 self.presentGBShopInfoAlert(title: "Edit warning",
                                             text: "The parameters are entered incorrectly")
             

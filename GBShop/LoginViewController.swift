@@ -26,6 +26,8 @@ class LoginViewController: UIViewController {
         return label
     }()
     
+    private let activityView = UIActivityIndicatorView()
+    
     private let loginButton = UIButton(title: "Log in",
                                        backgroundColor: Colors.whiteColor,
                                        titleColor: .black,
@@ -66,6 +68,7 @@ extension LoginViewController {
     private func setupViews() {
         setupScrollView()
         setupAuthForm()
+        setupActivityView()
     }
     
     private func setupScrollView() {
@@ -107,6 +110,27 @@ extension LoginViewController {
             buttonsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             buttonsStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20)
         ])
+    }
+    
+    private func setupActivityView() {
+        activityView.center = view.center
+        activityView.color = Colors.mainBlueColor
+        activityView.style = .large
+        view.addSubview(activityView)
+    }
+    
+    private func startActivityViewAnimating() {
+        DispatchQueue.main.async {
+            self.activityView.isHidden = false
+            self.activityView.startAnimating()
+        }
+    }
+    
+    private func stopActivityAnimating() {
+        DispatchQueue.main.async {
+            self.activityView.isHidden = true
+            self.activityView.stopAnimating()
+        }
     }
     
     private func presentMainTabBar() {
@@ -205,13 +229,15 @@ extension LoginViewController {
             presentGBShopInfoAlert()
             return
         }
-        
+        self.startActivityViewAnimating()
         let auth = requestFactory.makeAuthRequestFactory()
         auth.login(userName: login, password: password) { response in
             switch response.result {
             case .success(_):
+                self.stopActivityAnimating()
                 self.presentMainTabBar()
             case .failure(_):
+                self.stopActivityAnimating()
                 self.presentGBShopInfoAlert()
             }
         }
