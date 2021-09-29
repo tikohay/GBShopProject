@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RegistrationData {
+struct UserData {
     let id : Int
     let username: String
     let password: String

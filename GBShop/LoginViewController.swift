@@ -26,8 +26,6 @@ class LoginViewController: UIViewController {
         return label
     }()
     
-    private let activityView = UIActivityIndicatorView()
-    
     private let loginButton = UIButton(title: "Log in",
                                        backgroundColor: Colors.whiteColor,
                                        titleColor: .black,
@@ -40,6 +38,7 @@ class LoginViewController: UIViewController {
     private let loginStandardTextField = GBShopStandardTextField(labelText: "Login")
     private let passwordStandardTextField = GBShopStandardTextField(labelText: "Password",
                                                                     isSecured: true)
+    private let activityView = UIActivityIndicatorView()
     
     private var isKeyboardShown = false
     

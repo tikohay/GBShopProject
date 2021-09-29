@@ -27,7 +27,7 @@ class RegistrationTests: XCTestCase {
     }
 
     func testShouldRegistrate() throws {
-        let registrationData = RegistrationData(id: 123,
+        let registrationData = UserData(id: 123,
                                                 username: "Somebody",
                                                 password: "mypassword",
                                                 email: "some@some.ru",

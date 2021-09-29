@@ -25,7 +25,7 @@ class Registration: AbstractRequestFactory {
 }
 
 extension Registration: RegistrationRequestFactory {
-    func register(registrationData: RegistrationData,
+    func register(registrationData: UserData,
                   completionHandler: @escaping (AFDataResponse<RegistrationResult>) -> Void) {
         let requestModel = RegistrationRequest(baseUrl: baseUrl,registrationData: registrationData)
         self.request(request: requestModel, completionHandler: completionHandler)
@@ -38,7 +38,7 @@ extension Registration {
         let method: HTTPMethod = .post
         let path: String = "register"
 
-        let registrationData: RegistrationData
+        let registrationData: UserData
         var parameters: Parameters? {
             return [
                 "id_user" : registrationData.id,

@@ -18,12 +18,10 @@ class MainTabBarController: UITabBarController {
         let infoImage = UIImage(systemName: "info.circle", withConfiguration: boldConfiguration)
         
         let userInformationViewController = UserInformationViewController()
-        let test = TestViewController()
-        let test2 = Test2ViewController()
         
         viewControllers = [generateNavigationController(rootViewController: userInformationViewController,
                                                         title: "info",
-                                                        image: infoImage!), test, test2]
+                                                        image: infoImage!)]
     }
     
     private func generateNavigationController(rootViewController: UIViewController,
