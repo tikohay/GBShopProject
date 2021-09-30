@@ -83,16 +83,11 @@ class UserInformationViewController: UIViewController {
         return button
     }()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         addTextToLabel()
-        setupBlurButton()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
         setupViews()
+        setupBlurButton()
     }
     
     private func addTextToLabel() {
@@ -108,7 +103,7 @@ class UserInformationViewController: UIViewController {
 extension UserInformationViewController {
     private func setupViews() {
         setupScrollView()
-        setupStackView()
+        setupUserInformation()
         setupNavigationView()
     }
     
@@ -129,7 +124,7 @@ extension UserInformationViewController {
         ])
     }
     
-    private func setupStackView() {
+    private func setupUserInformation() {
         let creditCardStackView = UIStackView(arrangedSubviews: [creditCardLabel,
                                                                  creditCardDetailsLabel,
                                                                  blurButton])
@@ -165,6 +160,21 @@ extension UserInformationViewController {
         ])
     }
     
+    @objc func leftButtonItemTapped() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func rightButtonItemTapped() {
+        let toVC = ProfileEditorViewController()
+        toVC.isRegistration = false
+        toVC.modalPresentationStyle = .automatic
+        toVC.modalTransitionStyle = .coverVertical
+        present(toVC, animated: true, completion: nil)
+    }
+}
+
+// MARK: - Setup targets
+extension UserInformationViewController {
     private func setupBlurButton() {
         blurButton.addTarget(self,
                              action: #selector(blurCreditCard),
@@ -178,20 +188,5 @@ extension UserInformationViewController {
         } else {
             sender.setImage(UIImage(systemName: "eye.slash"), for: .normal)
         }
-    }
-    
-    @objc func leftButtonItemTapped() {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @objc func rightButtonItemTapped() {
-        let toVC = ProfileEditorViewController()
-        toVC.isRegistration = false
-//        toVC.onCompletion = {
-//            print("setup")
-//        }
-        toVC.modalPresentationStyle = .automatic
-        toVC.modalTransitionStyle = .coverVertical
-        present(toVC, animated: true, completion: nil)
     }
 }

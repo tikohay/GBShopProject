@@ -27,7 +27,14 @@ class GBShopInfoAlert: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupViews()
+        addTargetToButtons()
+    }
+}
+
+//MARK: - Setup views
+extension GBShopInfoAlert {
+    private func setupViews() {
         setupBlurView()
         setupAlertView()
         setupLabels()
@@ -45,7 +52,7 @@ class GBShopInfoAlert: UIViewController {
     
     private func setupAlertView() {
         blurView.contentView.addSubview(alertView)
-    
+        
         alertView.backgroundColor = Colors.whiteColor
         alertView.layer.cornerRadius = 30
         alertView.translatesAutoresizingMaskIntoConstraints = false
@@ -71,11 +78,8 @@ class GBShopInfoAlert: UIViewController {
     
     private func setupOkButton() {
         alertView.addSubview(okButton)
-        
         okButton.translatesAutoresizingMaskIntoConstraints = false
-        okButton.addTarget(self,
-                           action: #selector(dismissController),
-                           for: .touchUpInside)
+        
     }
     
     private func setupConstraints() {
@@ -84,7 +88,7 @@ class GBShopInfoAlert: UIViewController {
             blurView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             blurView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             blurView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-        
+            
             alertView.centerXAnchor.constraint(equalTo: blurView.centerXAnchor),
             alertView.topAnchor.constraint(equalTo: blurView.topAnchor, constant: 150),
             alertView.heightAnchor.constraint(equalToConstant: 250),
@@ -93,7 +97,7 @@ class GBShopInfoAlert: UIViewController {
             titleLabel.topAnchor.constraint(equalTo: alertView.topAnchor, constant: 20),
             titleLabel.trailingAnchor.constraint(equalTo: alertView.trailingAnchor, constant: -10),
             titleLabel.leadingAnchor.constraint(equalTo: alertView.leadingAnchor, constant: 10),
-
+            
             textLabel.trailingAnchor.constraint(equalTo: alertView.trailingAnchor, constant: -10),
             textLabel.leadingAnchor.constraint(equalTo: alertView.leadingAnchor, constant: 10),
             textLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
@@ -102,6 +106,15 @@ class GBShopInfoAlert: UIViewController {
             okButton.leadingAnchor.constraint(equalTo: alertView.leadingAnchor, constant: 20),
             okButton.trailingAnchor.constraint(equalTo: alertView.trailingAnchor, constant: -20)
         ])
+    }
+}
+
+//MARK: - Setup targets
+extension GBShopInfoAlert {
+    private func addTargetToButtons() {
+        okButton.addTarget(self,
+                           action: #selector(dismissController),
+                           for: .touchUpInside)
     }
     
     @objc private func dismissController() {

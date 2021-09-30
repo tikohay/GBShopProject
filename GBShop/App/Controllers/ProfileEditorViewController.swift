@@ -63,7 +63,6 @@ class ProfileEditorViewController: UIViewController {
     private let genderSegmentedControl = UISegmentedControl(first: "Male",
                                                             second: "Female",
                                                             third: "Another")
-    
     private let submitButton = UIButton(title: nil,
                                         backgroundColor: Colors.mainBlueColor,
                                         titleColor: .white)
@@ -100,7 +99,7 @@ class ProfileEditorViewController: UIViewController {
 extension ProfileEditorViewController {
     private func setupViews() {
         setupScrollView()
-        setupStackView()
+        setupEditorForm()
         setupDoneButton()
         setupActivityView()
     }
@@ -115,7 +114,7 @@ extension ProfileEditorViewController {
         ])
     }
     
-    private func setupStackView() {
+    private func setupEditorForm() {
         let genderStackView = UIStackView(arrangedSubviews: [genderLabel, genderSegmentedControl])
         genderStackView.axis = .vertical
         genderStackView.distribution = .fill
@@ -167,20 +166,6 @@ extension ProfileEditorViewController {
         view.addSubview(activityView)
     }
     
-    private func startActivityViewAnimating() {
-        DispatchQueue.main.async {
-            self.activityView.isHidden = false
-            self.activityView.startAnimating()
-        }
-    }
-    
-    private func stopActivityAnimating() {
-        DispatchQueue.main.async {
-            self.activityView.isHidden = true
-            self.activityView.stopAnimating()
-        }
-    }
-    
     private func setupDoneButton() {
         if isRegistration {
             closeButton.isHidden = true
@@ -192,16 +177,6 @@ extension ProfileEditorViewController {
         closeButton.tintColor = Colors.mainBlueColor
         closeButton.contentVerticalAlignment = .fill
         closeButton.contentHorizontalAlignment = .fill
-    }
-    
-    private func presentGBShopInfoAlert(title: String, text: String) {
-        DispatchQueue.main.async {
-            let toVC = GBShopInfoAlert(title: title,
-                                       text: text)
-            toVC.modalPresentationStyle = .overCurrentContext
-            toVC.modalTransitionStyle = .crossDissolve
-            self.present(toVC, animated: true, completion: nil)
-        }
     }
 }
 
@@ -259,11 +234,11 @@ extension ProfileEditorViewController {
 // MARK: - Setup targets
 extension ProfileEditorViewController {
     private func addTargetToButtons() {
-        submitButton.addTarget(self, action: #selector(userEnteredData), for: .touchUpInside)
+        submitButton.addTarget(self, action: #selector(submitButtonTapped), for: .touchUpInside)
         closeButton.addTarget(self, action: #selector(dismissController), for: .touchUpInside)
     }
     
-    @objc func userEnteredData() {
+    @objc func submitButtonTapped() {
         guard let username = usernameTextField.textfield.text,
               let password = passwordTextField.textfield.text,
               let email = emailTextField.textfield.text,
@@ -275,30 +250,25 @@ extension ProfileEditorViewController {
               emailTextField.textfield.text != "",
               creditCardTextField.textfield.text != "",
               bioTextField.textfield.text != ""
-        else { self.presentGBShopInfoAlert(title: "\(titleText) warning",
-                                           text: "The parameters are entered incorrectly")
+        else {
+            self.presentGBShopInfoAlert(title: "\(titleText) warning",
+                                        text: "The parameters are entered incorrectly")
             return
         }
         
-        let data = UserData(id: 1,
-                                    username: username,
-                                    password: password,
-                                    email: email,
-                                    gender: gender,
-                                    creditCard: creditCard,
-                                    bio: bio)
-        let data2 = UpdateUserData(id: 1,
-                                   username: username,
-                                   password: password,
-                                   email: email,
-                                   gender: gender,
-                                   creditCard: creditCard,
-                                   bio: bio)
+        let user = UserData(id: 1,
+                            username: username,
+                            password: password,
+                            email: email,
+                            gender: gender,
+                            creditCard: creditCard,
+                            bio: bio)
         self.startActivityViewAnimating()
+        
         if isRegistration {
-            sendRegistrationData(data: data)
+            sendRegistrationData(data: user)
         } else {
-            sendUpdateUserData(data: data2)
+            sendUpdateUserData(data: user)
         }
     }
     
@@ -306,36 +276,60 @@ extension ProfileEditorViewController {
         let registration = requestFactory.makeRegistrationRequestFactory()
         
         registration.register(registrationData: data) { response in
+            self.stopActivityAnimating()
+            
             switch response.result {
             case .success(_):
-                self.stopActivityAnimating()
                 DispatchQueue.main.async {
                     self.navigationController?.popViewController(animated: true)
                 }
             case .failure(_):
-                self.stopActivityAnimating()
                 self.presentGBShopInfoAlert(title: "Registration warning",
                                             text: "The parameters are entered incorrectly")
             }
         }
     }
     
-    private func sendUpdateUserData(data: UpdateUserData) {
+    private func sendUpdateUserData(data: UserData) {
         let updateUser = requestFactory.makeUpdateUserRequestFactory()
         
         updateUser.updateUser(updateUserData: data) { response in
+            self.stopActivityAnimating()
+            
             switch response.result {
             case .success(_):
-                self.stopActivityAnimating()
                 DispatchQueue.main.async {
                     self.dismiss(animated: true, completion: nil)
                 }
             case .failure(_):
-                self.stopActivityAnimating()
                 self.presentGBShopInfoAlert(title: "Edit warning",
                                             text: "The parameters are entered incorrectly")
                 
             }
+        }
+    }
+    
+    private func presentGBShopInfoAlert(title: String, text: String) {
+        DispatchQueue.main.async {
+            let toVC = GBShopInfoAlert(title: title,
+                                       text: text)
+            toVC.modalPresentationStyle = .overCurrentContext
+            toVC.modalTransitionStyle = .crossDissolve
+            self.present(toVC, animated: true, completion: nil)
+        }
+    }
+    
+    private func startActivityViewAnimating() {
+        DispatchQueue.main.async {
+            self.activityView.isHidden = false
+            self.activityView.startAnimating()
+        }
+    }
+    
+    private func stopActivityAnimating() {
+        DispatchQueue.main.async {
+            self.activityView.isHidden = true
+            self.activityView.stopAnimating()
         }
     }
     

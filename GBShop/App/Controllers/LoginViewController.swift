@@ -118,20 +118,6 @@ extension LoginViewController {
         view.addSubview(activityView)
     }
     
-    private func startActivityViewAnimating() {
-        DispatchQueue.main.async {
-            self.activityView.isHidden = false
-            self.activityView.startAnimating()
-        }
-    }
-    
-    private func stopActivityAnimating() {
-        DispatchQueue.main.async {
-            self.activityView.isHidden = true
-            self.activityView.stopAnimating()
-        }
-    }
-    
     private func presentMainTabBar() {
         DispatchQueue.main.async {
             let toVC = MainTabBarController()
@@ -231,14 +217,28 @@ extension LoginViewController {
         self.startActivityViewAnimating()
         let auth = requestFactory.makeAuthRequestFactory()
         auth.login(userName: login, password: password) { response in
+            self.stopActivityAnimating()
+            
             switch response.result {
             case .success(_):
-                self.stopActivityAnimating()
                 self.presentMainTabBar()
             case .failure(_):
-                self.stopActivityAnimating()
                 self.presentGBShopInfoAlert()
             }
+        }
+    }
+    
+    private func startActivityViewAnimating() {
+        DispatchQueue.main.async {
+            self.activityView.isHidden = false
+            self.activityView.startAnimating()
+        }
+    }
+    
+    private func stopActivityAnimating() {
+        DispatchQueue.main.async {
+            self.activityView.isHidden = true
+            self.activityView.stopAnimating()
         }
     }
     

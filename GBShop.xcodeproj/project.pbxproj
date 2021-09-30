@@ -73,10 +73,9 @@
 		3C9E438E26DA9DC200330B8D /* RegistrationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9E438D26DA9DC200330B8D /* RegistrationResult.swift */; };
 		3C9E439126DA9E4900330B8D /* RegistrationRequestFactory .swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9E439026DA9E4900330B8D /* RegistrationRequestFactory .swift */; };
 		3C9E439326DAA08900330B8D /* Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9E439226DAA08900330B8D /* Registration.swift */; };
-		3C9E439526DAA55200330B8D /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9E439426DAA55200330B8D /* UserData.swift */; };
 		3C9E439726DAA57900330B8D /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9E439626DAA57900330B8D /* Gender.swift */; };
 		3C9E439B26DAA6F500330B8D /* UpdateUserResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9E439A26DAA6F500330B8D /* UpdateUserResult.swift */; };
-		3C9E439D26DAA74700330B8D /* UpdateUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9E439C26DAA74700330B8D /* UpdateUserData.swift */; };
+		3C9E439D26DAA74700330B8D /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9E439C26DAA74700330B8D /* UserData.swift */; };
 		3C9E43A026DAA84500330B8D /* UpdateUserRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9E439F26DAA84500330B8D /* UpdateUserRequestFactory.swift */; };
 		3C9E43A226DAA8BC00330B8D /* UpdateUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9E43A126DAA8BC00330B8D /* UpdateUser.swift */; };
 		3CB075DA2701B939005F2447 /* GBShopInfoAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB075D92701B939005F2447 /* GBShopInfoAlert.swift */; };
@@ -178,10 +177,9 @@
 		3C9E438D26DA9DC200330B8D /* RegistrationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationResult.swift; sourceTree = "<group>"; };
 		3C9E439026DA9E4900330B8D /* RegistrationRequestFactory .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RegistrationRequestFactory .swift"; sourceTree = "<group>"; };
 		3C9E439226DAA08900330B8D /* Registration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Registration.swift; sourceTree = "<group>"; };
-		3C9E439426DAA55200330B8D /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		3C9E439626DAA57900330B8D /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		3C9E439A26DAA6F500330B8D /* UpdateUserResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserResult.swift; sourceTree = "<group>"; };
-		3C9E439C26DAA74700330B8D /* UpdateUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserData.swift; sourceTree = "<group>"; };
+		3C9E439C26DAA74700330B8D /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		3C9E439F26DAA84500330B8D /* UpdateUserRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserRequestFactory.swift; sourceTree = "<group>"; };
 		3C9E43A126DAA8BC00330B8D /* UpdateUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUser.swift; sourceTree = "<group>"; };
 		3CB075D92701B939005F2447 /* GBShopInfoAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GBShopInfoAlert.swift; sourceTree = "<group>"; };
@@ -238,11 +236,8 @@
 		3C037C1926FDB24E0066D4BD /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				3CFC07A927007C9900904600 /* GBShopStandardTextField.swift */,
 				3C07DC8226FE125F00494876 /* UIButton + Extensions.swift */,
 				3C84C12D26FF12B900AC287C /* UISegmentControl + Extensions.swift */,
-				3CC6D5EA2701FAC900B60AA3 /* BlurredLabel.swift */,
-				3CFC076B270073C300904600 /* Colors.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -265,6 +260,14 @@
 				3C70C81626FB600C00440844 /* PayBasket */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		3C44B5822704D2EB002BEAD0 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				3C9E439C26DAA74700330B8D /* UserData.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		3C51E1B526E2A4C7007F60C9 /* CatagolProduct */ = {
@@ -415,11 +418,6 @@
 				3C9A591226D7BCEC00A29BE4 /* Environments */,
 				3C9A591126D7BCDB00A29BE4 /* Resources */,
 				3C037C1926FDB24E0066D4BD /* Extensions */,
-				3C9A591326D7BE4800A29BE4 /* LoginViewController.swift */,
-				3C84C12B26FF113600AC287C /* ProfileEditorViewController.swift */,
-				3C73821A26FF4EC600132AAA /* UserInformationViewController.swift */,
-				3C73822026FF64B500132AAA /* MainTabBarController.swift */,
-				3CB075D92701B939005F2447 /* GBShopInfoAlert.swift */,
 			);
 			path = GBShop;
 			sourceTree = "<group>";
@@ -458,6 +456,9 @@
 		3C9A590B26D7BC5F00A29BE4 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				3CC6120427059BDE001789A9 /* Controllers */,
+				3CC6120527059C14001789A9 /* Views */,
+				3CC6120627059C3D001789A9 /* Model */,
 				3C9A58DB26D7BC1300A29BE4 /* AppDelegate.swift */,
 				3C9A58DD26D7BC1300A29BE4 /* SceneDelegate.swift */,
 				3C9A590C26D7BC6A00A29BE4 /* BusinessLogic */,
@@ -493,6 +494,7 @@
 		3C9A590F26D7BC8B00A29BE4 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				3C44B5822704D2EB002BEAD0 /* User */,
 				3C63ED9E26F0930D003DDAE0 /* Auth */,
 				3C51E1B626E2A4DB007F60C9 /* Product */,
 				3C51E1B526E2A4C7007F60C9 /* CatagolProduct */,
@@ -580,7 +582,6 @@
 			isa = PBXGroup;
 			children = (
 				3C9E438D26DA9DC200330B8D /* RegistrationResult.swift */,
-				3C9E439426DAA55200330B8D /* UserData.swift */,
 			);
 			path = Registration;
 			sourceTree = "<group>";
@@ -606,7 +607,6 @@
 			isa = PBXGroup;
 			children = (
 				3C9E439A26DAA6F500330B8D /* UpdateUserResult.swift */,
-				3C9E439C26DAA74700330B8D /* UpdateUserData.swift */,
 			);
 			path = UpdateUser;
 			sourceTree = "<group>";
@@ -618,6 +618,35 @@
 				3C9E43A126DAA8BC00330B8D /* UpdateUser.swift */,
 			);
 			path = UpdateUser;
+			sourceTree = "<group>";
+		};
+		3CC6120427059BDE001789A9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3C9A591326D7BE4800A29BE4 /* LoginViewController.swift */,
+				3C84C12B26FF113600AC287C /* ProfileEditorViewController.swift */,
+				3C73821A26FF4EC600132AAA /* UserInformationViewController.swift */,
+				3C73822026FF64B500132AAA /* MainTabBarController.swift */,
+				3CB075D92701B939005F2447 /* GBShopInfoAlert.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		3CC6120527059C14001789A9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3CFC07A927007C9900904600 /* GBShopStandardTextField.swift */,
+				3CC6D5EA2701FAC900B60AA3 /* BlurredLabel.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3CC6120627059C3D001789A9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3CFC076B270073C300904600 /* Colors.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		C51D28ABB778EA4A6550CDA4 /* Pods */ = {
@@ -921,11 +950,10 @@
 				3C0B900226D9036C004D05B2 /* CustomDecodableSerializer.swift in Sources */,
 				3CFC076C270073C300904600 /* Colors.swift in Sources */,
 				3C0B900B26D90E07004D05B2 /* User.swift in Sources */,
-				3C9E439D26DAA74700330B8D /* UpdateUserData.swift in Sources */,
+				3C9E439D26DAA74700330B8D /* UserData.swift in Sources */,
 				3C9A591726D7EAFA00A29BE4 /* AbstractErrorParser.swift in Sources */,
 				3C63ED9726F08AA1003DDAE0 /* AddReview.swift in Sources */,
 				3C70C81526FB5F7C00440844 /* PayBasketResult.swift in Sources */,
-				3C9E439526DAA55200330B8D /* UserData.swift in Sources */,
 				3C68DB3426F4C7A000C94E08 /* DeleteProductFromBasketResult.swift in Sources */,
 				3C0B901026D90F05004D05B2 /* Auth.swift in Sources */,
 			);
