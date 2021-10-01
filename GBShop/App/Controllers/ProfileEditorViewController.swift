@@ -107,7 +107,7 @@ extension ProfileEditorViewController {
     private func setupScrollView() {
         view.addSubview(scrollView)
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
@@ -140,7 +140,7 @@ extension ProfileEditorViewController {
         scrollView.addSubview(submitButton)
         
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 50),
+            titleLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20),
             titleLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             
             closeButton.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20),
