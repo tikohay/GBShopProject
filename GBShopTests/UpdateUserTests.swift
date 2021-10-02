@@ -31,7 +31,7 @@ class UpdateUserTests: XCTestCase {
                                             username: "Somebody",
                                             password: "mypassword",
                                             email: "some@some.ru",
-                                            gender: Gender.man.rawValue,
+                                            gender: Gender.male.rawValue,
                                             creditCard: "9872389-2424-234224-234",
                                             bio: "This is good! I think I will switch to another language")
 

@@ -33,6 +33,7 @@ class PayBasketTests: XCTestCase {
             }
             self.expectation.fulfill()
         }
+        wait(for: [expectation], timeout: 10.0)
     }
 
     func testPerformanceExample() throws {
