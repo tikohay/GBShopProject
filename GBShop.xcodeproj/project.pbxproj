@@ -57,6 +57,7 @@
 		3C70C81C26FB636000440844 /* PayBasketTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C70C81B26FB636000440844 /* PayBasketTests.swift */; };
 		3C73821B26FF4EC600132AAA /* UserInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C73821A26FF4EC600132AAA /* UserInformationViewController.swift */; };
 		3C73822126FF64B500132AAA /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C73822026FF64B500132AAA /* MainTabBarController.swift */; };
+		3C7E98B92708428B005831ED /* .gitkeep  in Resources */ = {isa = PBXBuildFile; fileRef = 3C7E98B82708428B005831ED /* .gitkeep  */; };
 		3C84C12C26FF113600AC287C /* ProfileEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C84C12B26FF113600AC287C /* ProfileEditorViewController.swift */; };
 		3C84C12E26FF12B900AC287C /* UISegmentControl + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C84C12D26FF12B900AC287C /* UISegmentControl + Extensions.swift */; };
 		3C9A58DC26D7BC1300A29BE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9A58DB26D7BC1300A29BE4 /* AppDelegate.swift */; };
@@ -155,6 +156,7 @@
 		3C70C81B26FB636000440844 /* PayBasketTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayBasketTests.swift; sourceTree = "<group>"; };
 		3C73821A26FF4EC600132AAA /* UserInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationViewController.swift; sourceTree = "<group>"; };
 		3C73822026FF64B500132AAA /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		3C7E98B82708428B005831ED /* .gitkeep  */ = {isa = PBXFileReference; lastKnownFileType = text; path = ".gitkeep "; sourceTree = "<group>"; };
 		3C84C12B26FF113600AC287C /* ProfileEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditorViewController.swift; sourceTree = "<group>"; };
 		3C84C12D26FF12B900AC287C /* UISegmentControl + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISegmentControl + Extensions.swift"; sourceTree = "<group>"; };
 		3C9A58D826D7BC1300A29BE4 /* GBShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GBShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -456,9 +458,6 @@
 		3C9A590B26D7BC5F00A29BE4 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				3CC6120427059BDE001789A9 /* Controllers */,
-				3CC6120527059C14001789A9 /* Views */,
-				3CC6120627059C3D001789A9 /* Model */,
 				3C9A58DB26D7BC1300A29BE4 /* AppDelegate.swift */,
 				3C9A58DD26D7BC1300A29BE4 /* SceneDelegate.swift */,
 				3C9A590C26D7BC6A00A29BE4 /* BusinessLogic */,
@@ -480,6 +479,9 @@
 		3C9A590D26D7BC8700A29BE4 /* Flows */ = {
 			isa = PBXGroup;
 			children = (
+				3CC6120427059BDE001789A9 /* Controllers */,
+				3CC6120527059C14001789A9 /* Views */,
+				3CC6120627059C3D001789A9 /* Model */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -487,6 +489,7 @@
 		3C9A590E26D7BC8A00A29BE4 /* Assembly */ = {
 			isa = PBXGroup;
 			children = (
+				3C7E98B82708428B005831ED /* .gitkeep  */,
 			);
 			path = Assembly;
 			sourceTree = "<group>";
@@ -772,6 +775,7 @@
 			files = (
 				3C9A58E826D7BC1500A29BE4 /* LaunchScreen.storyboard in Resources */,
 				3C9A58E526D7BC1500A29BE4 /* Assets.xcassets in Resources */,
+				3C7E98B92708428B005831ED /* .gitkeep  in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
