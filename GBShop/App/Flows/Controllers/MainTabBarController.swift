@@ -16,12 +16,17 @@ class MainTabBarController: UITabBarController {
         tabBar.tintColor = .black
         let boldConfiguration = UIImage.SymbolConfiguration(weight: .medium)
         let infoImage = UIImage(systemName: "info.circle", withConfiguration: boldConfiguration)
+        let productImage = UIImage(systemName: "cart", withConfiguration: boldConfiguration)
         
         let userInformationViewController = UserInformationViewController()
+        let productListViewController = ProductListViewController()
         
         viewControllers = [generateNavigationController(rootViewController: userInformationViewController,
                                                         title: "info",
-                                                        image: infoImage!)]
+                                                        image: infoImage!),
+                           generateNavigationController(rootViewController: productListViewController,
+                                                        title: "products",
+                                                        image: productImage!)]
     }
     
     private func generateNavigationController(rootViewController: UIViewController,

@@ -136,12 +136,6 @@ extension LoginViewController {
             self.present(toVC, animated: true, completion: nil)
         }
     }
-    
-    private func pushProfileEditorViewController() {
-        let toVC = ProfileEditorViewController()
-        toVC.isRegistration = true
-        self.navigationController?.pushViewController(toVC, animated: true)
-    }
 }
 
 // MARK: - Setup observers and gestures recognizer
@@ -240,6 +234,12 @@ extension LoginViewController {
             self.activityView.isHidden = true
             self.activityView.stopAnimating()
         }
+    }
+    
+    private func pushProfileEditorViewController() {
+        let toVC = ProfileEditorViewController()
+        toVC.isRegistration = true
+        self.navigationController?.pushViewController(toVC, animated: true)
     }
     
     @objc private func registrationButtonTapped() {
