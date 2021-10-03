@@ -21,7 +21,7 @@ class CustomProductLitstCollectionViewCell: UICollectionViewCell, ConfigCell {
         let label = UILabel()
         label.font = UIFont(name: "Helvetica", size: 20)
         label.textColor = .white
-        label.text = "Samsung"
+        label.text = "Sport"
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

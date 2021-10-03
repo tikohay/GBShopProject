@@ -39,7 +39,8 @@ class ProductListViewController: UIViewController {
     
     private let productTableView: UITableView = {
         let tableView = UITableView()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(CustomProductListTableViewCell.self,
+                           forCellReuseIdentifier: CustomProductListTableViewCell.reuseId)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
@@ -95,6 +96,9 @@ extension ProductListViewController {
     private func setupProductTableView() {
         view.addSubview(productTableView)
         
+        productTableView.dataSource = self
+        productTableView.delegate = self
+        
         NSLayoutConstraint.activate([
             productTableView.topAnchor.constraint(equalTo: myBasketLabel.bottomAnchor),
             productTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -127,17 +131,22 @@ extension ProductListViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-//extension ProductListViewController: UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        <#code#>
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        <#code#>
-//    }
-//
-//
-//}
+extension ProductListViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        3
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CustomProductListTableViewCell.reuseId,
+                                                 for: indexPath) as! CustomProductListTableViewCell
+        cell.configeCell(with: "Name")
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
 
 extension ProductListViewController: UITableViewDelegate {
     
