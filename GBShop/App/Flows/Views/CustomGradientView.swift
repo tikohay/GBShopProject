@@ -23,8 +23,8 @@ class CustomGradientView: UIView {
         return self.layer as! CAGradientLayer
     }
     
-    var startColor: UIColor = #colorLiteral(red: 0, green: 0.8235294118, blue: 1, alpha: 1)
-    var endColor: UIColor = #colorLiteral(red: 0.2274509804, green: 0.4823529412, blue: 0.8352941176, alpha: 1)
+    var startColor: UIColor = #colorLiteral(red: 0, green: 0.01568627451, blue: 0.1568627451, alpha: 1)
+    var endColor: UIColor = #colorLiteral(red: 0, green: 0.3058823529, blue: 0.5725490196, alpha: 1)
     var startLocation: CGFloat = 0
     var secondLocation: CGFloat = 0.8
     var endLocation: CGFloat = 1
