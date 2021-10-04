@@ -47,7 +47,7 @@ class CustomProductListTableViewCell: UITableViewCell, ConfigCell {
         NSLayoutConstraint.activate([
             basketImageView.heightAnchor.constraint(equalToConstant: 50),
             basketImageView.widthAnchor.constraint(equalToConstant: 50),
-            basketImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
+            basketImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
             basketImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5)
         ])
     }
@@ -64,14 +64,14 @@ class CustomProductListTableViewCell: UITableViewCell, ConfigCell {
     }
     
     private func setupPriceLabel(with text: String) {
-        priceLabel.text = text
+        priceLabel.text = ("\(text) рублей")
         
         self.addSubview(priceLabel)
         
         NSLayoutConstraint.activate([
             priceLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10),
             priceLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
-            self.bottomAnchor.constraint(equalTo: priceLabel.bottomAnchor)
+            self.bottomAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 20)
         ])
     }
 
