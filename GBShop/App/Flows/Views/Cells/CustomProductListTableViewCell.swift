@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomProductListTableViewCell: UITableViewCell, ConfigCell {
+class CustomProductListTableViewCell: UITableViewCell, ConfigProductCell {
     static var reuseId: String = "CustomProductListTableViewCell"
     
     private let basketImageView: UIImageView = {
@@ -34,12 +34,11 @@ class CustomProductListTableViewCell: UITableViewCell, ConfigCell {
         return label
     }()
     
-    
-    func configeCell(with product: String) {
-        nameLabel.text = product
+    func configeCell(with product: Any) {
+        let product = product as! CatalogProductResult
         setupBasketImageView()
-        setupNameLabel(with: product)
-        setupPriceLabel()
+        setupNameLabel(with: product.name)
+        setupPriceLabel(with: String(product.price))
     }
     
     private func setupBasketImageView() {
@@ -64,7 +63,9 @@ class CustomProductListTableViewCell: UITableViewCell, ConfigCell {
         ])
     }
     
-    private func setupPriceLabel() {
+    private func setupPriceLabel(with text: String) {
+        priceLabel.text = text
+        
         self.addSubview(priceLabel)
         
         NSLayoutConstraint.activate([

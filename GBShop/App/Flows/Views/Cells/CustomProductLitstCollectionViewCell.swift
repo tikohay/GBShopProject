@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomProductLitstCollectionViewCell: UICollectionViewCell, ConfigCell {
+class CustomProductLitstCollectionViewCell: UICollectionViewCell, ConfigProductCell {
     static var reuseId: String = "CustomProductLitstCollectionViewCell"
     
     private let containerView: CustomGradientView = {
@@ -48,7 +48,7 @@ class CustomProductLitstCollectionViewCell: UICollectionViewCell, ConfigCell {
         }
     }
     
-    func configeCell(with product: String) {
+    func configeCell(with product: Any) {
         setupViews()
         addAnimationToCell()
     }

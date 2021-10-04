@@ -61,7 +61,7 @@
 		3C7E98B92708428B005831ED /* .gitkeep  in Resources */ = {isa = PBXBuildFile; fileRef = 3C7E98B82708428B005831ED /* .gitkeep  */; };
 		3C7E98BC27085CFD005831ED /* ProductListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7E98BB27085CFD005831ED /* ProductListViewController.swift */; };
 		3C7E98BE27086333005831ED /* CustomProductLitstCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7E98BD27086333005831ED /* CustomProductLitstCollectionViewCell.swift */; };
-		3C7E98C1270863A5005831ED /* ConfigCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7E98C0270863A5005831ED /* ConfigCell.swift */; };
+		3C7E98C1270863A5005831ED /* ConfigProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7E98C0270863A5005831ED /* ConfigProductCell.swift */; };
 		3C84C12C26FF113600AC287C /* ProfileEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C84C12B26FF113600AC287C /* ProfileEditorViewController.swift */; };
 		3C84C12E26FF12B900AC287C /* UISegmentControl + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C84C12D26FF12B900AC287C /* UISegmentControl + Extensions.swift */; };
 		3C9A58DC26D7BC1300A29BE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9A58DB26D7BC1300A29BE4 /* AppDelegate.swift */; };
@@ -165,7 +165,7 @@
 		3C7E98B82708428B005831ED /* .gitkeep  */ = {isa = PBXFileReference; lastKnownFileType = text; path = ".gitkeep "; sourceTree = "<group>"; };
 		3C7E98BB27085CFD005831ED /* ProductListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewController.swift; sourceTree = "<group>"; };
 		3C7E98BD27086333005831ED /* CustomProductLitstCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProductLitstCollectionViewCell.swift; sourceTree = "<group>"; };
-		3C7E98C0270863A5005831ED /* ConfigCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigCell.swift; sourceTree = "<group>"; };
+		3C7E98C0270863A5005831ED /* ConfigProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigProductCell.swift; sourceTree = "<group>"; };
 		3C84C12B26FF113600AC287C /* ProfileEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditorViewController.swift; sourceTree = "<group>"; };
 		3C84C12D26FF12B900AC287C /* UISegmentControl + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISegmentControl + Extensions.swift"; sourceTree = "<group>"; };
 		3C9A58D826D7BC1300A29BE4 /* GBShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GBShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -403,7 +403,7 @@
 		3C7E98BF27086388005831ED /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				3C7E98C0270863A5005831ED /* ConfigCell.swift */,
+				3C7E98C0270863A5005831ED /* ConfigProductCell.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -993,7 +993,7 @@
 				3C9A591726D7EAFA00A29BE4 /* AbstractErrorParser.swift in Sources */,
 				3C63ED9726F08AA1003DDAE0 /* AddReview.swift in Sources */,
 				3C70C81526FB5F7C00440844 /* PayBasketResult.swift in Sources */,
-				3C7E98C1270863A5005831ED /* ConfigCell.swift in Sources */,
+				3C7E98C1270863A5005831ED /* ConfigProductCell.swift in Sources */,
 				3C68DB3426F4C7A000C94E08 /* DeleteProductFromBasketResult.swift in Sources */,
 				3C0B901026D90F05004D05B2 /* Auth.swift in Sources */,
 			);

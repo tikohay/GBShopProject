@@ -8,6 +8,16 @@
 import UIKit
 
 class ProductListViewController: UIViewController {
+    let requestFactory = RequestFactory()
+    
+    private var products: [CatalogProductResult] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.productTableView.reloadData()
+            }
+        }
+    }
+    
     private let allProductsLabel: UILabel = {
         let label = UILabel()
         label.text = "All products"
@@ -49,6 +59,20 @@ class ProductListViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupViews()
+        getCatalog()
+    }
+    
+    private func getCatalog() {
+        let catalog = requestFactory.makeCatalogRequestFactory()
+        
+        catalog.getCatalog(pageNumber: 1, categoryId: 1) { response in
+            switch response.result {
+            case .success(let result):
+                self.products = result
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
 }
 
@@ -133,14 +157,17 @@ extension ProductListViewController: UICollectionViewDelegateFlowLayout {
 
 extension ProductListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        3
+        products.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CustomProductListTableViewCell.reuseId,
-                                                 for: indexPath) as! CustomProductListTableViewCell
-        cell.configeCell(with: "Name")
-        return cell
+                                                 for: indexPath)
+        guard let productCell = cell as? CustomProductListTableViewCell else { return cell }
+
+        let product = products[indexPath.row]
+        productCell.configeCell(with: product)
+        return productCell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

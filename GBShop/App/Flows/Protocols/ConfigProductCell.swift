@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol ConfigCell {
+protocol ConfigProductCell {
     static var reuseId: String { get }
-    func configeCell(with product: String)
+    func configeCell(with product: Any)
 }
