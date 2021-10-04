@@ -10,6 +10,7 @@ import UIKit
 class ProductListViewController: UIViewController {
     let requestFactory = RequestFactory()
     
+    private var productCategories = ProductCategory.productCategories
     private var products: [CatalogProductResult] = [] {
         didSet {
             DispatchQueue.main.async {
@@ -134,14 +135,17 @@ extension ProductListViewController {
 
 extension ProductListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        100
+        productCategories.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomProductLitstCollectionViewCell.reuseId,
-                                                      for: indexPath) as! CustomProductLitstCollectionViewCell
-        cell.configeCell(with: "")
-        return cell
+                                                      for: indexPath)
+        guard let productCategoryCell = cell as? CustomProductLitstCollectionViewCell else { return cell }
+        
+        let category = productCategories[indexPath.row]
+        productCategoryCell.configeCell(with: category)
+        return productCategoryCell
     }
 }
 

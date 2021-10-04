@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomProductLitstCollectionViewCell: UICollectionViewCell, ConfigProductCell {
+class CustomProductLitstCollectionViewCell: UICollectionViewCell, ConfigCell {
     static var reuseId: String = "CustomProductLitstCollectionViewCell"
     
     private let containerView: CustomGradientView = {
@@ -17,7 +17,7 @@ class CustomProductLitstCollectionViewCell: UICollectionViewCell, ConfigProductC
         return view
     }()
     
-    private let nameLabel: UILabel = {
+    private let categoryLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Helvetica", size: 20)
         label.textColor = .white
@@ -48,7 +48,9 @@ class CustomProductLitstCollectionViewCell: UICollectionViewCell, ConfigProductC
         }
     }
     
-    func configeCell(with product: Any) {
+    func configeCell(with object: Any) {
+        let category = object as! String
+        categoryLabel.text = category
         setupViews()
         addAnimationToCell()
     }
@@ -80,11 +82,11 @@ class CustomProductLitstCollectionViewCell: UICollectionViewCell, ConfigProductC
     }
     
     private func setupNameLabel() {
-        containerView.addSubview(nameLabel)
+        containerView.addSubview(categoryLabel)
         
         NSLayoutConstraint.activate([
-            nameLabel.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-            nameLabel.centerYAnchor.constraint(equalTo: containerView.centerYAnchor)
+            categoryLabel.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            categoryLabel.centerYAnchor.constraint(equalTo: containerView.centerYAnchor)
         ])
     }
     

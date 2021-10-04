@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomProductListTableViewCell: UITableViewCell, ConfigProductCell {
+class CustomProductListTableViewCell: UITableViewCell, ConfigCell {
     static var reuseId: String = "CustomProductListTableViewCell"
     
     private let basketImageView: UIImageView = {
@@ -34,8 +34,8 @@ class CustomProductListTableViewCell: UITableViewCell, ConfigProductCell {
         return label
     }()
     
-    func configeCell(with product: Any) {
-        let product = product as! CatalogProductResult
+    func configeCell(with object: Any) {
+        let product = object as! CatalogProductResult
         setupBasketImageView()
         setupNameLabel(with: product.name)
         setupPriceLabel(with: String(product.price))
