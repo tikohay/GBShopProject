@@ -8,6 +8,8 @@
 import Foundation
 
 protocol ConfigCell {
+    associatedtype T
+    
     static var reuseId: String { get }
-    func configeCell(with object: Any)
+    func configCell(with value: T)
 }

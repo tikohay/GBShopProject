@@ -41,8 +41,8 @@ class ProductListViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(CustomProductLitstCollectionViewCell.self,
-                                forCellWithReuseIdentifier: CustomProductLitstCollectionViewCell.reuseId)
+        collectionView.register(ProductListCollectionViewCell.self,
+                                forCellWithReuseIdentifier: ProductListCollectionViewCell.reuseId)
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
@@ -50,15 +50,14 @@ class ProductListViewController: UIViewController {
     
     private let productTableView: UITableView = {
         let tableView = UITableView()
-        tableView.register(CustomProductListTableViewCell.self,
-                           forCellReuseIdentifier: CustomProductListTableViewCell.reuseId)
+        tableView.register(ProductListTableViewCell.self,
+                           forCellReuseIdentifier: ProductListTableViewCell.reuseId)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
         setupViews()
         getCatalog()
     }
@@ -80,6 +79,7 @@ class ProductListViewController: UIViewController {
 //MARK: - Setup views
 extension ProductListViewController {
     private func setupViews() {
+        view.backgroundColor = .white
         setupAllProductsLabel()
         setupProductCollectionView()
         setupMyBasketLabel()
@@ -139,12 +139,12 @@ extension ProductListViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomProductLitstCollectionViewCell.reuseId,
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductListCollectionViewCell.reuseId,
                                                       for: indexPath)
-        guard let productCategoryCell = cell as? CustomProductLitstCollectionViewCell else { return cell }
+        guard let productCategoryCell = cell as? ProductListCollectionViewCell else { return cell }
         
         let category = productCategories[indexPath.row]
-        productCategoryCell.configeCell(with: category)
+        productCategoryCell.configCell(with: category)
         return productCategoryCell
     }
 }
@@ -165,12 +165,12 @@ extension ProductListViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CustomProductListTableViewCell.reuseId,
+        let cell = tableView.dequeueReusableCell(withIdentifier: ProductListTableViewCell.reuseId,
                                                  for: indexPath)
-        guard let productCell = cell as? CustomProductListTableViewCell else { return cell }
+        guard let productCell = cell as? ProductListTableViewCell else { return cell }
 
         let product = products[indexPath.row]
-        productCell.configeCell(with: product)
+        productCell.configCell(with: product)
         return productCell
     }
     

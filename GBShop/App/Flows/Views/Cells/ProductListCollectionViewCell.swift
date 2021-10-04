@@ -7,8 +7,12 @@
 
 import UIKit
 
-class CustomProductLitstCollectionViewCell: UICollectionViewCell, ConfigCell {
+class ProductListCollectionViewCell: UICollectionViewCell, ConfigCell {
+    typealias T = String
+    
     static var reuseId: String = "CustomProductLitstCollectionViewCell"
+    
+    private var category: String?
     
     private let containerView: CustomGradientView = {
         let view = CustomGradientView()
@@ -21,7 +25,6 @@ class CustomProductLitstCollectionViewCell: UICollectionViewCell, ConfigCell {
         let label = UILabel()
         label.font = UIFont(name: "Helvetica", size: 20)
         label.textColor = .white
-        label.text = "Sport"
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -33,24 +36,9 @@ class CustomProductLitstCollectionViewCell: UICollectionViewCell, ConfigCell {
         super.init(frame: frame)
     }
     
-    private func addAnimationToCell() {
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(cellTapped))
-        self.addGestureRecognizer(tapRecognizer)
-    }
-    
-    @objc func cellTapped() {
-        UIView.animate(withDuration: 0.1) {
-            self.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-        } completion: { (_) in
-            UIView.animate(withDuration: 0.1) {
-                self.transform = .identity
-            }
-        }
-    }
-    
-    func configeCell(with object: Any) {
-        let category = object as! String
-        categoryLabel.text = category
+    func configCell(with category: String) {
+        self.category = category
+        
         setupViews()
         addAnimationToCell()
     }
@@ -58,7 +46,7 @@ class CustomProductLitstCollectionViewCell: UICollectionViewCell, ConfigCell {
     private func setupViews() {
         setupCell()
         setupContainerView()
-        setupNameLabel()
+        setupCategoryLabel()
     }
     
     private func setupCell() {
@@ -81,13 +69,30 @@ class CustomProductLitstCollectionViewCell: UICollectionViewCell, ConfigCell {
         ])
     }
     
-    private func setupNameLabel() {
+    private func setupCategoryLabel() {
+        categoryLabel.text = category
+        
         containerView.addSubview(categoryLabel)
         
         NSLayoutConstraint.activate([
             categoryLabel.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
             categoryLabel.centerYAnchor.constraint(equalTo: containerView.centerYAnchor)
         ])
+    }
+    
+    private func addAnimationToCell() {
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(cellTapped))
+        self.addGestureRecognizer(tapRecognizer)
+    }
+    
+    @objc func cellTapped() {
+        UIView.animate(withDuration: 0.1) {
+            self.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        } completion: { (_) in
+            UIView.animate(withDuration: 0.1) {
+                self.transform = .identity
+            }
+        }
     }
     
     required init?(coder: NSCoder) {

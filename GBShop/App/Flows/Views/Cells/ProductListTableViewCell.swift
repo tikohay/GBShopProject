@@ -7,8 +7,12 @@
 
 import UIKit
 
-class CustomProductListTableViewCell: UITableViewCell, ConfigCell {
+class ProductListTableViewCell: UITableViewCell, ConfigCell {
+    typealias T = CatalogProductResult
+    
     static var reuseId: String = "CustomProductListTableViewCell"
+    
+    private var product: CatalogProductResult?
     
     private let basketImageView: UIImageView = {
         let imageView = UIImageView()
@@ -34,11 +38,16 @@ class CustomProductListTableViewCell: UITableViewCell, ConfigCell {
         return label
     }()
     
-    func configeCell(with object: Any) {
-        let product = object as! CatalogProductResult
+    func configCell(with product: CatalogProductResult) {
+        self.product = product
+        
+        setupView()
+    }
+    
+    private func setupView() {
         setupBasketImageView()
-        setupNameLabel(with: product.name)
-        setupPriceLabel(with: String(product.price))
+        setupNameLabel()
+        setupPriceLabel()
     }
     
     private func setupBasketImageView() {
@@ -52,8 +61,8 @@ class CustomProductListTableViewCell: UITableViewCell, ConfigCell {
         ])
     }
     
-    private func setupNameLabel(with text: String) {
-        nameLabel.text = text
+    private func setupNameLabel() {
+        nameLabel.text = product?.name
         self.addSubview(nameLabel)
         
         NSLayoutConstraint.activate([
@@ -63,8 +72,14 @@ class CustomProductListTableViewCell: UITableViewCell, ConfigCell {
         ])
     }
     
-    private func setupPriceLabel(with text: String) {
-        priceLabel.text = ("\(text) рублей")
+    private func setupPriceLabel() {
+        var price: String = "-"
+        
+        if let value = product?.price {
+            price = String(value)
+        }
+        
+        priceLabel.text = ("\(price) рублей")
         
         self.addSubview(priceLabel)
         
