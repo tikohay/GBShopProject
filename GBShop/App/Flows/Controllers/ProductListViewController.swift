@@ -147,6 +147,27 @@ extension ProductListViewController: UICollectionViewDataSource {
         productCategoryCell.configCell(with: category)
         return productCategoryCell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let testVC = TestViewController()
+        self.navigationController?.pushViewController(testVC, animated: true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        UIView.animate(withDuration: 0.1) {
+            if let cell = collectionView.cellForItem(at: indexPath) as? ProductListCollectionViewCell {
+                cell.containerView.transform = .init(scaleX: 0.9, y: 0.9)
+            }
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
+        UIView.animate(withDuration: 0.1) {
+            if let cell = collectionView.cellForItem(at: indexPath) as? ProductListCollectionViewCell {
+                cell.containerView.transform = .identity
+            }
+        }
+    }
 }
 
 extension ProductListViewController: UICollectionViewDelegateFlowLayout {

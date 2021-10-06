@@ -86,6 +86,7 @@
 		3C9E43A226DAA8BC00330B8D /* UpdateUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9E43A126DAA8BC00330B8D /* UpdateUser.swift */; };
 		3CB075DA2701B939005F2447 /* GBShopInfoAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB075D92701B939005F2447 /* GBShopInfoAlert.swift */; };
 		3CC6D5EB2701FAC900B60AA3 /* BlurredLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC6D5EA2701FAC900B60AA3 /* BlurredLabel.swift */; };
+		3CDAC169270C520100790C23 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDAC168270C520100790C23 /* TestViewController.swift */; };
 		3CEB3E542709DADC00D2FFF4 /* ProductListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEB3E532709DADC00D2FFF4 /* ProductListTableViewCell.swift */; };
 		3CFC076C270073C300904600 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFC076B270073C300904600 /* Colors.swift */; };
 		3CFC07AA27007C9900904600 /* GBShopStandardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFC07A927007C9900904600 /* GBShopStandardTextField.swift */; };
@@ -197,6 +198,7 @@
 		3C9E43A126DAA8BC00330B8D /* UpdateUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUser.swift; sourceTree = "<group>"; };
 		3CB075D92701B939005F2447 /* GBShopInfoAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GBShopInfoAlert.swift; sourceTree = "<group>"; };
 		3CC6D5EA2701FAC900B60AA3 /* BlurredLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurredLabel.swift; sourceTree = "<group>"; };
+		3CDAC168270C520100790C23 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		3CEB3E532709DADC00D2FFF4 /* ProductListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListTableViewCell.swift; sourceTree = "<group>"; };
 		3CFC076B270073C300904600 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		3CFC07A927007C9900904600 /* GBShopStandardTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GBShopStandardTextField.swift; sourceTree = "<group>"; };
@@ -439,7 +441,6 @@
 				3C9A591026D7BCCF00A29BE4 /* Core */,
 				3C9A591226D7BCEC00A29BE4 /* Environments */,
 				3C9A591126D7BCDB00A29BE4 /* Resources */,
-				3C037C1926FDB24E0066D4BD /* Extensions */,
 			);
 			path = GBShop;
 			sourceTree = "<group>";
@@ -503,6 +504,7 @@
 				3CC6120527059C14001789A9 /* Views */,
 				3CC6120627059C3D001789A9 /* Model */,
 				3C7E98BF27086388005831ED /* Protocols */,
+				3C037C1926FDB24E0066D4BD /* Extensions */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -651,6 +653,7 @@
 				3C84C12B26FF113600AC287C /* ProfileEditorViewController.swift */,
 				3C73821A26FF4EC600132AAA /* UserInformationViewController.swift */,
 				3C7E98BB27085CFD005831ED /* ProductListViewController.swift */,
+				3CDAC168270C520100790C23 /* TestViewController.swift */,
 				3C73822026FF64B500132AAA /* MainTabBarController.swift */,
 				3CB075D92701B939005F2447 /* GBShopInfoAlert.swift */,
 			);
@@ -955,6 +958,7 @@
 				3C63EDAD26F0AA70003DDAE0 /* AllReviews.swift in Sources */,
 				3C70C81826FB602900440844 /* PayBasketRequestFactory.swift in Sources */,
 				3C9E439326DAA08900330B8D /* Registration.swift in Sources */,
+				3CDAC169270C520100790C23 /* TestViewController.swift in Sources */,
 				3C73821B26FF4EC600132AAA /* UserInformationViewController.swift in Sources */,
 				3C51E1C326E2A878007F60C9 /* ProductRequestFactory.swift in Sources */,
 				3C9E43A226DAA8BC00330B8D /* UpdateUser.swift in Sources */,

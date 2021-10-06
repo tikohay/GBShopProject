@@ -14,7 +14,7 @@ class ProductListCollectionViewCell: UICollectionViewCell, ConfigCell {
     
     private var category: String?
     
-    private let containerView: CustomGradientView = {
+    let containerView: CustomGradientView = {
         let view = CustomGradientView()
         view.layer.cornerRadius = 10
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -40,7 +40,7 @@ class ProductListCollectionViewCell: UICollectionViewCell, ConfigCell {
         self.category = category
         
         setupViews()
-        addAnimationToCell()
+//        addAnimationToCell()
     }
     
     private func setupViews() {
