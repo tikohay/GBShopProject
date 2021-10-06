@@ -26,14 +26,14 @@ class LoginViewController: UIViewController {
         return label
     }()
     
-    private let loginButton = UIButton(title: "Log in",
-                                       backgroundColor: Colors.whiteColor,
-                                       titleColor: .black,
-                                       isShadow: true)
-    private let registrationButton = UIButton(title: "Sign up",
-                                              backgroundColor: Colors.mainBlueColor,
-                                              titleColor: Colors.whiteColor,
-                                              isShadow: false)
+    private let loginButton = ExtendedButton(title: "Log in",
+                                             backgroundColor: Colors.whiteColor,
+                                             titleColor: .black,
+                                             isShadow: true)
+    private let registrationButton = ExtendedButton(title: "Sign up",
+                                                    backgroundColor: Colors.mainBlueColor,
+                                                    titleColor: Colors.whiteColor,
+                                                    isShadow: false)
     
     private let loginStandardTextField = GBShopStandardTextField(labelText: "Login")
     private let passwordStandardTextField = GBShopStandardTextField(labelText: "Password",

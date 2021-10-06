@@ -12,7 +12,7 @@ class GBShopInfoAlert: UIViewController {
     let alertView = UIView()
     let titleLabel = UILabel()
     let textLabel = UILabel()
-    let okButton = UIButton(title: "Ok",
+    let okButton = ExtendedButton(title: "Ok",
                             backgroundColor: Colors.mainBlueColor,
                             titleColor: Colors.whiteColor)
     

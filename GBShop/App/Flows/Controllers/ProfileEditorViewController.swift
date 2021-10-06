@@ -60,12 +60,12 @@ class ProfileEditorViewController: UIViewController {
         return label
     }()
     
-    private let genderSegmentedControl = UISegmentedControl(first: "Male",
-                                                            second: "Female",
-                                                            third: "Another")
-    private let submitButton = UIButton(title: nil,
-                                        backgroundColor: Colors.mainBlueColor,
-                                        titleColor: .white)
+    private let genderSegmentedControl = ExtendedSegmentedControl(first: "Male",
+                                                                  second: "Female",
+                                                                  third: "Another")
+    private let submitButton = ExtendedButton(title: nil,
+                                              backgroundColor: Colors.mainBlueColor,
+                                              titleColor: .white)
     private let closeButton = UIButton()
     private let activityView = UIActivityIndicatorView()
     
