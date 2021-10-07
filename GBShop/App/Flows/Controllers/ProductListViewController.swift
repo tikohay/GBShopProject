@@ -65,7 +65,7 @@ class ProductListViewController: UIViewController {
     private func getCatalog() {
         let catalog = requestFactory.makeCatalogRequestFactory()
         
-        catalog.getCatalog(pageNumber: 1, categoryId: 1) { response in
+        catalog.getCatalog(pageNumber: 1, categoryId: 1, category: "") { response in
             switch response.result {
             case .success(let result):
                 self.products = result
