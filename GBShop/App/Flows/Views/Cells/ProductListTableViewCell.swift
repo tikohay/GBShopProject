@@ -10,7 +10,7 @@ import UIKit
 class ProductListTableViewCell: UITableViewCell, ConfigCell {
     typealias T = CatalogProductResult
     
-    static var reuseId: String = "CustomProductListTableViewCell"
+    static var reuseId: String = "ProductListTableViewCell"
     
     private var product: CatalogProductResult?
     
