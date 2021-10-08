@@ -22,6 +22,7 @@ class ProductListViewController: UIViewController {
     private let allProductsLabel: UILabel = {
         let label = UILabel()
         label.text = "All products"
+        label.textColor = Colors.mainBlueColor
         label.font = UIFont(name: "Geeza Pro Bold", size: 20)
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -31,6 +32,7 @@ class ProductListViewController: UIViewController {
     private let myBasketLabel: UILabel = {
         let label = UILabel()
         label.text = "My basket"
+        label.textColor = Colors.mainBlueColor
         label.font = UIFont(name: "Geeza Pro Bold", size: 30)
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
