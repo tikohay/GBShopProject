@@ -38,6 +38,7 @@ class ReviewTableViewCell: UITableViewCell, ConfigCell {
     }()
     
     func configCell(with review: AllReviewsResult) {
+        self.selectionStyle = .none
         let name = "\(review.user.name) \(review.user.lastname)"
         let text = review.text
         reviewForm(with: name, text: text)

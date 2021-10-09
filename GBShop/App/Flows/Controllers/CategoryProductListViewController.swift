@@ -111,6 +111,11 @@ extension CategoryProductListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let product = products[indexPath.row]
+        let toVC = ProductReviewsViewController()
+        toVC.product = product
+        toVC.categoryImageName = category.lowercased()
+        navigationController?.pushViewController(toVC, animated: true)
     }
 }
 

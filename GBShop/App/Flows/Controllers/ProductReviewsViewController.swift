@@ -8,10 +8,17 @@
 import UIKit
 
 class ProductReviewsViewController: UIViewController {
-    let allReviews = [AllReviewsResult(idReview: 1, idProduct: 1, text: "hdsladdfa fasfasdf fasfa afsdf jf", user: User(id: 1, login: "hj", name: "Иван", lastname: "Иван")),
-                      AllReviewsResult(idReview: 1, idProduct: 1, text: "hdsladdfda dddddssaffewfaffewafwefefgrgrggrgrggwqgwggqgggqggqwgfasfasdf fasfa afsdf jf", user: User(id: 1, login: "hj", name: "jfaldafk", lastname: "jlajfasfaf")),
-                      AllReviewsResult(idReview: 1, idProduct: 1, text: "hdsladdfa fasfasdf fasfa afsdf jf", user: User(id: 1, login: "hj", name: "jfaldafk", lastname: "jlajfasfaf")),
-                      AllReviewsResult(idReview: 1, idProduct: 1, text: "hdsladdfa fasfasdf fasfa afsdf jf", user: User(id: 1, login: "hj", name: "jfaldafk", lastname: "jlajfasfaf"))]
+    private let requestFactory = RequestFactory()
+    
+    var product: CatalogProductResult?
+    var categoryImageName: String?
+    private var allReviews: [AllReviewsResult] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.productReviewsTableView.reloadData()
+            }
+        }
+    }
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -48,6 +55,7 @@ class ProductReviewsViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.register(ReviewTableViewCell.self, forCellReuseIdentifier: ReviewTableViewCell.reuseId)
         tableView.isHidden = true
+        
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
@@ -59,8 +67,21 @@ class ProductReviewsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        getReviews()
         setupViews()
         addTargetsToButton()
+    }
+    
+    private func getReviews() {
+        let allReview = requestFactory.makeAllReviewsRequestFactory()
+        allReview.getAllReviews(productId: 1) { response in
+            switch response.result {
+            case .success(let result):
+                self.allReviews = result
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
 }
 
@@ -89,7 +110,7 @@ extension ProductReviewsViewController {
     }
     
     private func setupCategoryImage() {
-        categoryImage.image = UIImage(named: "clothes")
+        categoryImage.image = UIImage(named: categoryImageName ?? "sport")
         
         scrollView.addSubview(categoryImage)
         
@@ -102,8 +123,11 @@ extension ProductReviewsViewController {
     }
     
     private func setupLabels() {
-        nameLabel.text = "Гантели"
-        priceLabel.text = "1000 рублей"
+        if let name = product?.name, let price = product?.price {
+            let price = String(price)
+            nameLabel.text = name
+            priceLabel.text = "\(price) рублей"
+        }
         
         stackView = UIStackView(arrangedSubviews: [nameLabel, priceLabel])
         stackView.axis = .vertical
@@ -143,7 +167,7 @@ extension ProductReviewsViewController {
             productReviewsTableView.topAnchor.constraint(equalTo: hideTableViewButton.bottomAnchor, constant: 20),
             productReviewsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             productReviewsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            productReviewsTableView.heightAnchor.constraint(equalToConstant: view.frame.height / 2),
+            productReviewsTableView.heightAnchor.constraint(equalToConstant: view.frame.height / 2.5),
             productReviewsTableView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
         ])
     }
