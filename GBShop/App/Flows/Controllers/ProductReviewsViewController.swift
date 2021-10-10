@@ -61,6 +61,7 @@ class ProductReviewsViewController: UIViewController {
     }()
     
     private let hideTableViewButton = UIButton()
+    private let addReviewButton = UIButton()
     private var stackView = UIStackView()
     
     private var isTableViewShown: Bool = false
@@ -95,6 +96,7 @@ extension ProductReviewsViewController {
         setupCategoryImage()
         setupLabels()
         setupHideTableViewButton()
+        setupAddReviewButton()
         setupProductReviewsTableView()
     }
     
@@ -148,12 +150,34 @@ extension ProductReviewsViewController {
         hideTableViewButton.setTitle("show reviews", for: .normal)
         hideTableViewButton.titleLabel?.textAlignment = .center
         hideTableViewButton.titleLabel?.numberOfLines = 0
+        hideTableViewButton.layer.borderWidth = 1
+        hideTableViewButton.layer.borderColor = Colors.mainBlueColor.cgColor
+        hideTableViewButton.layer.cornerRadius = 5
         
         hideTableViewButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             hideTableViewButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 20),
             hideTableViewButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10)
+        ])
+    }
+    
+    private func setupAddReviewButton() {
+        addReviewButton.setTitleColor(Colors.mainBlueColor, for: .normal)
+        addReviewButton.setTitle("add review", for: .normal)
+        addReviewButton.titleLabel?.textAlignment = .center
+        addReviewButton.titleLabel?.numberOfLines = 0
+        addReviewButton.layer.borderWidth = 1
+        addReviewButton.layer.borderColor = Colors.mainBlueColor.cgColor
+        addReviewButton.layer.cornerRadius = 3
+        
+        scrollView.addSubview(addReviewButton)
+        
+        addReviewButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            addReviewButton.centerYAnchor.constraint(equalTo: hideTableViewButton.centerYAnchor),
+            addReviewButton.leadingAnchor.constraint(equalTo: hideTableViewButton.trailingAnchor, constant: 10)
         ])
     }
     
@@ -198,6 +222,7 @@ extension ProductReviewsViewController: UITableViewDelegate {
 extension ProductReviewsViewController {
     private func addTargetsToButton() {
         hideTableViewButton.addTarget(self, action: #selector(hideTableViewButtonTapped), for: .touchUpInside)
+        addReviewButton.addTarget(self, action: #selector(addReviewButtonTapped), for: .touchUpInside)
     }
     
     @objc private func hideTableViewButtonTapped(_ sender: UIButton) {
@@ -218,5 +243,12 @@ extension ProductReviewsViewController {
 
         }
         isTableViewShown.toggle()
+    }
+    
+    @objc func addReviewButtonTapped() {
+        let toVC = AddReviewViewController()
+        toVC.modalPresentationStyle = .overCurrentContext
+        toVC.modalTransitionStyle = .crossDissolve
+        present(toVC, animated: true)
     }
 }

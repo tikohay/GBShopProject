@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		07E4DDB79F49CF75CA6B0EBF /* Pods_GBShop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 542A8D9973D870E7C8234DD1 /* Pods_GBShop.framework */; };
+		3C0130F82712D83E00025E5C /* AddReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0130F72712D83E00025E5C /* AddReviewViewController.swift */; };
 		3C07DC8326FE125F00494876 /* UIButton + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C07DC8226FE125F00494876 /* UIButton + Extensions.swift */; };
 		3C0B900026D8F119004D05B2 /* ErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0B8FFF26D8F119004D05B2 /* ErrorParser.swift */; };
 		3C0B900226D9036C004D05B2 /* CustomDecodableSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0B900126D9036C004D05B2 /* CustomDecodableSerializer.swift */; };
@@ -116,6 +117,7 @@
 /* Begin PBXFileReference section */
 		1BEB5955F095FFBFF468AEB4 /* Pods_GBShop_GBShopUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GBShop_GBShopUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B8633B91D006F2CBE073480 /* Pods-GBShopTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GBShopTests.release.xcconfig"; path = "Target Support Files/Pods-GBShopTests/Pods-GBShopTests.release.xcconfig"; sourceTree = "<group>"; };
+		3C0130F72712D83E00025E5C /* AddReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewViewController.swift; sourceTree = "<group>"; };
 		3C07DC8226FE125F00494876 /* UIButton + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + Extensions.swift"; sourceTree = "<group>"; };
 		3C0B8FFF26D8F119004D05B2 /* ErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorParser.swift; sourceTree = "<group>"; };
 		3C0B900126D9036C004D05B2 /* CustomDecodableSerializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDecodableSerializer.swift; sourceTree = "<group>"; };
@@ -659,6 +661,7 @@
 				3C7E98BB27085CFD005831ED /* ProductListViewController.swift */,
 				3C489C38270EFBB500F32DFB /* CategoryProductListViewController.swift */,
 				3CADC311271023BC007027FC /* ProductReviewsViewController.swift */,
+				3C0130F72712D83E00025E5C /* AddReviewViewController.swift */,
 				3C73822026FF64B500132AAA /* MainTabBarController.swift */,
 				3CB075D92701B939005F2447 /* GBShopInfoAlert.swift */,
 			);
@@ -962,6 +965,7 @@
 				3C0B900626D9092B004D05B2 /* RequestRouter.swift in Sources */,
 				3C51E1BA26E2A5A1007F60C9 /* ProductResult.swift in Sources */,
 				3C63EDAD26F0AA70003DDAE0 /* AllReviews.swift in Sources */,
+				3C0130F82712D83E00025E5C /* AddReviewViewController.swift in Sources */,
 				3C70C81826FB602900440844 /* PayBasketRequestFactory.swift in Sources */,
 				3C9E439326DAA08900330B8D /* Registration.swift in Sources */,
 				3C73821B26FF4EC600132AAA /* UserInformationViewController.swift in Sources */,
