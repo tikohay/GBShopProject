@@ -8,6 +8,8 @@
 import UIKit
 
 class AddReviewViewController: UIViewController {
+    private let requestFactory = RequestFactory()
+    
     private var interactiveAnimator = UIViewPropertyAnimator()
     private var shouldDismissController: Bool = false
     private var isKeyboardShown = false
@@ -17,10 +19,13 @@ class AddReviewViewController: UIViewController {
     private let addButton = ExtendedButton(title: "add",
                                            backgroundColor: Colors.mainBlueColor,
                                            titleColor: Colors.whiteColor)
+    
+    var onCompletion: ((AllReviewsResult) -> ())?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        addTarget()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,7 +41,18 @@ class AddReviewViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         animateAppearanceContainerView()
-        
+    }
+    
+    private func postReview(with text: String) {
+        let addReview = requestFactory.makeAddReviewRequestFactory()
+        addReview.getAddReview(idUser: 123, text: text) { response in
+            switch response.result {
+            case .success(let result):
+                print(result)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
 }
 
@@ -194,5 +210,22 @@ extension AddReviewViewController {
 
 //MARK: - Setup targets
 extension AddReviewViewController {
+    private func addTarget() {
+        addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
+    }
     
+    @objc func addButtonTapped() {
+        let review = AllReviewsResult(idReview: 0, idProduct: 0, text: reviewTextView.text, user: User(id: 0, login: "Sergey", name: "Sergey", lastname: "Sergeev"))
+        onCompletion?(review)
+        postReview(with: reviewTextView.text)
+        if !isKeyboardShown {
+            UIView.animate(withDuration: 0.3) {
+                self.containerView.transform = .init(translationX: 0, y: self.containerView.frame.height)
+            } completion: { _ in
+                self.dismiss(animated: true, completion: nil)
+            }
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
+    }
 }

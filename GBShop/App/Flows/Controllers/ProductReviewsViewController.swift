@@ -218,7 +218,6 @@ extension ProductReviewsViewController: UITableViewDelegate {
 }
 
 // MARK: - Setup targets
-
 extension ProductReviewsViewController {
     private func addTargetsToButton() {
         hideTableViewButton.addTarget(self, action: #selector(hideTableViewButtonTapped), for: .touchUpInside)
@@ -247,6 +246,9 @@ extension ProductReviewsViewController {
     
     @objc func addReviewButtonTapped() {
         let toVC = AddReviewViewController()
+        toVC.onCompletion = { review in
+            self.allReviews.append(review)
+        }
         toVC.modalPresentationStyle = .overCurrentContext
         toVC.modalTransitionStyle = .crossDissolve
         present(toVC, animated: true)
