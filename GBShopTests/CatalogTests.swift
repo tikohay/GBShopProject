@@ -27,7 +27,7 @@ class CatalogTests: XCTestCase {
     }
 
     func testShouldGetCatalog() throws {
-        catalog.getCatalog(pageNumber: 1, categoryId: 1) { response in
+        catalog.getCatalog(pageNumber: 1, categoryId: 1, category: "Sport") { response in
             switch response.result {
             case .success(_): break
             case .failure:

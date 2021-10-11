@@ -81,6 +81,15 @@ extension LoginViewController {
     }
     
     private func setupAuthForm() {
+        loginStandardTextField.isAccessibilityElement = true
+        loginStandardTextField.accessibilityIdentifier = "loginTF"
+        
+        passwordStandardTextField.isAccessibilityElement = true
+        passwordStandardTextField.accessibilityIdentifier = "passwordTF"
+        
+        loginButton.isAccessibilityElement = true
+        loginButton.accessibilityIdentifier = "loginButton"
+        
         let loginFormStackView = UIStackView(arrangedSubviews: [loginStandardTextField,
                                                                 passwordStandardTextField])
         loginFormStackView.axis = .vertical

@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let rootVC = LoginViewController()
         let navigationVC = UINavigationController(rootViewController: rootVC)
         
-        window?.rootViewController = ProductReviewsViewController()
+        window?.rootViewController = navigationVC
         window?.makeKeyAndVisible()
     }
 
