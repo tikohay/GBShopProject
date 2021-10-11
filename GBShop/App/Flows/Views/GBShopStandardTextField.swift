@@ -25,6 +25,9 @@ class GBShopStandardTextField: UIView {
     }
     
     func setupView() {
+        textfield.isAccessibilityElement = true
+        textfield.accessibilityIdentifier = "textfield"
+        
         self.addSubview(label)
         self.addSubview(textfield)
         self.addSubview(bottomView)

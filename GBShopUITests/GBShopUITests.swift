@@ -40,7 +40,7 @@ class GBShopUITests: XCTestCase {
     private func enterAuthData(login: String, password: String) {
         let textFieldStackView = scrollViewQuery.children(matching: .other).element(boundBy: 0)
         let buttonStackView = scrollViewQuery.otherElements
-        
+//
 //        let loginTextField = textFieldStackView.children(matching: .other).element(boundBy: 0).children(matching: .textField).element
 //        loginTextField.tap()
 //        loginTextField.typeText(login)
@@ -49,11 +49,11 @@ class GBShopUITests: XCTestCase {
 //        passwordTextField.tap()
 //        passwordTextField.typeText(password)
 //
-//        let loginButton =s buttonStackView.buttons["Log in"]
+//        let loginButton = buttonStackView.buttons["Log in"]
 //        loginButton.tap()
+        
         let loginTF = textFieldStackView.otherElements["loginTF"]
         loginTF.tap()
-        
         
         let loginButton = buttonStackView.buttons["loginButton"]
         loginButton.tap()
