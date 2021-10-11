@@ -995,6 +995,7 @@
 				3CFC076C270073C300904600 /* Colors.swift in Sources */,
 				3C0B900B26D90E07004D05B2 /* User.swift in Sources */,
 				3C9E439D26DAA74700330B8D /* UserData.swift in Sources */,
+				3C1FC5DA270B27610075658F /* AbstractErrorParser.swift in Sources */,
 				3C63ED9726F08AA1003DDAE0 /* AddReview.swift in Sources */,
 				3C70C81526FB5F7C00440844 /* PayBasketResult.swift in Sources */,
 				3C7E98C1270863A5005831ED /* ConfigCell.swift in Sources */,
