@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UpdateUserData {
+struct UserData {
     let id : Int
     let username: String
     let password: String

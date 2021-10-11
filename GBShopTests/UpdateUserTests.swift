@@ -27,11 +27,11 @@ class UpdateUserTests: XCTestCase {
     }
 
     func testShouldUpdateUser() throws {
-        let updateUserData = UpdateUserData(id: 123,
+        let updateUserData = UserData(id: 123,
                                             username: "Somebody",
                                             password: "mypassword",
                                             email: "some@some.ru",
-                                            gender: Gender.man.rawValue,
+                                            gender: Gender.male.rawValue,
                                             creditCard: "9872389-2424-234224-234",
                                             bio: "This is good! I think I will switch to another language")
 
