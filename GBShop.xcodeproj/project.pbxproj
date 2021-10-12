@@ -22,6 +22,7 @@
 		3C1FC5DC270B2B240075658F /* AbstractErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1FC5DB270B2B240075658F /* AbstractErrorParser.swift */; };
 		3C37D17D270993F500D2FE8F /* CustomGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C37D17C270993F500D2FE8F /* CustomGradientView.swift */; };
 		3C4454F426DFC8B9006B891D /* ResponseCodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4454F326DFC8B9006B891D /* ResponseCodableTests.swift */; };
+		3C489C39270EFBB500F32DFB /* CategoryProductListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C489C38270EFBB500F32DFB /* CategoryProductListViewController.swift */; };
 		3C51E1B826E2A505007F60C9 /* CatalogProductResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C51E1B726E2A505007F60C9 /* CatalogProductResult.swift */; };
 		3C51E1BA26E2A5A1007F60C9 /* ProductResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C51E1B926E2A5A1007F60C9 /* ProductResult.swift */; };
 		3C51E1BC26E2A637007F60C9 /* Catalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C51E1BB26E2A637007F60C9 /* Catalog.swift */; };
@@ -84,6 +85,8 @@
 		3C9E439D26DAA74700330B8D /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9E439C26DAA74700330B8D /* UserData.swift */; };
 		3C9E43A026DAA84500330B8D /* UpdateUserRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9E439F26DAA84500330B8D /* UpdateUserRequestFactory.swift */; };
 		3C9E43A226DAA8BC00330B8D /* UpdateUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9E43A126DAA8BC00330B8D /* UpdateUser.swift */; };
+		3CADC312271023BC007027FC /* ProductReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADC311271023BC007027FC /* ProductReviewsViewController.swift */; };
+		3CADC314271050A4007027FC /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADC313271050A4007027FC /* ReviewTableViewCell.swift */; };
 		3CB075DA2701B939005F2447 /* GBShopInfoAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB075D92701B939005F2447 /* GBShopInfoAlert.swift */; };
 		3CC6D5EB2701FAC900B60AA3 /* BlurredLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC6D5EA2701FAC900B60AA3 /* BlurredLabel.swift */; };
 		3CEB3E542709DADC00D2FFF4 /* ProductListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEB3E532709DADC00D2FFF4 /* ProductListTableViewCell.swift */; };
@@ -127,6 +130,7 @@
 		3C1FC5DB270B2B240075658F /* AbstractErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractErrorParser.swift; sourceTree = "<group>"; };
 		3C37D17C270993F500D2FE8F /* CustomGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGradientView.swift; sourceTree = "<group>"; };
 		3C4454F326DFC8B9006B891D /* ResponseCodableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseCodableTests.swift; sourceTree = "<group>"; };
+		3C489C38270EFBB500F32DFB /* CategoryProductListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryProductListViewController.swift; sourceTree = "<group>"; };
 		3C51E1B726E2A505007F60C9 /* CatalogProductResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogProductResult.swift; sourceTree = "<group>"; };
 		3C51E1B926E2A5A1007F60C9 /* ProductResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductResult.swift; sourceTree = "<group>"; };
 		3C51E1BB26E2A637007F60C9 /* Catalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Catalog.swift; sourceTree = "<group>"; };
@@ -195,6 +199,8 @@
 		3C9E439C26DAA74700330B8D /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		3C9E439F26DAA84500330B8D /* UpdateUserRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserRequestFactory.swift; sourceTree = "<group>"; };
 		3C9E43A126DAA8BC00330B8D /* UpdateUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUser.swift; sourceTree = "<group>"; };
+		3CADC311271023BC007027FC /* ProductReviewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductReviewsViewController.swift; sourceTree = "<group>"; };
+		3CADC313271050A4007027FC /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
 		3CB075D92701B939005F2447 /* GBShopInfoAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GBShopInfoAlert.swift; sourceTree = "<group>"; };
 		3CC6D5EA2701FAC900B60AA3 /* BlurredLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurredLabel.swift; sourceTree = "<group>"; };
 		3CEB3E532709DADC00D2FFF4 /* ProductListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListTableViewCell.swift; sourceTree = "<group>"; };
@@ -651,6 +657,8 @@
 				3C84C12B26FF113600AC287C /* ProfileEditorViewController.swift */,
 				3C73821A26FF4EC600132AAA /* UserInformationViewController.swift */,
 				3C7E98BB27085CFD005831ED /* ProductListViewController.swift */,
+				3C489C38270EFBB500F32DFB /* CategoryProductListViewController.swift */,
+				3CADC311271023BC007027FC /* ProductReviewsViewController.swift */,
 				3C73822026FF64B500132AAA /* MainTabBarController.swift */,
 				3CB075D92701B939005F2447 /* GBShopInfoAlert.swift */,
 			);
@@ -682,6 +690,7 @@
 			children = (
 				3C7E98BD27086333005831ED /* ProductListCollectionViewCell.swift */,
 				3CEB3E532709DADC00D2FFF4 /* ProductListTableViewCell.swift */,
+				3CADC313271050A4007027FC /* ReviewTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -987,6 +996,7 @@
 				3C63ED9D26F092AD003DDAE0 /* RemoveReviewResult.swift in Sources */,
 				3C7E98BC27085CFD005831ED /* ProductListViewController.swift in Sources */,
 				3C9E438E26DA9DC200330B8D /* RegistrationResult.swift in Sources */,
+				3CADC312271023BC007027FC /* ProductReviewsViewController.swift in Sources */,
 				3C84C12E26FF12B900AC287C /* UISegmentControl + Extensions.swift in Sources */,
 				3C51E1B826E2A505007F60C9 /* CatalogProductResult.swift in Sources */,
 				3CEB3E542709DADC00D2FFF4 /* ProductListTableViewCell.swift in Sources */,
@@ -998,6 +1008,8 @@
 				3C1FC5DA270B27610075658F /* AbstractErrorParser.swift in Sources */,
 				3C63ED9726F08AA1003DDAE0 /* AddReview.swift in Sources */,
 				3C70C81526FB5F7C00440844 /* PayBasketResult.swift in Sources */,
+				3CADC314271050A4007027FC /* ReviewTableViewCell.swift in Sources */,
+				3C489C39270EFBB500F32DFB /* CategoryProductListViewController.swift in Sources */,
 				3C7E98C1270863A5005831ED /* ConfigCell.swift in Sources */,
 				3C68DB3426F4C7A000C94E08 /* DeleteProductFromBasketResult.swift in Sources */,
 				3C0B901026D90F05004D05B2 /* Auth.swift in Sources */,

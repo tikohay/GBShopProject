@@ -22,6 +22,7 @@ class ProductListViewController: UIViewController {
     private let allProductsLabel: UILabel = {
         let label = UILabel()
         label.text = "All products"
+        label.textColor = Colors.mainBlueColor
         label.font = UIFont(name: "Geeza Pro Bold", size: 20)
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -31,6 +32,7 @@ class ProductListViewController: UIViewController {
     private let myBasketLabel: UILabel = {
         let label = UILabel()
         label.text = "My basket"
+        label.textColor = Colors.mainBlueColor
         label.font = UIFont(name: "Geeza Pro Bold", size: 30)
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -65,7 +67,7 @@ class ProductListViewController: UIViewController {
     private func getCatalog() {
         let catalog = requestFactory.makeCatalogRequestFactory()
         
-        catalog.getCatalog(pageNumber: 1, categoryId: 1) { response in
+        catalog.getCatalog(pageNumber: 1, categoryId: 1, category: "") { response in
             switch response.result {
             case .success(let result):
                 self.products = result
@@ -149,6 +151,10 @@ extension ProductListViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let toVC = CategoryProductListViewController()
+        let category = productCategories[indexPath.row]
+        toVC.category = category
+        navigationController?.pushViewController(toVC, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
