@@ -7,8 +7,10 @@
 
 import UIKit
 
-extension UIButton {
-    convenience init(title: String?,
+protocol ButtonExtensionProtocol { }
+
+extension ButtonExtensionProtocol where Self: UIButton {
+    init(title: String?,
                      backgroundColor: UIColor,
                      titleColor: UIColor,
                      font: UIFont? = UIFont(name: "Avenir", size: 20),
@@ -29,4 +31,8 @@ extension UIButton {
             self.layer.shadowOpacity = 0.2
         }
     }
+}
+
+class ExtendedButton: UIButton, ButtonExtensionProtocol {
+    
 }

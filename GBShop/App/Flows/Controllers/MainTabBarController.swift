@@ -12,16 +12,22 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tabBar.barTintColor = Colors.whiteColor
-        tabBar.tintColor = .black
+        tabBar.barTintColor = Colors.mainBlueColor
+        tabBar.backgroundColor = Colors.mainBlueColor
+        tabBar.tintColor = .white
         let boldConfiguration = UIImage.SymbolConfiguration(weight: .medium)
         let infoImage = UIImage(systemName: "info.circle", withConfiguration: boldConfiguration)
+        let productImage = UIImage(systemName: "cart", withConfiguration: boldConfiguration)
         
         let userInformationViewController = UserInformationViewController()
+        let productListViewController = ProductListViewController()
         
         viewControllers = [generateNavigationController(rootViewController: userInformationViewController,
                                                         title: "info",
-                                                        image: infoImage!)]
+                                                        image: infoImage!),
+                           generateNavigationController(rootViewController: productListViewController,
+                                                        title: "products",
+                                                        image: productImage!)]
     }
     
     private func generateNavigationController(rootViewController: UIViewController,

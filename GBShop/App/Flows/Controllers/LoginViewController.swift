@@ -26,14 +26,14 @@ class LoginViewController: UIViewController {
         return label
     }()
     
-    private let loginButton = UIButton(title: "Log in",
-                                       backgroundColor: Colors.whiteColor,
-                                       titleColor: .black,
-                                       isShadow: true)
-    private let registrationButton = UIButton(title: "Sign up",
-                                              backgroundColor: Colors.mainBlueColor,
-                                              titleColor: Colors.whiteColor,
-                                              isShadow: false)
+    private let loginButton = ExtendedButton(title: "Log in",
+                                             backgroundColor: Colors.whiteColor,
+                                             titleColor: .black,
+                                             isShadow: true)
+    private let registrationButton = ExtendedButton(title: "Sign up",
+                                                    backgroundColor: Colors.mainBlueColor,
+                                                    titleColor: Colors.whiteColor,
+                                                    isShadow: false)
     
     private let loginStandardTextField = GBShopStandardTextField(labelText: "Login")
     private let passwordStandardTextField = GBShopStandardTextField(labelText: "Password",
@@ -136,12 +136,6 @@ extension LoginViewController {
             self.present(toVC, animated: true, completion: nil)
         }
     }
-    
-    private func pushProfileEditorViewController() {
-        let toVC = ProfileEditorViewController()
-        toVC.isRegistration = true
-        self.navigationController?.pushViewController(toVC, animated: true)
-    }
 }
 
 // MARK: - Setup observers and gestures recognizer
@@ -240,6 +234,12 @@ extension LoginViewController {
             self.activityView.isHidden = true
             self.activityView.stopAnimating()
         }
+    }
+    
+    private func pushProfileEditorViewController() {
+        let toVC = ProfileEditorViewController()
+        toVC.isRegistration = true
+        self.navigationController?.pushViewController(toVC, animated: true)
     }
     
     @objc private func registrationButtonTapped() {
