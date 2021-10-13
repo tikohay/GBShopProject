@@ -29,15 +29,18 @@ class LoginViewController: UIViewController {
     private let loginButton = ExtendedButton(title: "Log in",
                                              backgroundColor: Colors.whiteColor,
                                              titleColor: .black,
-                                             isShadow: true)
+                                             isShadow: true,
+                                             accessibilityIdentifier: "loginButton")
     private let registrationButton = ExtendedButton(title: "Sign up",
                                                     backgroundColor: Colors.mainBlueColor,
                                                     titleColor: Colors.whiteColor,
                                                     isShadow: false)
     
-    private let loginStandardTextField = GBShopStandardTextField(labelText: "Login")
+    private let loginStandardTextField = GBShopStandardTextField(labelText: "Login",
+                                                                 accessibilityIdentifier: "loginTF")
     private let passwordStandardTextField = GBShopStandardTextField(labelText: "Password",
-                                                                    isSecured: true)
+                                                                    isSecured: true,
+                                                                    accessibilityIdentifier: "passwordTF")
     private let activityView = UIActivityIndicatorView()
     
     private var isKeyboardShown = false
@@ -47,6 +50,7 @@ class LoginViewController: UIViewController {
         addTapGestureRecognizer()
         setupViews()
         addTargetToButtons()
+        print(passwordStandardTextField.textfield.accessibilityIdentifier)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -81,15 +85,6 @@ extension LoginViewController {
     }
     
     private func setupAuthForm() {
-        loginStandardTextField.isAccessibilityElement = true
-        loginStandardTextField.accessibilityIdentifier = "loginTF"
-        
-        passwordStandardTextField.isAccessibilityElement = true
-        passwordStandardTextField.accessibilityIdentifier = "passwordTF"
-        
-        loginButton.isAccessibilityElement = true
-        loginButton.accessibilityIdentifier = "loginButton"
-        
         let loginFormStackView = UIStackView(arrangedSubviews: [loginStandardTextField,
                                                                 passwordStandardTextField])
         loginFormStackView.axis = .vertical
@@ -150,7 +145,8 @@ extension LoginViewController {
 // MARK: - Setup observers and gestures recognizer
 extension LoginViewController {
     private func addTapGestureRecognizer() {
-        let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        let hideKeyboardGesture = UITapGestureRecognizer(target: self,
+                                                         action: #selector(hideKeyboard))
         scrollView.addGestureRecognizer(hideKeyboardGesture)
     }
     
@@ -204,8 +200,12 @@ extension LoginViewController {
 // MARK: - Setup targets
 extension LoginViewController {
     private func addTargetToButtons() {
-        loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
-        registrationButton.addTarget(self, action: #selector(registrationButtonTapped), for: .touchUpInside)
+        loginButton.addTarget(self,
+                              action: #selector(loginButtonTapped),
+                              for: .touchUpInside)
+        registrationButton.addTarget(self,
+                                     action: #selector(registrationButtonTapped),
+                                     for: .touchUpInside)
     }
     
     @objc private func loginButtonTapped() {

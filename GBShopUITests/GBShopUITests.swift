@@ -6,6 +6,8 @@
 //
 
 import XCTest
+import GBShop
+@testable import GBShop
 
 class GBShopUITests: XCTestCase {
     
@@ -13,6 +15,15 @@ class GBShopUITests: XCTestCase {
     var scrollViewQuery: XCUIElementQuery!
     
     func testExample() {
+        
+        let app = XCUIApplication()
+        let elementsQuery = app.scrollViews.otherElements
+        let textfieldTextField = elementsQuery.textFields["textfield"]
+        textfieldTextField.tap()
+        elementsQuery.secureTextFields["textfield"].tap()
+        textfieldTextField.tap()
+        elementsQuery.buttons["Log in"].tap()
+        app.buttons["Ok"].tap()
         
     }
     
@@ -34,12 +45,13 @@ class GBShopUITests: XCTestCase {
     }
 
     override func tearDownWithError() throws {
-        
+        app = nil
+        scrollViewQuery = nil
     }
 
     private func enterAuthData(login: String, password: String) {
         let textFieldStackView = scrollViewQuery.children(matching: .other).element(boundBy: 0)
-        let buttonStackView = scrollViewQuery.otherElements
+//        let buttonStackView = scrollViewQuery.otherElements
 //
 //        let loginTextField = textFieldStackView.children(matching: .other).element(boundBy: 0).children(matching: .textField).element
 //        loginTextField.tap()
@@ -51,11 +63,17 @@ class GBShopUITests: XCTestCase {
 //
 //        let loginButton = buttonStackView.buttons["Log in"]
 //        loginButton.tap()
+//        let id = GBShopStandardTextField.tfAccessibilityIdentifier
         
-        let loginTF = textFieldStackView.otherElements["loginTF"]
+        let loginTF = scrollViewQuery.textFields["loginTF"].firstMatch
         loginTF.tap()
+        loginTF.typeText("hello")
         
-        let loginButton = buttonStackView.buttons["loginButton"]
+        let passwordTF = scrollViewQuery.secureTextFields["passwordTF"].firstMatch
+        passwordTF.tap()
+        passwordTF.typeText("world")
+        
+        let loginButton = scrollViewQuery.buttons["loginButton"].firstMatch
         loginButton.tap()
     }
 

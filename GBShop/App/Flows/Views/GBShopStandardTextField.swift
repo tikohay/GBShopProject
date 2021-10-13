@@ -17,16 +17,17 @@ class GBShopStandardTextField: UIView {
         setupView()
     }
     
-    convenience init(labelText: String, isSecured: Bool = false) {
+    convenience init(labelText: String,
+                     isSecured: Bool = false,
+                     accessibilityIdentifier: String? = nil) {
         self.init()
         label.text = labelText
+        textfield.accessibilityIdentifier = accessibilityIdentifier
         textfield.isSecureTextEntry = isSecured
         setupView()
     }
     
     func setupView() {
-        textfield.isAccessibilityElement = true
-        textfield.accessibilityIdentifier = "textfield"
         
         self.addSubview(label)
         self.addSubview(textfield)

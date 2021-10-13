@@ -140,7 +140,8 @@ extension ProductListViewController: UICollectionViewDataSource {
         productCategories.count
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductListCollectionViewCell.reuseId,
                                                       for: indexPath)
         guard let productCategoryCell = cell as? ProductListCollectionViewCell else { return cell }
@@ -150,14 +151,16 @@ extension ProductListViewController: UICollectionViewDataSource {
         return productCategoryCell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView,
+                        didSelectItemAt indexPath: IndexPath) {
         let toVC = CategoryProductListViewController()
         let category = productCategories[indexPath.row]
         toVC.category = category
         navigationController?.pushViewController(toVC, animated: true)
     }
     
-    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView,
+                        didHighlightItemAt indexPath: IndexPath) {
         UIView.animate(withDuration: 0.1) {
             if let cell = collectionView.cellForItem(at: indexPath) as? ProductListCollectionViewCell {
                 cell.containerView.transform = .init(scaleX: 0.9, y: 0.9)
@@ -175,21 +178,27 @@ extension ProductListViewController: UICollectionViewDataSource {
 }
 
 extension ProductListViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width / 3, height: collectionView.frame.height - 15)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
     }
 }
 
 extension ProductListViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView,
+                   numberOfRowsInSection section: Int) -> Int {
         products.count
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ProductListTableViewCell.reuseId,
                                                  for: indexPath)
         guard let productCell = cell as? ProductListTableViewCell else { return cell }

@@ -97,11 +97,13 @@ extension CategoryProductListViewController {
 }
 
 extension CategoryProductListViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView,
+                   numberOfRowsInSection section: Int) -> Int {
         products.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ProductListTableViewCell.reuseId, for: indexPath)
         guard let productCell = cell as? ProductListTableViewCell else { return cell }
         let product = products[indexPath.row]

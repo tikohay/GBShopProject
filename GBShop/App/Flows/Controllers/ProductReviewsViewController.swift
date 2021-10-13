@@ -198,11 +198,13 @@ extension ProductReviewsViewController {
 }
 
 extension ProductReviewsViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView,
+                   numberOfRowsInSection section: Int) -> Int {
         allReviews.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ReviewTableViewCell.reuseId, for: indexPath)
         
         guard let reviewCell = cell as? ReviewTableViewCell else { return cell }
@@ -220,8 +222,12 @@ extension ProductReviewsViewController: UITableViewDelegate {
 // MARK: - Setup targets
 extension ProductReviewsViewController {
     private func addTargetsToButton() {
-        hideTableViewButton.addTarget(self, action: #selector(hideTableViewButtonTapped), for: .touchUpInside)
-        addReviewButton.addTarget(self, action: #selector(addReviewButtonTapped), for: .touchUpInside)
+        hideTableViewButton.addTarget(self,
+                                      action: #selector(hideTableViewButtonTapped),
+                                      for: .touchUpInside)
+        addReviewButton.addTarget(self,
+                                  action: #selector(addReviewButtonTapped),
+                                  for: .touchUpInside)
     }
     
     @objc private func hideTableViewButtonTapped(_ sender: UIButton) {

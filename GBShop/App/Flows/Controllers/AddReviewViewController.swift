@@ -157,8 +157,11 @@ extension AddReviewViewController {
         switch recognizer.state {
         case .began:
             interactiveAnimator.startAnimation()
-            interactiveAnimator = UIViewPropertyAnimator(duration: 0.5, dampingRatio: .greatestFiniteMagnitude, animations: {
-                self.containerView.transform = CGAffineTransform(translationX: 0, y: self.containerView.frame.height)
+            interactiveAnimator = UIViewPropertyAnimator(duration: 0.5,
+                                                         dampingRatio: .greatestFiniteMagnitude,
+                                                         animations: {
+                self.containerView.transform = CGAffineTransform(translationX: 0,
+                                                                 y: self.containerView.frame.height)
             })
             interactiveAnimator.pauseAnimation()
         case .changed:
@@ -215,7 +218,13 @@ extension AddReviewViewController {
     }
     
     @objc func addButtonTapped() {
-        let review = AllReviewsResult(idReview: 0, idProduct: 0, text: reviewTextView.text, user: User(id: 0, login: "Sergey", name: "Sergey", lastname: "Sergeev"))
+        let review = AllReviewsResult(idReview: 0,
+                                      idProduct: 0,
+                                      text: reviewTextView.text,
+                                      user: User(id: 0,
+                                                 login: "Sergey",
+                                                 name: "Sergey",
+                                                 lastname: "Sergeev"))
         onCompletion?(review)
         postReview(with: reviewTextView.text)
         if !isKeyboardShown {
