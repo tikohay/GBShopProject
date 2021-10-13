@@ -34,7 +34,8 @@ class LoginViewController: UIViewController {
     private let registrationButton = ExtendedButton(title: "Sign up",
                                                     backgroundColor: Colors.mainBlueColor,
                                                     titleColor: Colors.whiteColor,
-                                                    isShadow: false)
+                                                    isShadow: false,
+                                                    accessibilityIdentifier: "registrationButton")
     
     private let loginStandardTextField = GBShopStandardTextField(labelText: "Login",
                                                                  accessibilityIdentifier: "loginTF")
@@ -50,7 +51,6 @@ class LoginViewController: UIViewController {
         addTapGestureRecognizer()
         setupViews()
         addTargetToButtons()
-        print(passwordStandardTextField.textfield.accessibilityIdentifier)
     }
     
     override func viewWillAppear(_ animated: Bool) {

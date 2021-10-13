@@ -7,24 +7,12 @@
 
 import XCTest
 import GBShop
-@testable import GBShop
 
 class GBShopUITests: XCTestCase {
-    
     var app: XCUIApplication!
     var scrollViewQuery: XCUIElementQuery!
     
     func testExample() {
-        
-        let app = XCUIApplication()
-        let elementsQuery = app.scrollViews.otherElements
-        let textfieldTextField = elementsQuery.textFields["textfield"]
-        textfieldTextField.tap()
-        elementsQuery.secureTextFields["textfield"].tap()
-        textfieldTextField.tap()
-        elementsQuery.buttons["Log in"].tap()
-        app.buttons["Ok"].tap()
-        
     }
     
     override func setUpWithError() throws {
@@ -37,11 +25,12 @@ class GBShopUITests: XCTestCase {
     
     func testSuccess() {
         enterAuthData(login: "admin", password: "1234567")
+        XCTAssertFalse(app.otherElements.staticTexts["Login or password is wrong"].waitForExistence(timeout: 1.0))
     }
     
     func testFail() {
         enterAuthData(login: "", password: "")
-        app.buttons["Ok"].tap()
+        XCTAssertTrue(app.otherElements.staticTexts["Login or password is wrong"].waitForExistence(timeout: 1.0))
     }
 
     override func tearDownWithError() throws {
@@ -50,28 +39,13 @@ class GBShopUITests: XCTestCase {
     }
 
     private func enterAuthData(login: String, password: String) {
-        let textFieldStackView = scrollViewQuery.children(matching: .other).element(boundBy: 0)
-//        let buttonStackView = scrollViewQuery.otherElements
-//
-//        let loginTextField = textFieldStackView.children(matching: .other).element(boundBy: 0).children(matching: .textField).element
-//        loginTextField.tap()
-//        loginTextField.typeText(login)
-//
-//        let passwordTextField = textFieldStackView.children(matching: .other).element(boundBy: 1).children(matching: .secureTextField).element
-//        passwordTextField.tap()
-//        passwordTextField.typeText(password)
-//
-//        let loginButton = buttonStackView.buttons["Log in"]
-//        loginButton.tap()
-//        let id = GBShopStandardTextField.tfAccessibilityIdentifier
-        
         let loginTF = scrollViewQuery.textFields["loginTF"].firstMatch
         loginTF.tap()
-        loginTF.typeText("hello")
+        loginTF.typeText(login)
         
         let passwordTF = scrollViewQuery.secureTextFields["passwordTF"].firstMatch
         passwordTF.tap()
-        passwordTF.typeText("world")
+        passwordTF.typeText(password)
         
         let loginButton = scrollViewQuery.buttons["loginButton"].firstMatch
         loginButton.tap()

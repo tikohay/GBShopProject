@@ -65,15 +65,22 @@ class ProfileEditorViewController: UIViewController {
                                                                   third: "Another")
     private let submitButton = ExtendedButton(title: nil,
                                               backgroundColor: Colors.mainBlueColor,
-                                              titleColor: .white)
+                                              titleColor: .white,
+                                              accessibilityIdentifier: "submitButton")
     private let closeButton = UIButton()
     private let activityView = UIActivityIndicatorView()
     
-    private let usernameTextField = GBShopStandardTextField(labelText: "Name")
-    private let emailTextField = GBShopStandardTextField(labelText: "Email")
-    private let passwordTextField = GBShopStandardTextField(labelText: "Passowrd", isSecured: true)
-    private let creditCardTextField = GBShopStandardTextField(labelText: "Credit card")
-    private let bioTextField = GBShopStandardTextField(labelText: "Bio")
+    private let usernameTextField = GBShopStandardTextField(labelText: "Name",
+                                                            accessibilityIdentifier: "usernameTextField")
+    private let emailTextField = GBShopStandardTextField(labelText: "Email",
+                                                         accessibilityIdentifier: "emailTextField")
+    private let passwordTextField = GBShopStandardTextField(labelText: "Passowrd",
+                                                            isSecured: true,
+                                                            accessibilityIdentifier: "passwordTextField")
+    private let creditCardTextField = GBShopStandardTextField(labelText: "Credit card",
+                                                              accessibilityIdentifier: "creditCardTextField")
+    private let bioTextField = GBShopStandardTextField(labelText: "Bio",
+                                                       accessibilityIdentifier: "bioTextField")
     
     private var isKeyboardShown = false
     
