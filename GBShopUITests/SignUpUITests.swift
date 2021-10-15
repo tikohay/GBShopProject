@@ -76,7 +76,6 @@ class SignUpUITests: XCTestCase {
     }
 
     func testExample() throws {
-        
     }
 }
 

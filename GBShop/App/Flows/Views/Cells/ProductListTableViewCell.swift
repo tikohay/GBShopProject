@@ -38,6 +38,15 @@ class ProductListTableViewCell: UITableViewCell, ConfigCell {
         return label
     }()
     
+    private var itemCountLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Arial", size: 20)
+        label.text = "1"
+        return label
+    }()
+    
+    private let stepper = UIStepper()
+    
     func configCell(with product: CatalogProductResult) {
         self.product = product
         
@@ -48,27 +57,28 @@ class ProductListTableViewCell: UITableViewCell, ConfigCell {
         setupBasketImageView()
         setupNameLabel()
         setupPriceLabel()
+        setupPaymentForm()
     }
     
     private func setupBasketImageView() {
-        self.addSubview(basketImageView)
+        self.contentView.addSubview(basketImageView)
         
         NSLayoutConstraint.activate([
             basketImageView.heightAnchor.constraint(equalToConstant: 50),
             basketImageView.widthAnchor.constraint(equalToConstant: 50),
-            basketImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
-            basketImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5)
+            basketImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            basketImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5)
         ])
     }
     
     private func setupNameLabel() {
         nameLabel.text = product?.name
-        self.addSubview(nameLabel)
+        self.contentView.addSubview(nameLabel)
         
         NSLayoutConstraint.activate([
             nameLabel.topAnchor.constraint(equalTo: basketImageView.topAnchor),
             nameLabel.leadingAnchor.constraint(equalTo: basketImageView.trailingAnchor, constant: 10),
-            nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20)
+            nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20)
         ])
     }
     
@@ -81,13 +91,34 @@ class ProductListTableViewCell: UITableViewCell, ConfigCell {
         
         priceLabel.text = ("\(price) рублей")
         
-        self.addSubview(priceLabel)
+        self.contentView.addSubview(priceLabel)
         
         NSLayoutConstraint.activate([
             priceLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10),
-            priceLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
-            self.bottomAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 20)
+            priceLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor)
         ])
+    }
+    
+    private func setupPaymentForm() {
+        stepper.addTarget(self, action: #selector(stepperTapped), for: .touchUpInside)
+        stepper.minimumValue = 1
+        
+        let countItemStackView = UIStackView(arrangedSubviews: [itemCountLabel, stepper])
+        countItemStackView.axis = .vertical
+        countItemStackView.spacing = 5
+        
+        self.contentView.addSubview(countItemStackView)
+        countItemStackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            countItemStackView.topAnchor.constraint(equalTo: basketImageView.bottomAnchor, constant: 20),
+            countItemStackView.leadingAnchor.constraint(equalTo: basketImageView.leadingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: countItemStackView.bottomAnchor, constant: 20)
+        ])
+    }
+    
+    @objc func stepperTapped() {
+        itemCountLabel.text = String(Int(stepper.value))
     }
 
     override func awakeFromNib() {
