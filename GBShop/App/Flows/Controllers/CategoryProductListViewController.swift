@@ -107,6 +107,7 @@ extension CategoryProductListViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: ProductListTableViewCell.reuseId, for: indexPath)
         guard let productCell = cell as? ProductListTableViewCell else { return cell }
         let product = products[indexPath.row]
+        productCell.isProductListController = false
         productCell.configCell(with: product)
         return productCell
     }

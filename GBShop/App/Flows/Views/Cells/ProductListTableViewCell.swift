@@ -9,18 +9,19 @@ import UIKit
 
 class ProductListTableViewCell: UITableViewCell, ConfigCell {
     typealias T = CatalogProductResult
-    
+
     static var reuseId: String = "ProductListTableViewCell"
     
     private var product: CatalogProductResult?
     
     var delegate: ProductListCellDelegate?
+    var isProductListController: Bool = true
     
     var _isEditing = false {
         didSet {
             UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.1, options: .curveEaseIn) {
                 self.deleteButton.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
-                self.deleteButton.isHidden = !self.isEditing
+                self.deleteButton.isHidden = !self._isEditing
                 self.deleteButton.transform = .identity
             }
         }
@@ -61,7 +62,6 @@ class ProductListTableViewCell: UITableViewCell, ConfigCell {
         let button = UIButton()
         button.setImage(UIImage(systemName: "trash"), for: .normal)
         button.tintColor = .red
-//        button.isHidden = true
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -69,6 +69,9 @@ class ProductListTableViewCell: UITableViewCell, ConfigCell {
     private let buyButton = ExtendedButton(title: "buy",
                                            backgroundColor: #colorLiteral(red: 1, green: 0.6439002156, blue: 0.1084051505, alpha: 1),
                                            titleColor: Colors.whiteColor)
+    private let addToBasketButton = ExtendedButton(title: "add to basket",
+                                                   backgroundColor: Colors.mainBlueColor,
+                                                   titleColor: Colors.whiteColor)
     private let stepper = UIStepper()
     
     func configCell(with product: CatalogProductResult) {
@@ -81,8 +84,13 @@ class ProductListTableViewCell: UITableViewCell, ConfigCell {
         setupBasketImageView()
         setupNameLabel()
         setupPriceLabel()
-        setupPaymentForm()
-        setupDeleteButton()
+        
+        if isProductListController {
+            setupPaymentForm()
+            setupDeleteButton()
+        } else {
+            setupAddToBasketButton()
+        }
     }
     
     private func setupBasketImageView() {
@@ -128,6 +136,7 @@ class ProductListTableViewCell: UITableViewCell, ConfigCell {
         stepper.minimumValue = 1
         
         buyButton.titleLabel?.font = UIFont(name: "Helvetica Bold", size: 20)
+        buyButton.addTarget(self, action: #selector(buyButtonTapped), for: .touchUpInside)
         
         let countItemStackView = UIStackView(arrangedSubviews: [itemCountLabel, stepper])
         countItemStackView.axis = .vertical
@@ -163,6 +172,19 @@ class ProductListTableViewCell: UITableViewCell, ConfigCell {
         ])
     }
     
+    private func setupAddToBasketButton() {
+        self.contentView.addSubview(addToBasketButton)
+        
+        addToBasketButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            addToBasketButton.topAnchor.constraint(equalTo: basketImageView.bottomAnchor, constant: 20),
+            addToBasketButton.leadingAnchor.constraint(equalTo: basketImageView.leadingAnchor),
+            addToBasketButton.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -100),
+            self.contentView.bottomAnchor.constraint(equalTo: addToBasketButton.bottomAnchor, constant: 20)
+        ])
+    }
+    
     @objc func stepperTapped() {
         var pieceText = "piece"
         if stepper.value == 1 {
@@ -171,6 +193,10 @@ class ProductListTableViewCell: UITableViewCell, ConfigCell {
             pieceText = "pieces"
         }
         itemCountLabel.text = String(Int(stepper.value)) + " " + pieceText
+    }
+    
+    @objc func buyButtonTapped() {
+        self.delegate?.buy(cell: self)
     }
     
     @objc func deleteButtonTapped() {

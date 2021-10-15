@@ -8,5 +8,6 @@
 import Foundation
 
 protocol ProductListCellDelegate {
+    func buy(cell: ProductListTableViewCell)
     func delete(cell: ProductListTableViewCell)
 }

@@ -185,6 +185,7 @@ extension ProductListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView,
                         didSelectItemAt indexPath: IndexPath) {
         let toVC = CategoryProductListViewController()
+        
         let category = productCategories[indexPath.row]
         toVC.category = category
         navigationController?.pushViewController(toVC, animated: true)
@@ -235,9 +236,10 @@ extension ProductListViewController: UITableViewDataSource {
         guard let productCell = cell as? ProductListTableViewCell else { return cell }
 
         let product = products[indexPath.row]
+        productCell.isProductListController = true
         productCell.configCell(with: product)
         productCell.delegate = self
-//        productCell._isEditing = isEditing
+        productCell._isEditing = isEditing
         return productCell
     }
     
@@ -251,7 +253,17 @@ extension ProductListViewController: UITableViewDelegate {
 }
 
 extension ProductListViewController: ProductListCellDelegate {
+    func buy(cell: ProductListTableViewCell) {
+        if let indexPath = productTableView.indexPath(for: cell) {
+            products.remove(at: indexPath.row)
+            productTableView.reloadData()
+        }
+    }
+    
     func delete(cell: ProductListTableViewCell) {
-        
+        if let indexPath = productTableView.indexPath(for: cell) {
+            products.remove(at: indexPath.row)
+            productTableView.reloadData()
+        }
     }
 }
