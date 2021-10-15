@@ -57,6 +57,8 @@ class ProductListViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
+    
+    private var editButton = UIBarButtonItem()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,10 +84,16 @@ class ProductListViewController: UIViewController {
 extension ProductListViewController {
     private func setupViews() {
         view.backgroundColor = .white
+        setupNavigationBar()
         setupAllProductsLabel()
         setupProductCollectionView()
         setupMyBasketLabel()
         setupProductTableView()
+    }
+    
+    private func setupNavigationBar() {
+        editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editButtonTapped))
+        self.navigationItem.rightBarButtonItem = editButton
     }
     
     private func setupAllProductsLabel() {
@@ -132,6 +140,29 @@ extension ProductListViewController {
             productTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             productTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+    
+    @objc func editButtonTapped() {
+        isEditing.toggle()
+
+        if isEditing {
+            self.editButton.tintColor = .red
+
+        } else {
+            editButton.tintColor = #colorLiteral(red: 0.006537661422, green: 0.4778559804, blue: 0.9984870553, alpha: 1)
+        }
+    }
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        
+        if let indexPath = productTableView.indexPathsForVisibleRows {
+            for indexPath in indexPath {
+                if let cell = productTableView.cellForRow(at: indexPath) as? ProductListTableViewCell {
+                    cell._isEditing = editing
+                }
+            }
+        }
     }
 }
 
@@ -205,6 +236,8 @@ extension ProductListViewController: UITableViewDataSource {
 
         let product = products[indexPath.row]
         productCell.configCell(with: product)
+        productCell.delegate = self
+//        productCell._isEditing = isEditing
         return productCell
     }
     
@@ -215,4 +248,10 @@ extension ProductListViewController: UITableViewDataSource {
 
 extension ProductListViewController: UITableViewDelegate {
     
+}
+
+extension ProductListViewController: ProductListCellDelegate {
+    func delete(cell: ProductListTableViewCell) {
+        
+    }
 }
