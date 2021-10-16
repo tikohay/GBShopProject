@@ -264,6 +264,7 @@ extension ProductListViewController: ProductListCellDelegate {
                         let piece = cell.itemCountLabel.text ?? ""
                         let toVC = GBShopInfoAlert(title: "Congratulation",
                                                    text: "you've just baught \(String(describing: piece)) \(product.name)")
+                        toVC.isConfirmationAlert = true
                         toVC.modalPresentationStyle = .overCurrentContext
                         toVC.modalTransitionStyle = .crossDissolve
                         self.present(toVC, animated: true, completion: nil)
