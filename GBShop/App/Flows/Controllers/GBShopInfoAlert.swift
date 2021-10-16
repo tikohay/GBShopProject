@@ -8,6 +8,8 @@
 import UIKit
 
 class GBShopInfoAlert: UIViewController {
+    var isConfirmationAlert: Bool = false
+    
     var blurView = UIVisualEffectView()
     let alertView = UIView()
     let titleLabel = UILabel()
@@ -15,6 +17,12 @@ class GBShopInfoAlert: UIViewController {
     let okButton = ExtendedButton(title: "Ok",
                             backgroundColor: Colors.mainBlueColor,
                             titleColor: Colors.whiteColor)
+    let confirmButton = ExtendedButton(title: "confirm",
+                                       backgroundColor: Colors.mainBlueColor,
+                                       titleColor: Colors.whiteColor)
+    let cancelButton = ExtendedButton(title: "cancel",
+                                      backgroundColor: Colors.whiteColor,
+                                      titleColor: .red)
     
     var titleText: String?
     var descriptionText: String?
@@ -79,7 +87,6 @@ extension GBShopInfoAlert {
     private func setupOkButton() {
         alertView.addSubview(okButton)
         okButton.translatesAutoresizingMaskIntoConstraints = false
-        
     }
     
     private func setupConstraints() {

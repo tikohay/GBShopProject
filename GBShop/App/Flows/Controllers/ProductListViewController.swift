@@ -255,8 +255,25 @@ extension ProductListViewController: UITableViewDelegate {
 extension ProductListViewController: ProductListCellDelegate {
     func buy(cell: ProductListTableViewCell) {
         if let indexPath = productTableView.indexPath(for: cell) {
-            products.remove(at: indexPath.row)
-            productTableView.reloadData()
+            let payBasket = requestFactory.makePayBasketRequestFactory()
+            payBasket.payBasket(userId: 1) { response in
+                switch response.result {
+                case .success(_):
+                    DispatchQueue.main.async {
+                        let product = self.products[indexPath.row]
+                        let piece = cell.itemCountLabel.text ?? ""
+                        let toVC = GBShopInfoAlert(title: "Congratulation",
+                                                   text: "you've just baught \(String(describing: piece)) \(product.name)")
+                        toVC.modalPresentationStyle = .overCurrentContext
+                        toVC.modalTransitionStyle = .crossDissolve
+                        self.present(toVC, animated: true, completion: nil)
+                        self.products.remove(at: indexPath.row)
+                        self.productTableView.reloadData()
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
         }
     }
     

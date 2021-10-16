@@ -51,7 +51,7 @@ class ProductListTableViewCell: UITableViewCell, ConfigCell {
         return label
     }()
     
-    private var itemCountLabel: UILabel = {
+    var itemCountLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Arial", size: 20)
         label.text = "1 piece"
