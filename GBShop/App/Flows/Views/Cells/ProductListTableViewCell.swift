@@ -14,7 +14,8 @@ class ProductListTableViewCell: UITableViewCell, ConfigCell {
     
     private var product: CatalogProductResult?
     
-    var delegate: ProductListCellDelegate?
+    var productListDelegate: ProductListCellDelegate?
+    var categoryProductListDelegate: CategoryProductListCellProtocol?
     var isProductListController: Bool = true
     
     var _isEditing = false {
@@ -66,6 +67,15 @@ class ProductListTableViewCell: UITableViewCell, ConfigCell {
         return button
     }()
     
+    let checkmarkImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.tintColor = Colors.mainBlueColor
+        imageView.image = UIImage(systemName: "checkmark.circle.fill")
+        imageView.isHidden = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
     private let buyButton = ExtendedButton(title: "buy",
                                            backgroundColor: #colorLiteral(red: 1, green: 0.6439002156, blue: 0.1084051505, alpha: 1),
                                            titleColor: Colors.whiteColor)
@@ -90,6 +100,7 @@ class ProductListTableViewCell: UITableViewCell, ConfigCell {
             setupDeleteButton()
         } else {
             setupAddToBasketButton()
+            setupCheckmarkLabel()
         }
     }
     
@@ -173,6 +184,8 @@ class ProductListTableViewCell: UITableViewCell, ConfigCell {
     }
     
     private func setupAddToBasketButton() {
+        addToBasketButton.addTarget(self, action: #selector(addToBasketButtonTapped), for: .touchUpInside)
+        
         self.contentView.addSubview(addToBasketButton)
         
         addToBasketButton.translatesAutoresizingMaskIntoConstraints = false
@@ -182,6 +195,18 @@ class ProductListTableViewCell: UITableViewCell, ConfigCell {
             addToBasketButton.leadingAnchor.constraint(equalTo: basketImageView.leadingAnchor),
             addToBasketButton.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -100),
             self.contentView.bottomAnchor.constraint(equalTo: addToBasketButton.bottomAnchor, constant: 20)
+        ])
+    }
+    
+    private func setupCheckmarkLabel() {
+        self.contentView.addSubview(checkmarkImage)
+        
+        NSLayoutConstraint.activate([
+            checkmarkImage.heightAnchor.constraint(equalToConstant: 50),
+            checkmarkImage.widthAnchor.constraint(equalToConstant: 50),
+            checkmarkImage.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10),
+            checkmarkImage.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10),
+            nameLabel.trailingAnchor.constraint(equalTo: checkmarkImage.leadingAnchor, constant: -10)
         ])
     }
     
@@ -196,7 +221,7 @@ class ProductListTableViewCell: UITableViewCell, ConfigCell {
     }
     
     @objc func buyButtonTapped() {
-        self.delegate?.buy(cell: self)
+        self.productListDelegate?.buy(cell: self)
     }
     
     @objc func deleteButtonTapped() {
@@ -205,9 +230,13 @@ class ProductListTableViewCell: UITableViewCell, ConfigCell {
         } completion: { (_) in
             UIView.animate(withDuration: 0.2) {
                 self.deleteButton.transform = .identity
-                self.delegate?.delete(cell: self)
+                self.productListDelegate?.delete(cell: self)
             }
         }
+    }
+    
+    @objc func addToBasketButtonTapped() {
+        categoryProductListDelegate?.addToBasket(cell: self)
     }
 
     override func awakeFromNib() {

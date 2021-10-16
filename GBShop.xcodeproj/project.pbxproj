@@ -89,6 +89,7 @@
 		3CADC312271023BC007027FC /* ProductReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADC311271023BC007027FC /* ProductReviewsViewController.swift */; };
 		3CADC314271050A4007027FC /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADC313271050A4007027FC /* ReviewTableViewCell.swift */; };
 		3CB075DA2701B939005F2447 /* GBShopInfoAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB075D92701B939005F2447 /* GBShopInfoAlert.swift */; };
+		3CB1C33F271B0FE00043B274 /* CategoryProductListCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB1C33E271B0FE00043B274 /* CategoryProductListCellProtocol.swift */; };
 		3CC6D5EB2701FAC900B60AA3 /* BlurredLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC6D5EA2701FAC900B60AA3 /* BlurredLabel.swift */; };
 		3CEB3E542709DADC00D2FFF4 /* ProductListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEB3E532709DADC00D2FFF4 /* ProductListTableViewCell.swift */; };
 		3CF33F2C2719C44E0095FCD6 /* ProductListCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF33F2B2719C44E0095FCD6 /* ProductListCellDelegate.swift */; };
@@ -206,6 +207,7 @@
 		3CADC311271023BC007027FC /* ProductReviewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductReviewsViewController.swift; sourceTree = "<group>"; };
 		3CADC313271050A4007027FC /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
 		3CB075D92701B939005F2447 /* GBShopInfoAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GBShopInfoAlert.swift; sourceTree = "<group>"; };
+		3CB1C33E271B0FE00043B274 /* CategoryProductListCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryProductListCellProtocol.swift; sourceTree = "<group>"; };
 		3CC6D5EA2701FAC900B60AA3 /* BlurredLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurredLabel.swift; sourceTree = "<group>"; };
 		3CEB3E532709DADC00D2FFF4 /* ProductListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListTableViewCell.swift; sourceTree = "<group>"; };
 		3CF33F2B2719C44E0095FCD6 /* ProductListCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListCellDelegate.swift; sourceTree = "<group>"; };
@@ -419,6 +421,7 @@
 			children = (
 				3C7E98C0270863A5005831ED /* ConfigCell.swift */,
 				3CF33F2B2719C44E0095FCD6 /* ProductListCellDelegate.swift */,
+				3CB1C33E271B0FE00043B274 /* CategoryProductListCellProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1013,6 +1016,7 @@
 				3C0B900926D90DED004D05B2 /* LoginResult.swift in Sources */,
 				3CF33F2C2719C44E0095FCD6 /* ProductListCellDelegate.swift in Sources */,
 				3C0B900226D9036C004D05B2 /* CustomDecodableSerializer.swift in Sources */,
+				3CB1C33F271B0FE00043B274 /* CategoryProductListCellProtocol.swift in Sources */,
 				3CFC076C270073C300904600 /* Colors.swift in Sources */,
 				3C0B900B26D90E07004D05B2 /* User.swift in Sources */,
 				3C9E439D26DAA74700330B8D /* UserData.swift in Sources */,

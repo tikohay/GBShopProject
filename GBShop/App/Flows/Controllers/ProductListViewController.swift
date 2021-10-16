@@ -16,6 +16,10 @@ class ProductListViewController: UIViewController {
             DispatchQueue.main.async {
                 self.productTableView.reloadData()
             }
+            if products.count == 0 {
+                isEditing = false
+                editButton.tintColor = Colors.mainBlueColor
+            }
         }
     }
     
@@ -149,7 +153,7 @@ extension ProductListViewController {
             self.editButton.tintColor = .red
 
         } else {
-            editButton.tintColor = #colorLiteral(red: 0.006537661422, green: 0.4778559804, blue: 0.9984870553, alpha: 1)
+            editButton.tintColor = Colors.mainBlueColor
         }
     }
     
@@ -188,6 +192,9 @@ extension ProductListViewController: UICollectionViewDataSource {
         
         let category = productCategories[indexPath.row]
         toVC.category = category
+        toVC.onAddToBasketTaped = { product in
+            self.products.insert(product, at: 0)
+        }
         navigationController?.pushViewController(toVC, animated: true)
     }
     
@@ -238,7 +245,7 @@ extension ProductListViewController: UITableViewDataSource {
         let product = products[indexPath.row]
         productCell.isProductListController = true
         productCell.configCell(with: product)
-        productCell.delegate = self
+        productCell.productListDelegate = self
         productCell._isEditing = isEditing
         return productCell
     }
