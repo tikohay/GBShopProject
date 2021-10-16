@@ -10,6 +10,8 @@ import UIKit
 class GBShopInfoAlert: UIViewController {
     var isConfirmationAlert: Bool = false
     
+    var onConfirmButtonTapped: (() -> ())?
+    
     var blurView = UIVisualEffectView()
     let alertView = UIView()
     let titleLabel = UILabel()
@@ -84,11 +86,6 @@ extension GBShopInfoAlert {
         textLabel.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    private func setupOkButton() {
-        alertView.addSubview(okButton)
-        okButton.translatesAutoresizingMaskIntoConstraints = false
-    }
-    
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             blurView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -111,7 +108,9 @@ extension GBShopInfoAlert {
         ])
         
         if !isConfirmationAlert {
-            setupOkButton()
+            alertView.addSubview(okButton)
+            okButton.translatesAutoresizingMaskIntoConstraints = false
+            
         NSLayoutConstraint.activate([
             okButton.bottomAnchor.constraint(equalTo: alertView.bottomAnchor, constant: -20),
             okButton.leadingAnchor.constraint(equalTo: alertView.leadingAnchor, constant: 20),
@@ -149,6 +148,13 @@ extension GBShopInfoAlert {
         okButton.addTarget(self,
                            action: #selector(dismissController),
                            for: .touchUpInside)
+        confirmButton.addTarget(self, action: #selector(confirmButtonTapped), for: .touchUpInside)
+        cancelButton.addTarget(self, action: #selector(dismissController), for: .touchUpInside)
+    }
+    
+    @objc func confirmButtonTapped() {
+        onConfirmButtonTapped!()
+        dismissController()
     }
     
     @objc private func dismissController() {

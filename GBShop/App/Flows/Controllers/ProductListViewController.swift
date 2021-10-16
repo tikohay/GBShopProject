@@ -264,7 +264,6 @@ extension ProductListViewController: ProductListCellDelegate {
                         let piece = cell.itemCountLabel.text ?? ""
                         let toVC = GBShopInfoAlert(title: "Congratulation",
                                                    text: "you've just baught \(String(describing: piece)) \(product.name)")
-                        toVC.isConfirmationAlert = true
                         toVC.modalPresentationStyle = .overCurrentContext
                         toVC.modalTransitionStyle = .crossDissolve
                         self.present(toVC, animated: true, completion: nil)
@@ -280,8 +279,30 @@ extension ProductListViewController: ProductListCellDelegate {
     
     func delete(cell: ProductListTableViewCell) {
         if let indexPath = productTableView.indexPath(for: cell) {
-            products.remove(at: indexPath.row)
-            productTableView.reloadData()
+            let deleteProductFromBasket = requestFactory.makeDeleteProductFromBasketRequestFactory()
+            deleteProductFromBasket.deleteProductFromBasket(productId: 1) { response in
+                DispatchQueue.main.async {
+                    let product = self.products[indexPath.row]
+                    let toVC = GBShopInfoAlert(title: "Are you sure",
+                                               text: "you want to remove \(product.name) ?")
+                    toVC.isConfirmationAlert = true
+                    toVC.modalPresentationStyle = .overCurrentContext
+                    toVC.modalTransitionStyle = .crossDissolve
+                    self.present(toVC, animated: true, completion: nil)
+                    toVC.onConfirmButtonTapped = {
+                        switch response.result {
+                        case .success(let success):
+                            self.products.remove(at: indexPath.row)
+                            self.productTableView.reloadData()
+                            print(success)
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                        }
+                    }
+                }
+            }
         }
     }
 }
+
+
