@@ -24,6 +24,10 @@ class SignUpUITests: XCTestCase {
         app = nil
         scrollViewQuery = nil
     }
+
+    func testExample() throws {
+              
+    }
     
     func testSuccess() {
         enterSignUpData(username: "A",
@@ -74,8 +78,13 @@ class SignUpUITests: XCTestCase {
         let submitButton = scrollViewQuery.buttons["submitButton"].firstMatch
         submitButton.tap()
     }
-
-    func testExample() throws {
+    
+    func testLaunchPerformance() throws {
+        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
+            measure(metrics: [XCTApplicationLaunchMetric()]) {
+                XCUIApplication().launch()
+            }
+        }
     }
 }
 

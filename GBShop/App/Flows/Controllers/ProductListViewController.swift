@@ -96,7 +96,9 @@ extension ProductListViewController {
     }
     
     private func setupNavigationBar() {
-        editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editButtonTapped))
+        editButton = UIBarButtonItem(barButtonSystemItem: .edit,
+                                     target: self,
+                                     action: #selector(editButtonTapped))
         self.navigationItem.rightBarButtonItem = editButton
     }
     
