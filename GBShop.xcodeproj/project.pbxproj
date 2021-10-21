@@ -21,6 +21,7 @@
 		3C0B901226D90FD0004D05B2 /* RequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0B901126D90FD0004D05B2 /* RequestFactory.swift */; };
 		3C1FC5D8270AF2690075658F /* ProductCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1FC5D7270AF2690075658F /* ProductCategory.swift */; };
 		3C1FC5DC270B2B240075658F /* AbstractErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1FC5DB270B2B240075658F /* AbstractErrorParser.swift */; };
+		3C280D28272160B500EB7A68 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C280D27272160B500EB7A68 /* GoogleService-Info.plist */; };
 		3C37D17D270993F500D2FE8F /* CustomGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C37D17C270993F500D2FE8F /* CustomGradientView.swift */; };
 		3C4454F426DFC8B9006B891D /* ResponseCodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4454F326DFC8B9006B891D /* ResponseCodableTests.swift */; };
 		3C489C39270EFBB500F32DFB /* CategoryProductListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C489C38270EFBB500F32DFB /* CategoryProductListViewController.swift */; };
@@ -133,6 +134,7 @@
 		3C0B901126D90FD0004D05B2 /* RequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestFactory.swift; sourceTree = "<group>"; };
 		3C1FC5D7270AF2690075658F /* ProductCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCategory.swift; sourceTree = "<group>"; };
 		3C1FC5DB270B2B240075658F /* AbstractErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractErrorParser.swift; sourceTree = "<group>"; };
+		3C280D27272160B500EB7A68 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3C37D17C270993F500D2FE8F /* CustomGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGradientView.swift; sourceTree = "<group>"; };
 		3C4454F326DFC8B9006B891D /* ResponseCodableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseCodableTests.swift; sourceTree = "<group>"; };
 		3C489C38270EFBB500F32DFB /* CategoryProductListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryProductListViewController.swift; sourceTree = "<group>"; };
@@ -568,6 +570,7 @@
 			isa = PBXGroup;
 			children = (
 				3C9A58E926D7BC1500A29BE4 /* Info.plist */,
+				3C280D27272160B500EB7A68 /* GoogleService-Info.plist */,
 			);
 			path = Environments;
 			sourceTree = "<group>";
@@ -829,6 +832,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C9A58E826D7BC1500A29BE4 /* LaunchScreen.storyboard in Resources */,
+				3C280D28272160B500EB7A68 /* GoogleService-Info.plist in Resources */,
 				3C9A58E526D7BC1500A29BE4 /* Assets.xcassets in Resources */,
 				3C7E98B92708428B005831ED /* .gitkeep  in Resources */,
 			);

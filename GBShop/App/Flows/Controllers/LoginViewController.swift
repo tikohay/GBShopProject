@@ -221,7 +221,6 @@ extension LoginViewController {
         let auth = requestFactory.makeAuthRequestFactory()
         auth.login(userName: login, password: password) { response in
             self.stopActivityAnimating()
-            
             switch response.result {
             case .success(_):
                 self.presentMainTabBar()
