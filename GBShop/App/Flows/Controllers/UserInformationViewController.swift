@@ -108,10 +108,16 @@ extension UserInformationViewController {
     }
     
     private func setupNavigationView() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Exit", style: .done, target: self, action: #selector(leftButtonItemTapped))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Exit",
+                                                           style: .done,
+                                                           target: self,
+                                                           action: #selector(leftButtonItemTapped))
         navigationItem.leftBarButtonItem?.tintColor = .red
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(rightButtonItemTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit",
+                                                            style: .plain,
+                                                            target: self,
+                                                            action: #selector(rightButtonItemTapped))
     }
     
     private func setupScrollView() {

@@ -17,6 +17,8 @@ class CategoryProductListViewController: UIViewController {
         }
     }
     
+    var onAddToBasketTaped: ((CatalogProductResult) -> ())?
+    
     var categoryLabel: UILabel = {
         let label = UILabel()
         label.textColor = Colors.mainBlueColor
@@ -97,14 +99,18 @@ extension CategoryProductListViewController {
 }
 
 extension CategoryProductListViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView,
+                   numberOfRowsInSection section: Int) -> Int {
         products.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ProductListTableViewCell.reuseId, for: indexPath)
         guard let productCell = cell as? ProductListTableViewCell else { return cell }
         let product = products[indexPath.row]
+        productCell.isProductListController = false
+        productCell.categoryProductListDelegate = self
         productCell.configCell(with: product)
         return productCell
     }
@@ -123,4 +129,34 @@ extension CategoryProductListViewController: UITableViewDelegate {
     
 }
 
+extension CategoryProductListViewController: CategoryProductListCellProtocol {
+    func addToBasket(cell: ProductListTableViewCell) {
+        if let indexPath = productTableView.indexPath(for: cell) {
+            let addProductToBasket = requestFactory.makeAddProductToBasketRequestFactory()
+            addProductToBasket.addProductToBasket(productId: 123, quantity: 1) { response in
+                switch response.result {
+                case .success(_):
+                    DispatchQueue.main.async {
+                        let product = self.products[indexPath.row]
+                        self.onAddToBasketTaped?(product)
+                        self.animateCheckMark(cell: cell)
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
+    
+    private func animateCheckMark(cell: ProductListTableViewCell) {
+        UIView.animate(withDuration: 0.1) {
+            cell.checkmarkImage.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+            cell.checkmarkImage.isHidden = false
+        } completion: { (_) in
+            UIView.animate(withDuration: 0.2) {
+                cell.checkmarkImage.transform = .identity
+            }
+        }
+    }
+}
 

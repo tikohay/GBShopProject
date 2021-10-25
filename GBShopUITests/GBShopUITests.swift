@@ -6,34 +6,53 @@
 //
 
 import XCTest
+import GBShop
 
 class GBShopUITests: XCTestCase {
-
+    var app: XCUIApplication!
+    var scrollViewQuery: XCUIElementQuery!
+    
+    func testExample() {
+    }
+    
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        
+        app = XCUIApplication()
+        app.launch()
+        scrollViewQuery = app.scrollViews
+    }
+    
+    func testSuccess() {
+        enterAuthData(login: "admin", password: "1234567")
+        XCTAssertFalse(app.otherElements.staticTexts["Login or password is wrong"].waitForExistence(timeout: 1.0))
+    }
+    
+    func testFail() {
+        enterAuthData(login: "", password: "")
+        XCTAssertTrue(app.otherElements.staticTexts["Login or password is wrong"].waitForExistence(timeout: 1.0))
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        app = nil
+        scrollViewQuery = nil
     }
 
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launch()
-
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    private func enterAuthData(login: String, password: String) {
+        let loginTF = scrollViewQuery.textFields["loginTF"].firstMatch
+        loginTF.tap()
+        loginTF.typeText(login)
+        
+        let passwordTF = scrollViewQuery.secureTextFields["passwordTF"].firstMatch
+        passwordTF.tap()
+        passwordTF.typeText(password)
+        
+        let loginButton = scrollViewQuery.buttons["loginButton"].firstMatch
+        loginButton.tap()
     }
 
     func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
             measure(metrics: [XCTApplicationLaunchMetric()]) {
                 XCUIApplication().launch()
             }

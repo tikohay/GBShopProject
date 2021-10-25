@@ -16,6 +16,10 @@ class ProductListViewController: UIViewController {
             DispatchQueue.main.async {
                 self.productTableView.reloadData()
             }
+            if products.count == 0 {
+                isEditing = false
+                editButton.tintColor = Colors.mainBlueColor
+            }
         }
     }
     
@@ -57,6 +61,8 @@ class ProductListViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
+    
+    private var editButton = UIBarButtonItem()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,10 +88,18 @@ class ProductListViewController: UIViewController {
 extension ProductListViewController {
     private func setupViews() {
         view.backgroundColor = .white
+        setupNavigationBar()
         setupAllProductsLabel()
         setupProductCollectionView()
         setupMyBasketLabel()
         setupProductTableView()
+    }
+    
+    private func setupNavigationBar() {
+        editButton = UIBarButtonItem(barButtonSystemItem: .edit,
+                                     target: self,
+                                     action: #selector(editButtonTapped))
+        self.navigationItem.rightBarButtonItem = editButton
     }
     
     private func setupAllProductsLabel() {
@@ -133,6 +147,29 @@ extension ProductListViewController {
             productTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
+    
+    @objc func editButtonTapped() {
+        isEditing.toggle()
+
+        if isEditing {
+            self.editButton.tintColor = .red
+
+        } else {
+            editButton.tintColor = Colors.mainBlueColor
+        }
+    }
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        
+        if let indexPath = productTableView.indexPathsForVisibleRows {
+            for indexPath in indexPath {
+                if let cell = productTableView.cellForRow(at: indexPath) as? ProductListTableViewCell {
+                    cell._isEditing = editing
+                }
+            }
+        }
+    }
 }
 
 extension ProductListViewController: UICollectionViewDataSource {
@@ -140,7 +177,8 @@ extension ProductListViewController: UICollectionViewDataSource {
         productCategories.count
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductListCollectionViewCell.reuseId,
                                                       for: indexPath)
         guard let productCategoryCell = cell as? ProductListCollectionViewCell else { return cell }
@@ -150,14 +188,20 @@ extension ProductListViewController: UICollectionViewDataSource {
         return productCategoryCell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView,
+                        didSelectItemAt indexPath: IndexPath) {
         let toVC = CategoryProductListViewController()
+        
         let category = productCategories[indexPath.row]
         toVC.category = category
+        toVC.onAddToBasketTaped = { product in
+            self.products.insert(product, at: 0)
+        }
         navigationController?.pushViewController(toVC, animated: true)
     }
     
-    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView,
+                        didHighlightItemAt indexPath: IndexPath) {
         UIView.animate(withDuration: 0.1) {
             if let cell = collectionView.cellForItem(at: indexPath) as? ProductListCollectionViewCell {
                 cell.containerView.transform = .init(scaleX: 0.9, y: 0.9)
@@ -175,27 +219,36 @@ extension ProductListViewController: UICollectionViewDataSource {
 }
 
 extension ProductListViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width / 3, height: collectionView.frame.height - 15)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
     }
 }
 
 extension ProductListViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView,
+                   numberOfRowsInSection section: Int) -> Int {
         products.count
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ProductListTableViewCell.reuseId,
                                                  for: indexPath)
         guard let productCell = cell as? ProductListTableViewCell else { return cell }
 
         let product = products[indexPath.row]
+        productCell.isProductListController = true
         productCell.configCell(with: product)
+        productCell.productListDelegate = self
+        productCell._isEditing = isEditing
         return productCell
     }
     
@@ -207,3 +260,58 @@ extension ProductListViewController: UITableViewDataSource {
 extension ProductListViewController: UITableViewDelegate {
     
 }
+
+extension ProductListViewController: ProductListCellDelegate {
+    func buy(cell: ProductListTableViewCell) {
+        if let indexPath = productTableView.indexPath(for: cell) {
+            let payBasket = requestFactory.makePayBasketRequestFactory()
+            payBasket.payBasket(userId: 1) { response in
+                switch response.result {
+                case .success(_):
+                    DispatchQueue.main.async {
+                        let product = self.products[indexPath.row]
+                        let piece = cell.itemCountLabel.text ?? ""
+                        let toVC = GBShopInfoAlert(title: "Congratulation",
+                                                   text: "you've just baught \(String(describing: piece)) \(product.name)")
+                        toVC.modalPresentationStyle = .overCurrentContext
+                        toVC.modalTransitionStyle = .crossDissolve
+                        self.present(toVC, animated: true, completion: nil)
+                        self.products.remove(at: indexPath.row)
+                        self.productTableView.reloadData()
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
+    
+    func delete(cell: ProductListTableViewCell) {
+        if let indexPath = productTableView.indexPath(for: cell) {
+            let deleteProductFromBasket = requestFactory.makeDeleteProductFromBasketRequestFactory()
+            deleteProductFromBasket.deleteProductFromBasket(productId: 1) { response in
+                DispatchQueue.main.async {
+                    let product = self.products[indexPath.row]
+                    let toVC = GBShopInfoAlert(title: "Are you sure",
+                                               text: "you want to remove \(product.name) ?")
+                    toVC.isConfirmationAlert = true
+                    toVC.modalPresentationStyle = .overCurrentContext
+                    toVC.modalTransitionStyle = .crossDissolve
+                    self.present(toVC, animated: true, completion: nil)
+                    toVC.onConfirmButtonTapped = {
+                        switch response.result {
+                        case .success(let success):
+                            self.products.remove(at: indexPath.row)
+                            self.productTableView.reloadData()
+                            print(success)
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+

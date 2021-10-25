@@ -15,6 +15,8 @@ target 'GBShop' do
 	pod 'Swinject'
 	pod 'Alamofire', '~> 5.4'
 	pod 'SwiftLint'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Crashlytics'
 
   target 'GBShopUITests' do
     # Pods for testing

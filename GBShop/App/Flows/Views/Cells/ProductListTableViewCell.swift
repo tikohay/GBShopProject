@@ -9,10 +9,24 @@ import UIKit
 
 class ProductListTableViewCell: UITableViewCell, ConfigCell {
     typealias T = CatalogProductResult
-    
+
     static var reuseId: String = "ProductListTableViewCell"
     
     private var product: CatalogProductResult?
+    
+    var productListDelegate: ProductListCellDelegate?
+    var categoryProductListDelegate: CategoryProductListCellProtocol?
+    var isProductListController: Bool = true
+    
+    var _isEditing = false {
+        didSet {
+            UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.1, options: .curveEaseIn) {
+                self.deleteButton.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+                self.deleteButton.isHidden = !self._isEditing
+                self.deleteButton.transform = .identity
+            }
+        }
+    }
     
     private let basketImageView: UIImageView = {
         let imageView = UIImageView()
@@ -38,6 +52,38 @@ class ProductListTableViewCell: UITableViewCell, ConfigCell {
         return label
     }()
     
+    var itemCountLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Arial", size: 20)
+        label.text = "1 piece"
+        return label
+    }()
+    
+    private let deleteButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "trash"), for: .normal)
+        button.tintColor = .red
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    let checkmarkImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.tintColor = Colors.mainBlueColor
+        imageView.image = UIImage(systemName: "checkmark.circle.fill")
+        imageView.isHidden = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    private let buyButton = ExtendedButton(title: "buy",
+                                           backgroundColor: #colorLiteral(red: 1, green: 0.6439002156, blue: 0.1084051505, alpha: 1),
+                                           titleColor: Colors.whiteColor)
+    private let addToBasketButton = ExtendedButton(title: "add to basket",
+                                                   backgroundColor: Colors.mainBlueColor,
+                                                   titleColor: Colors.whiteColor)
+    private let stepper = UIStepper()
+    
     func configCell(with product: CatalogProductResult) {
         self.product = product
         
@@ -48,27 +94,34 @@ class ProductListTableViewCell: UITableViewCell, ConfigCell {
         setupBasketImageView()
         setupNameLabel()
         setupPriceLabel()
+        
+        if isProductListController {
+            setupPaymentForm()
+            setupDeleteButton()
+        } else {
+            setupAddToBasketButton()
+            setupCheckmarkLabel()
+        }
     }
     
     private func setupBasketImageView() {
-        self.addSubview(basketImageView)
+        self.contentView.addSubview(basketImageView)
         
         NSLayoutConstraint.activate([
             basketImageView.heightAnchor.constraint(equalToConstant: 50),
             basketImageView.widthAnchor.constraint(equalToConstant: 50),
-            basketImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
-            basketImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5)
+            basketImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            basketImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5)
         ])
     }
     
     private func setupNameLabel() {
         nameLabel.text = product?.name
-        self.addSubview(nameLabel)
+        self.contentView.addSubview(nameLabel)
         
         NSLayoutConstraint.activate([
             nameLabel.topAnchor.constraint(equalTo: basketImageView.topAnchor),
-            nameLabel.leadingAnchor.constraint(equalTo: basketImageView.trailingAnchor, constant: 10),
-            nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20)
+            nameLabel.leadingAnchor.constraint(equalTo: basketImageView.trailingAnchor, constant: 10)
         ])
     }
     
@@ -81,13 +134,109 @@ class ProductListTableViewCell: UITableViewCell, ConfigCell {
         
         priceLabel.text = ("\(price) рублей")
         
-        self.addSubview(priceLabel)
+        self.contentView.addSubview(priceLabel)
         
         NSLayoutConstraint.activate([
             priceLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10),
-            priceLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
-            self.bottomAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 20)
+            priceLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor)
         ])
+    }
+    
+    private func setupPaymentForm() {
+        stepper.addTarget(self, action: #selector(stepperTapped), for: .touchUpInside)
+        stepper.minimumValue = 1
+        
+        buyButton.titleLabel?.font = UIFont(name: "Helvetica Bold", size: 20)
+        buyButton.addTarget(self, action: #selector(buyButtonTapped), for: .touchUpInside)
+        
+        let countItemStackView = UIStackView(arrangedSubviews: [itemCountLabel, stepper])
+        countItemStackView.axis = .vertical
+        countItemStackView.spacing = 2
+        
+        self.contentView.addSubview(countItemStackView)
+        self.contentView.addSubview(buyButton)
+        countItemStackView.translatesAutoresizingMaskIntoConstraints = false
+        buyButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            countItemStackView.topAnchor.constraint(equalTo: basketImageView.bottomAnchor, constant: 30),
+            countItemStackView.leadingAnchor.constraint(equalTo: basketImageView.leadingAnchor),
+            
+            buyButton.topAnchor.constraint(equalTo: countItemStackView.bottomAnchor, constant: 30),
+            buyButton.leadingAnchor.constraint(equalTo: countItemStackView.leadingAnchor),
+            buyButton.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10),
+            contentView.bottomAnchor.constraint(equalTo: buyButton.bottomAnchor, constant: 20)
+        ])
+    }
+    
+    private func setupDeleteButton() {
+        deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
+        
+        self.contentView.addSubview(deleteButton)
+        
+        NSLayoutConstraint.activate([
+            deleteButton.heightAnchor.constraint(equalToConstant: 50),
+            deleteButton.widthAnchor.constraint(equalToConstant: 50),
+            deleteButton.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10),
+            deleteButton.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10),
+            nameLabel.trailingAnchor.constraint(equalTo: deleteButton.leadingAnchor, constant: -10)
+        ])
+    }
+    
+    private func setupAddToBasketButton() {
+        addToBasketButton.addTarget(self, action: #selector(addToBasketButtonTapped), for: .touchUpInside)
+        
+        self.contentView.addSubview(addToBasketButton)
+        
+        addToBasketButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            addToBasketButton.topAnchor.constraint(equalTo: basketImageView.bottomAnchor, constant: 20),
+            addToBasketButton.leadingAnchor.constraint(equalTo: basketImageView.leadingAnchor),
+            addToBasketButton.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -100),
+            self.contentView.bottomAnchor.constraint(equalTo: addToBasketButton.bottomAnchor, constant: 20)
+        ])
+    }
+    
+    private func setupCheckmarkLabel() {
+        self.contentView.addSubview(checkmarkImage)
+        
+        NSLayoutConstraint.activate([
+            checkmarkImage.heightAnchor.constraint(equalToConstant: 50),
+            checkmarkImage.widthAnchor.constraint(equalToConstant: 50),
+            checkmarkImage.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10),
+            checkmarkImage.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10),
+            nameLabel.trailingAnchor.constraint(equalTo: checkmarkImage.leadingAnchor, constant: -10)
+        ])
+    }
+    
+    @objc func stepperTapped() {
+        var pieceText = "piece"
+        if stepper.value == 1 {
+            pieceText = "piece"
+        } else {
+            pieceText = "pieces"
+        }
+        itemCountLabel.text = String(Int(stepper.value)) + " " + pieceText
+    }
+    
+    @objc func buyButtonTapped() {
+        self.productListDelegate?.buy(cell: self)
+    }
+    
+    @objc func deleteButtonTapped() {
+        UIView.animate(withDuration: 0.1) {
+            self.deleteButton.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+        } completion: { (_) in
+            UIView.animate(withDuration: 0.2) {
+                self.deleteButton.transform = .identity
+                self.productListDelegate?.delete(cell: self)
+            }
+        }
+    }
+    
+    @objc func addToBasketButtonTapped() {
+        categoryProductListDelegate?.addToBasket(cell: self)
     }
 
     override func awakeFromNib() {
