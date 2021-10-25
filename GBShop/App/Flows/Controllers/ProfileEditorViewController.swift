@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseCrashlytics
+import Firebase
 
 class ProfileEditorViewController: UIViewController {
     let requestFactory = RequestFactory()
@@ -286,11 +288,15 @@ extension ProfileEditorViewController {
             self.stopActivityAnimating()
             
             switch response.result {
-            case .success(_):
+            case .success(let result):
+                let parametres = ["result": result.result]
+                Analytics.logEvent("user registration success",
+                                   parameters: parametres)
                 DispatchQueue.main.async {
                     self.navigationController?.popViewController(animated: true)
                 }
-            case .failure(_):
+            case .failure(let error):
+                Crashlytics.crashlytics().record(error: error)
                 self.presentGBShopInfoAlert(title: "Registration warning",
                                             text: "The parameters are entered incorrectly")
             }
@@ -304,14 +310,17 @@ extension ProfileEditorViewController {
             self.stopActivityAnimating()
             
             switch response.result {
-            case .success(_):
+            case .success(let result):
+                let parametres = ["result": result.result]
+                Analytics.logEvent("user edit success",
+                                   parameters: parametres)
                 DispatchQueue.main.async {
                     self.dismiss(animated: true, completion: nil)
                 }
-            case .failure(_):
+            case .failure(let error):
+                Crashlytics.crashlytics().record(error: error)
                 self.presentGBShopInfoAlert(title: "Edit warning",
                                             text: "The parameters are entered incorrectly")
-                
             }
         }
     }

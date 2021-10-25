@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseCrashlytics
+import Firebase
 
 class CategoryProductListViewController: UIViewController {
     private let requestFactory = RequestFactory()
@@ -50,7 +52,13 @@ class CategoryProductListViewController: UIViewController {
             case .success(let result):
                 self.products = result
             case .failure(let error):
-                print(error.localizedDescription)
+                let keysAndValues = [
+                    "error": error.localizedDescription
+                ] as [String : Any]
+                
+                Crashlytics.crashlytics().setCustomKeysAndValues(keysAndValues)
+                Crashlytics.crashlytics().log("get catalog in crash")
+                fatalError(error.localizedDescription)
             }
         }
     }
@@ -135,14 +143,26 @@ extension CategoryProductListViewController: CategoryProductListCellProtocol {
             let addProductToBasket = requestFactory.makeAddProductToBasketRequestFactory()
             addProductToBasket.addProductToBasket(productId: 123, quantity: 1) { response in
                 switch response.result {
-                case .success(_):
+                case .success(let result):
+                    let parametres = ["result": result.result]
+                    Analytics.logEvent("add product to basket success",
+                                       parameters: parametres)
                     DispatchQueue.main.async {
                         let product = self.products[indexPath.row]
                         self.onAddToBasketTaped?(product)
                         self.animateCheckMark(cell: cell)
                     }
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    let product = self.products[indexPath.row]
+                    let keysAndValues = [
+                        "error": error.localizedDescription,
+                        "productname": product.name,
+                        "prodcutId": product.id
+                    ] as [String : Any]
+                    
+                    Crashlytics.crashlytics().setCustomKeysAndValues(keysAndValues)
+                    Crashlytics.crashlytics().log("add product to basket in crash")
+                    fatalError(error.localizedDescription)
                 }
             }
         }
