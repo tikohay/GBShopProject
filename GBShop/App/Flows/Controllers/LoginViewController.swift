@@ -259,43 +259,6 @@ extension LoginViewController {
     }
     
     @objc private func registrationButtonTapped() {
-//        // Set int_key to 100.
-//        Crashlytics.crashlytics().setCustomValue(100, forKey: "int_key")
-//
-//        // Set str_key to "hello".
-//        Crashlytics.crashlytics().setCustomValue("hello12324", forKey: "str_key")
-//
-//        let keysAndValues = [
-//                         "string key" : "Karo",
-//                         "string key 2" : "string value 2",
-//                         "boolean key" : true,
-//                         "boolean key 2" : false,
-//                         "float key" : 1.01,
-//                         "float key 2" : 2.02
-//                        ] as [String : Any]
-//
-//        Crashlytics.crashlytics().setCustomKeysAndValues(keysAndValues)
-//
-//        Crashlytics.crashlytics().log("test log in crash")
-//        Crashlytics.crashlytics().setUserID("1234567")
-//
-//        let numbers = [0]
-//        let _ = numbers[1]
-//
-//        -----------------------------------
-//        let title = "hello"
-//
-//        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
-//          AnalyticsParameterItemID: "id-\(title)",
-//          AnalyticsParameterItemName: title,
-//          AnalyticsParameterContentType: "cont",
-//        ])
-        
-//        ----------------------------------
-        
-        
-//        Crashlytics.crashlytics().record(error: LoginError.loginError)
-        
         pushProfileEditorViewController()
     }
 }

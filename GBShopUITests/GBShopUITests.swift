@@ -25,12 +25,12 @@ class GBShopUITests: XCTestCase {
     
     func testSuccess() {
         enterAuthData(login: "admin", password: "1234567")
-        XCTAssertFalse(app.otherElements.staticTexts["Login or password is wrong"].waitForExistence(timeout: 1.0))
+        XCTAssertFalse(app.otherElements.staticTexts["Login or password is wrong"].waitForExistence(timeout: 5.0))
     }
     
     func testFail() {
         enterAuthData(login: "", password: "")
-        XCTAssertTrue(app.otherElements.staticTexts["Login or password is wrong"].waitForExistence(timeout: 1.0))
+        XCTAssertTrue(app.otherElements.staticTexts["Login or password is wrong"].waitForExistence(timeout: 5.0))
     }
 
     override func tearDownWithError() throws {
