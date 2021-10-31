@@ -19,6 +19,8 @@
 		3C0B900E26D90EC7004D05B2 /* AuthRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0B900D26D90EC7004D05B2 /* AuthRequestFactory.swift */; };
 		3C0B901026D90F05004D05B2 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0B900F26D90F05004D05B2 /* Auth.swift */; };
 		3C0B901226D90FD0004D05B2 /* RequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0B901126D90FD0004D05B2 /* RequestFactory.swift */; };
+		3C1A4B21272DBC1D0080F257 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1A4B20272DBC1D0080F257 /* SnapshotHelper.swift */; };
+		3C1A4B23272DBD330080F257 /* GBShopSnapshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1A4B22272DBD330080F257 /* GBShopSnapshots.swift */; };
 		3C1FC5D8270AF2690075658F /* ProductCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1FC5D7270AF2690075658F /* ProductCategory.swift */; };
 		3C1FC5DC270B2B240075658F /* AbstractErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1FC5DB270B2B240075658F /* AbstractErrorParser.swift */; };
 		3C280D28272160B500EB7A68 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C280D27272160B500EB7A68 /* GoogleService-Info.plist */; };
@@ -132,6 +134,8 @@
 		3C0B900D26D90EC7004D05B2 /* AuthRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRequestFactory.swift; sourceTree = "<group>"; };
 		3C0B900F26D90F05004D05B2 /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		3C0B901126D90FD0004D05B2 /* RequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestFactory.swift; sourceTree = "<group>"; };
+		3C1A4B20272DBC1D0080F257 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
+		3C1A4B22272DBD330080F257 /* GBShopSnapshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GBShopSnapshots.swift; sourceTree = "<group>"; };
 		3C1FC5D7270AF2690075658F /* ProductCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCategory.swift; sourceTree = "<group>"; };
 		3C1FC5DB270B2B240075658F /* AbstractErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractErrorParser.swift; sourceTree = "<group>"; };
 		3C280D27272160B500EB7A68 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -486,6 +490,8 @@
 		3C9A58FC26D7BC1600A29BE4 /* GBShopUITests */ = {
 			isa = PBXGroup;
 			children = (
+				3C1A4B20272DBC1D0080F257 /* SnapshotHelper.swift */,
+				3C1A4B22272DBD330080F257 /* GBShopSnapshots.swift */,
 				3C9A58FD26D7BC1600A29BE4 /* GBShopUITests.swift */,
 				3CFA3C9D2717009A002A124D /* SignUpUITests.swift */,
 				3C9A58FF26D7BC1600A29BE4 /* Info.plist */,
@@ -735,6 +741,7 @@
 				3C9A58D526D7BC1300A29BE4 /* Frameworks */,
 				3C9A58D626D7BC1300A29BE4 /* Resources */,
 				0693E270688BCE62F5DADD37 /* [CP] Embed Pods Frameworks */,
+				3C280D2927216D8D00EB7A68 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -871,6 +878,25 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GBShop/Pods-GBShop-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		3C280D2927216D8D00EB7A68 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
 		5C8E9E58F083AFB258F16D29 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1062,6 +1088,8 @@
 			files = (
 				3C9A58FE26D7BC1600A29BE4 /* GBShopUITests.swift in Sources */,
 				3CFA3C9E2717009A002A124D /* SignUpUITests.swift in Sources */,
+				3C1A4B23272DBD330080F257 /* GBShopSnapshots.swift in Sources */,
+				3C1A4B21272DBC1D0080F257 /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1215,6 +1243,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 97H7Q83X5L;
 				INFOPLIST_FILE = GBShop/Environments/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

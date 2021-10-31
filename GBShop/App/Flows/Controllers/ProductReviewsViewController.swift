@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseCrashlytics
+import Firebase
 
 class ProductReviewsViewController: UIViewController {
     private let requestFactory = RequestFactory()
@@ -78,9 +80,18 @@ class ProductReviewsViewController: UIViewController {
         allReview.getAllReviews(productId: 1) { response in
             switch response.result {
             case .success(let result):
+                let parametres = ["result": result]
+                Analytics.logEvent("get all reviews success",
+                                   parameters: parametres)
                 self.allReviews = result
             case .failure(let error):
-                print(error.localizedDescription)
+                let keysAndValues = [
+                    "error": error.localizedDescription
+                ] as [String : Any]
+                
+                Crashlytics.crashlytics().setCustomKeysAndValues(keysAndValues)
+                Crashlytics.crashlytics().log("get all reviews in crash")
+                fatalError(error.localizedDescription)
             }
         }
     }

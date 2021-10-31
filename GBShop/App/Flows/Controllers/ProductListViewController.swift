@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseCrashlytics
+import Firebase
 
 class ProductListViewController: UIViewController {
     let requestFactory = RequestFactory()
@@ -63,6 +65,11 @@ class ProductListViewController: UIViewController {
     }()
     
     private var editButton = UIBarButtonItem()
+    
+    enum ProductError: Error {
+        case payError
+        case deleteProductError
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -267,7 +274,10 @@ extension ProductListViewController: ProductListCellDelegate {
             let payBasket = requestFactory.makePayBasketRequestFactory()
             payBasket.payBasket(userId: 1) { response in
                 switch response.result {
-                case .success(_):
+                case .success(let result):
+                    let parametres = ["result": result]
+                    Analytics.logEvent("user pay success",
+                                       parameters: parametres)
                     DispatchQueue.main.async {
                         let product = self.products[indexPath.row]
                         let piece = cell.itemCountLabel.text ?? ""
@@ -280,7 +290,16 @@ extension ProductListViewController: ProductListCellDelegate {
                         self.productTableView.reloadData()
                     }
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    let product = self.products[indexPath.row]
+                    let keysAndValues = [
+                        "error": error.localizedDescription,
+                        "productname": product.name,
+                        "prodcutId": product.id
+                    ] as [String : Any]
+                    
+                    Crashlytics.crashlytics().setCustomKeysAndValues(keysAndValues)
+                    Crashlytics.crashlytics().log("pay product in crash")
+                    fatalError(error.localizedDescription)
                 }
             }
         }
@@ -301,11 +320,23 @@ extension ProductListViewController: ProductListCellDelegate {
                     toVC.onConfirmButtonTapped = {
                         switch response.result {
                         case .success(let success):
+                            let parametres = ["result": success.result]
+                            Analytics.logEvent("user delete success",
+                                               parameters: parametres)
                             self.products.remove(at: indexPath.row)
                             self.productTableView.reloadData()
                             print(success)
                         case .failure(let error):
-                            print(error.localizedDescription)
+                            let product = self.products[indexPath.row]
+                            let keysAndValues = [
+                                "error": error.localizedDescription,
+                                "productname": product.name,
+                                "prodcutId": product.id
+                            ] as [String : Any]
+                            
+                            Crashlytics.crashlytics().setCustomKeysAndValues(keysAndValues)
+                            Crashlytics.crashlytics().log("delete product in crash")
+                            fatalError(error.localizedDescription)
                         }
                     }
                 }
