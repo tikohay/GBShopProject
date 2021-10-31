@@ -13,6 +13,7 @@ class GBShopUITests: XCTestCase {
     var scrollViewQuery: XCUIElementQuery!
     
     func testExample() {
+    
     }
     
     override func setUpWithError() throws {
@@ -27,7 +28,7 @@ class GBShopUITests: XCTestCase {
         enterAuthData(login: "admin", password: "1234567")
         XCTAssertFalse(app.otherElements.staticTexts["Login or password is wrong"].waitForExistence(timeout: 5.0))
     }
-    
+
     func testFail() {
         enterAuthData(login: "", password: "")
         XCTAssertTrue(app.otherElements.staticTexts["Login or password is wrong"].waitForExistence(timeout: 5.0))

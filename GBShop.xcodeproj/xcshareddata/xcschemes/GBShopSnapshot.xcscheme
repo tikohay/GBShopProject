@@ -9,14 +9,14 @@
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3C9A58D726D7BC1300A29BE4"
-               BuildableName = "GBShop.app"
-               BlueprintName = "GBShop"
+               BlueprintIdentifier = "3C9A58F826D7BC1600A29BE4"
+               BuildableName = "GBShopUITests.xctest"
+               BlueprintName = "GBShopUITests"
                ReferencedContainer = "container:GBShop.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,16 +28,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3C9A58ED26D7BC1600A29BE4"
-               BuildableName = "GBShopTests.xctest"
-               BlueprintName = "GBShopTests"
-               ReferencedContainer = "container:GBShop.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
          <TestableReference
             skipped = "NO">
             <BuildableReference
@@ -60,22 +50,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3C9A58D726D7BC1300A29BE4"
-            BuildableName = "GBShop.app"
-            BlueprintName = "GBShop"
-            ReferencedContainer = "container:GBShop.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "-FIRAnalyticsDebugEnabled"
-            isEnabled = "YES">
-         </CommandLineArgument>
-      </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -83,16 +57,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3C9A58D726D7BC1300A29BE4"
-            BuildableName = "GBShop.app"
-            BlueprintName = "GBShop"
+            BlueprintIdentifier = "3C9A58F826D7BC1600A29BE4"
+            BuildableName = "GBShopUITests.xctest"
+            BlueprintName = "GBShopUITests"
             ReferencedContainer = "container:GBShop.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
