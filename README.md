@@ -1,5 +1,4 @@
 # An application like an online store, where I applied the principles of clean code
-
 <img width="536" alt="Снимок экрана 2022-03-27 в 18 32 49" src="https://user-images.githubusercontent.com/74830450/160286538-f94240ba-fa25-427b-bb59-5e983d469862.png">
 <img width="536" alt="Снимок экрана 2022-03-27 в 18 32 57" src="https://user-images.githubusercontent.com/74830450/160286548-029bd034-bd7c-4e01-bcb9-c71506af914d.png">
 <img width="536" alt="Снимок экрана 2022-03-27 в 18 33 42" src="https://user-images.githubusercontent.com/74830450/160286551-49a52298-b7c5-4dcf-a9a7-7127cd1a5564.png">
